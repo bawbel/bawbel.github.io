@@ -289,12 +289,14 @@
   </nav>
 
   <div class="features" role="list" aria-label="Platform features">
+    <span class="pill" role="listitem">Skill Scanner</span>
     <span class="pill" role="listitem">AVE Standard</span>
     <span class="pill" role="listitem">PiranhaDB</span>
-    <span class="pill" role="listitem">Agentic AI Security</span>
     <span class="pill" role="listitem">MCP Scanner</span>
     <span class="pill" role="listitem">Verified Registry</span>
+    <span class="pill" role="listitem">Agentic AI Security</span>
     <span class="pill" role="listitem">OWASP Mapped</span>
+    <span class="pill" role="listitem">NIST AI RMF Mapped</span>
     <span class="pill" role="listitem">EU AI Act Ready</span>
   </div>
 
@@ -311,16 +313,34 @@
     c.appendChild(p);
   }
 })();
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
+  const email=document.getElementById('emailInput').value;
+  const btn=e.target.querySelector('button');
+  btn.textContent='Sending…';
+  btn.disabled=true;
   try{
-    const list=JSON.parse(localStorage.getItem('bawbel_waitlist')||'[]');
-    const email=document.getElementById('emailInput').value;
-    if(!list.includes(email))list.push(email);
-    localStorage.setItem('bawbel_waitlist',JSON.stringify(list));
-  }catch(_){}
-  document.getElementById('signupForm').style.display='none';
-  document.getElementById('successMsg').style.display='block';
+    const res=await fetch('https://formspree.io/f/xyklzgoo',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({email})
+    });
+    if(res.ok){
+      try{
+        const list=JSON.parse(localStorage.getItem('bawbel_waitlist')||'[]');
+        if(!list.includes(email))list.push(email);
+        localStorage.setItem('bawbel_waitlist',JSON.stringify(list));
+      }catch(_){}
+      document.getElementById('signupForm').style.display='none';
+      document.getElementById('successMsg').style.display='block';
+    }else{
+      btn.textContent='Try again';
+      btn.disabled=false;
+    }
+  }catch(_){
+    btn.textContent='Try again';
+    btn.disabled=false;
+  }
 }
 </script>
 </body>
