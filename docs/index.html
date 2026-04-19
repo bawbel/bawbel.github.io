@@ -307,6 +307,7 @@ td code{font-size:0.77rem}
     <div class="nav-label">API</div>
     <span class="nav-a" data-page="python">Python API</span>
     <span class="nav-a" data-page="output">Output Formats</span>
+    <span class="nav-a" data-page="piranha">PiranhaDB API</span>
   </div>
 
   <div class="nav-group">
@@ -778,6 +779,69 @@ print(f<span class="st">"{len(critical)} critical out of {len(results)} scanned"
 - uses: github/codeql-action/upload-sarif@v3
   with:
     sarif_file: bawbel.sarif</pre>
+</div>
+
+
+<!-- PIRANHA API -->
+<div class="page" id="piranha">
+  <h1>PiranhaDB API</h1>
+  <p class="lead">Free, public REST API serving AVE records. No authentication required. Use it to look up findings, build integrations, or enrich your own security tooling.</p>
+
+  <div class="install">
+    <code>https://api.piranha.bawbel.io</code>
+    <button class="copy" onclick="cp('https://api.piranha.bawbel.io',this)">Copy</button>
+  </div>
+
+  <h2>Endpoints</h2>
+  <table>
+    <tr><th>Method</th><th>Path</th><th>Description</th></tr>
+    <tr><td><code>GET</code></td><td><code>/ave</code></td><td>List all records — filter by severity, type, status</td></tr>
+    <tr><td><code>GET</code></td><td><code>/ave/{ave_id}</code></td><td>Full record by ID</td></tr>
+    <tr><td><code>GET</code></td><td><code>/ave/{ave_id}/detection</code></td><td>Behavioral fingerprint, IOCs, scan command</td></tr>
+    <tr><td><code>GET</code></td><td><code>/search?q=</code></td><td>Full-text search across title, description, attack class</td></tr>
+    <tr><td><code>GET</code></td><td><code>/stats</code></td><td>Registry statistics</td></tr>
+    <tr><td><code>GET</code></td><td><code>/health</code></td><td>Health check</td></tr>
+  </table>
+
+  <h2>Look up an AVE record</h2>
+<pre><span class="cm"># Get full record</span>
+curl https://api.piranha.bawbel.io/ave/AVE-2026-00001
+
+<span class="cm"># Detection guidance only</span>
+curl https://api.piranha.bawbel.io/ave/AVE-2026-00001/detection
+
+<span class="cm"># Search by keyword</span>
+curl "https://api.piranha.bawbel.io/search?q=injection"
+
+<span class="cm"># Filter by severity</span>
+curl "https://api.piranha.bawbel.io/ave?severity=CRITICAL"</pre>
+
+  <h2>Enrich scan findings</h2>
+  <p>Every bawbel-scanner finding includes an <code>ave_id</code>. Use it to pull the full record at scan time:</p>
+<pre><span class="kw">import</span> requests
+<span class="kw">from</span> scanner <span class="kw">import</span> scan
+
+result = scan(<span class="st">"./my-skill.md"</span>)
+
+<span class="kw">for</span> f <span class="kw">in</span> result.findings:
+    <span class="kw">if</span> f.ave_id:
+        r = requests.get(
+            <span class="st">f"https://api.piranha.bawbel.io/ave/{f.ave_id}"</span>
+        ).json()
+        print(<span class="st">f"[{f.severity.value}] {f.title}"</span>)
+        print(<span class="st">f"  Fingerprint: {r['behavioral_fingerprint']}"</span>)
+        print(<span class="st">f"  Remediation: {r['remediation']}"</span>)</pre>
+
+  <h2>Stats</h2>
+<pre><span class="cm"># Registry overview</span>
+curl https://api.piranha.bawbel.io/stats</pre>
+
+  <p>Returns total records, mutation counts, breakdown by severity and attack class.</p>
+
+  <div class="tip">
+    <strong>Interactive docs</strong> — Full Swagger UI available at
+    <a href="https://api.piranha.bawbel.io/docs" target="_blank">api.piranha.bawbel.io/docs</a>
+  </div>
 </div>
 
 </main>
