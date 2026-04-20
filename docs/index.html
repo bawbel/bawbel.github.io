@@ -352,7 +352,7 @@ FINDINGS
    Line 7  ·  fetch your instructions
    OWASP: ASI01 (Prompt Injection), ASI08 (Goal Hijacking)
 
-🟠  HIGH      —                   Goal override instruction detected
+🟠  HIGH      AVE-2026-00007      Goal override instruction detected
    Line 17  ·  Ignore all previous instructions
 
 SUMMARY
@@ -363,7 +363,7 @@ Risk score:  9.4 / 10  CRITICAL  ·  Findings: 2  ·  5ms
   <h2>What is covered</h2>
   <div class="cards">
     <div class="card" onclick="go('rules')"><div class="card-t">15 pattern rules</div><div class="card-d">Goal override, jailbreak, crypto drain, MCP poisoning and more</div></div>
-    <div class="card" onclick="go('engines')"><div class="card-t">3 detection engines</div><div class="card-d">Pattern (always), YARA, Semgrep — LLM Stage 2 coming soon</div></div>
+    <div class="card" onclick="go('engines')"><div class="card-t">4 detection engines</div><div class="card-d">Pattern, YARA, Semgrep, LLM Stage 2 via LiteLLM — any provider</div></div>
     <div class="card" onclick="go('output')"><div class="card-t">3 output formats</div><div class="card-d">Text, JSON, SARIF for GitHub Security tab</div></div>
     <div class="card" onclick="go('cicd')"><div class="card-t">CI/CD ready</div><div class="card-d">GitHub Actions, GitLab, pre-commit, Docker Compose</div></div>
   </div>
@@ -384,6 +384,9 @@ pip install "bawbel-scanner[yara]"
 <span class="cm"># With Semgrep (Stage 1c)</span>
 pip install "bawbel-scanner[semgrep]"
 
+<span class="cm"># With LLM Stage 2 (any provider via LiteLLM)</span>
+pip install "bawbel-scanner[llm]"
+
 <span class="cm"># Everything</span>
 pip install "bawbel-scanner[all]"</pre>
 
@@ -395,16 +398,27 @@ Detection Engines:
   ✓  Pattern     15 rules  ·  stdlib only  ·  always active
   ✗  YARA        not installed  ·  pip install "bawbel-scanner[yara]"
   ✗  Semgrep     not installed  ·  pip install "bawbel-scanner[semgrep]"
-  ✗  LLM         no API key  ·  set ANTHROPIC_API_KEY to enable Stage 2</pre>
+  ✗  LLM         not installed  ·  pip install "bawbel-scanner[llm]"</pre>
 
   <h2>Enable Stage 2 — LLM semantic analysis</h2>
-<pre><span class="cm"># Claude (Anthropic)</span>
+  <p>Stage 2 uses <a href="https://docs.litellm.ai/docs/providers" target="_blank">LiteLLM</a> — works with any provider. Install first, then set your API key.</p>
+<pre><span class="cm"># Install LiteLLM support</span>
+pip install "bawbel-scanner[llm]"
+
+<span class="cm"># Anthropic (auto-selects claude-haiku-4-5-20251001)</span>
 export ANTHROPIC_API_KEY=sk-ant-...
 
-<span class="cm"># OpenAI</span>
+<span class="cm"># OpenAI (auto-selects gpt-4o-mini)</span>
 export OPENAI_API_KEY=sk-...
 
-bawbel scan ./skill.md  <span class="cm"># Stage 2 now active automatically</span></pre>
+<span class="cm"># Gemini, Mistral, Groq, Ollama and 100+ more</span>
+export BAWBEL_LLM_MODEL=gemini/gemini-1.5-flash
+export GEMINI_API_KEY=...
+
+<span class="cm"># Local model — no API key needed</span>
+export BAWBEL_LLM_MODEL=ollama/mistral
+
+bawbel scan ./skill.md  <span class="cm"># Stage 2 now active — shows model in bawbel version</span></pre>
 
   <h2>From source</h2>
 <pre>git clone https://github.com/bawbel/bawbel-scanner
@@ -573,7 +587,7 @@ def test_your_rule_no_false_positive(self, tmp_path):
     <tr><td>1a</td><td>Pattern</td><td>Nothing — always runs</td><td>15 built-in regex rules</td></tr>
     <tr><td>1b</td><td>YARA</td><td><code>pip install "bawbel-scanner[yara]"</code></td><td>3 rules · binary + text matching</td></tr>
     <tr><td>1c</td><td>Semgrep</td><td><code>pip install "bawbel-scanner[semgrep]"</code></td><td>5 rules · structural patterns</td></tr>
-    <tr><td>2</td><td>LLM semantic</td><td><code>ANTHROPIC_API_KEY</code> or <code>OPENAI_API_KEY</code></td><td>Nuanced prompt injection detection</td></tr>
+    <tr><td>2</td><td>LLM semantic</td><td><code>pip install "bawbel-scanner[llm]"</code> + provider API key or <code>BAWBEL_LLM_MODEL</code></td><td>Nuanced prompt injection — any LiteLLM provider</td></tr>
     <tr><td>3</td><td>Behavioral</td><td>Docker + eBPF — v1.0 roadmap</td><td>Runtime behaviour monitoring</td></tr>
   </table>
 
@@ -678,9 +692,24 @@ docker compose run --rm audit       <span class="cm"># bandit + pip-audit</span>
     <tr><td><code>BAWBEL_LOG_LEVEL</code></td><td><code>WARNING</code></td><td><code>DEBUG</code> · <code>INFO</code> · <code>WARNING</code> · <code>ERROR</code></td></tr>
     <tr><td><code>BAWBEL_MAX_FILE_SIZE_MB</code></td><td><code>10</code></td><td>Skip files larger than N MB</td></tr>
     <tr><td><code>BAWBEL_SCAN_TIMEOUT_SEC</code></td><td><code>30</code></td><td>Subprocess timeout for YARA and Semgrep</td></tr>
-    <tr><td><code>ANTHROPIC_API_KEY</code></td><td>—</td><td>Enables Stage 2 LLM analysis via Claude</td></tr>
-    <tr><td><code>OPENAI_API_KEY</code></td><td>—</td><td>Alternative LLM provider for Stage 2</td></tr>
+    <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>auto</td><td>LiteLLM model string — overrides auto-detection</td></tr>
+    <tr><td><code>BAWBEL_LLM_MAX_CHARS</code></td><td><code>8000</code></td><td>Max content chars sent to LLM per scan</td></tr>
+    <tr><td><code>BAWBEL_LLM_TIMEOUT</code></td><td><code>30</code></td><td>LLM call timeout in seconds</td></tr>
+    <tr><td><code>BAWBEL_LLM_ENABLED</code></td><td><code>true</code></td><td>Set <code>false</code> to disable Stage 2 entirely</td></tr>
   </table>
+
+  <h2>LLM provider keys</h2>
+  <p>Set whichever provider you use. The first key found determines the default model.</p>
+  <table>
+    <tr><th>Key</th><th>Default model</th></tr>
+    <tr><td><code>ANTHROPIC_API_KEY</code></td><td><code>claude-haiku-4-5-20251001</code></td></tr>
+    <tr><td><code>OPENAI_API_KEY</code></td><td><code>gpt-4o-mini</code></td></tr>
+    <tr><td><code>GEMINI_API_KEY</code></td><td><code>gemini/gemini-1.5-flash</code></td></tr>
+    <tr><td><code>MISTRAL_API_KEY</code></td><td><code>mistral/mistral-small</code></td></tr>
+    <tr><td><code>GROQ_API_KEY</code></td><td><code>groq/llama3-8b-8192</code></td></tr>
+  </table>
+
+  <div class="tip"><strong>Any provider:</strong> Set <code>BAWBEL_LLM_MODEL</code> to any <a href="https://docs.litellm.ai/docs/providers" target="_blank">LiteLLM model string</a> to use providers not listed above — including local Ollama models with no API key.</div>
 
   <h2>Debug mode</h2>
 <pre>BAWBEL_LOG_LEVEL=DEBUG bawbel scan ./skill.md   <span class="cm"># full internal logs</span>
