@@ -273,7 +273,7 @@ td code{font-size:0.77rem}
 <nav class="sidebar" id="sidebar" aria-label="Documentation navigation">
   <div class="sidebar-top">
     <div class="brand">Bawbel Scanner</div>
-    <div class="brand-sub">v0.1.0 · Documentation</div>
+    <div class="brand-sub">v0.2.0 · Documentation</div>
   </div>
 
   <div class="nav-group">
@@ -340,10 +340,13 @@ bawbel scan ./my-skill.md
 bawbel report ./my-skill.md
 
 <span class="cm"># Scan a directory recursively</span>
-bawbel scan ./skills/ --recursive --fail-on-severity high</pre>
+bawbel scan ./skills/ --recursive --fail-on-severity high
+
+<span class="cm"># Watch mode — re-scans on every file change</span>
+bawbel scan ./skills/ --watch</pre>
 
   <h2>Example output</h2>
-<pre>Bawbel Scanner v0.1.0
+<pre>Bawbel Scanner v0.2.0
 
 Scanning:  malicious-skill.md  ·  Type: skill
 
@@ -387,12 +390,15 @@ pip install "bawbel-scanner[semgrep]"
 <span class="cm"># With LLM Stage 2 (any provider via LiteLLM)</span>
 pip install "bawbel-scanner[llm]"
 
+<span class="cm"># With file watcher</span>
+pip install "bawbel-scanner[watch]"
+
 <span class="cm"># Everything</span>
 pip install "bawbel-scanner[all]"</pre>
 
   <h2>Verify</h2>
 <pre>bawbel version</pre>
-<pre>Bawbel Scanner v0.1.0
+<pre>Bawbel Scanner v0.2.0
 
 Detection Engines:
   ✓  Pattern     15 rules  ·  stdlib only  ·  always active
@@ -440,6 +446,7 @@ bawbel version</pre>
     <tr><td><code>--format</code></td><td><code>text</code></td><td><code>text</code> · <code>json</code> · <code>sarif</code></td></tr>
     <tr><td><code>--fail-on-severity</code></td><td>—</td><td>Exit 2 if findings at or above: <code>critical</code> <code>high</code> <code>medium</code> <code>low</code></td></tr>
     <tr><td><code>--recursive</code>, <code>-r</code></td><td>false</td><td>Scan all matching files in a directory tree</td></tr>
+    <tr><td><code>--watch</code>, <code>-w</code></td><td>false</td><td>Watch for file changes and re-scan automatically</td></tr>
   </table>
 
   <h2>Exit codes</h2>
