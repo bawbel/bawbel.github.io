@@ -456,71 +456,199 @@ footer {
 
 
 /* ── WATCH DEMO ── */
+#watch-section {
+  overflow:hidden; /* prevent any child from causing horizontal scroll */
+}
 .watch-demo {
   display:grid;
-  grid-template-columns:240px 1fr;
-  gap:1.25rem;
+  grid-template-columns:200px 1fr;
+  gap:1rem;
   align-items:start;
-  contain:layout;
+  width:100%;
+  /* Isolate layout — nothing inside can push the page */
+  isolation:isolate;
 }
+/* Tree panel */
 .watch-tree {
-  background:#020e0b; border:1px solid var(--border);
-  border-radius:12px; overflow:hidden;
-  box-shadow:0 24px 64px rgba(0,0,0,.4);
-  position:relative;
+  width:200px;
+  min-width:200px;
+  max-width:200px;
+  height:300px;
+  min-height:300px;
+  max-height:300px;
+  background:#020e0b;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 16px 48px rgba(0,0,0,.4);
+  display:flex;
+  flex-direction:column;
 }
 .watch-tree-bar {
-  background:#031510; padding:.7rem 1rem;
-  display:flex; align-items:center; gap:.5rem;
+  background:#031510;
+  padding:.6rem .9rem;
+  display:flex;
+  align-items:center;
+  gap:.45rem;
   border-bottom:1px solid var(--border);
+  height:36px;
+  flex-shrink:0;
 }
-.watch-tree-body { padding:.75rem 0 0 }
+.watch-tree-body {
+  flex:1;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  padding-bottom:0;
+}
 .tree-row {
-  display:flex; align-items:center; gap:.55rem;
-  padding:.45rem 1rem; font-family:'DM Mono',monospace;
-  font-size:.78rem; color:rgba(255,255,255,.4);
+  display:flex;
+  align-items:center;
+  gap:.45rem;
+  padding:.35rem .9rem;
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;
+  color:rgba(255,255,255,.4);
   transition:background .2s, color .2s;
+  height:34px;
+  min-height:34px;
+  flex-shrink:0;
+  overflow:hidden;
 }
-.tree-row.tree-active { color:rgba(255,255,255,.85) }
+.tree-row.tree-active  { color:rgba(255,255,255,.85) }
 .tree-row.tree-changed { color:var(--amber); background:rgba(245,166,35,.06) }
 .tree-row.tree-clean   { color:var(--t400);  background:rgba(29,184,148,.06) }
 .tree-row.tree-danger  { color:var(--red);   background:rgba(255,79,79,.06) }
-.tree-name { flex:1 }
-.tree-status { font-size:.7rem; opacity:.8 }
+.tree-name {
+  flex:1;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  min-width:0;
+}
+.tree-status {
+  font-size:.68rem;
+  flex-shrink:0;
+  width:28px;
+  text-align:right;
+}
 .watch-status-bar {
-  display:flex; align-items:center; gap:.6rem;
-  padding:.65rem 1rem .85rem;
-  border-top:1px solid var(--border); margin-top:.4rem;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.5rem .9rem;
+  border-top:1px solid var(--border);
+  height:38px;
+  flex-shrink:0;
+  min-height:38px;
+  overflow:hidden;
+  margin-top:auto;
 }
 .watch-pulse {
-  width:7px; height:7px; border-radius:50%; background:var(--t400);
-  flex-shrink:0;
+  width:7px; height:7px; border-radius:50%;
+  background:var(--t400); flex-shrink:0;
   animation:blink 1.4s ease-in-out infinite;
 }
 .watch-pulse.scanning { background:var(--amber); animation:blink .5s ease-in-out infinite }
 .watch-pulse.alert    { background:var(--red);   animation:blink .3s ease-in-out infinite }
-.watch-status-text { font-size:.72rem; color:rgba(255,255,255,.35); font-family:'DM Mono',monospace }
-.watch-terminal { max-width:none; height:100%; }
+.watch-status-text {
+  font-size:.68rem;
+  color:rgba(255,255,255,.35);
+  font-family:'DM Mono',monospace;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  min-width:0;
+}
+/* Terminal panel */
+.watch-terminal {
+  min-width:0; /* critical — allows grid child to shrink */
+  width:100%;
+  height:300px;
+  min-height:300px;
+  max-height:300px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.watch-terminal .terminal-bar {
+  height:36px;
+  min-height:36px;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.watch-terminal .terminal-body {
+  position:relative;
+  overflow:hidden;
+  flex:1;
+  min-height:0;
+  padding-bottom:8px;
+}
+/* Each output line — absolutely positioned, never affects layout */
+.watch-line {
+  position:absolute;
+  left:0;
+  right:0;
+  height:24px;
+  line-height:24px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding:0 1.2rem;
+  font-family:'DM Mono',monospace;
+  font-size:.8rem;
+}
+
+/* ── Responsive breakpoints ── */
+@media(max-width:900px) {
+  .watch-demo {
+    grid-template-columns:180px 1fr;
+  }
+  .watch-tree {
+    width:180px;
+    min-width:180px;
+    max-width:180px;
+  }
+}
+
 @media(max-width:700px) {
   .watch-demo {
     grid-template-columns:1fr;
-    justify-items:center;
+    gap:.85rem;
   }
   .watch-tree {
-    display:block;
     width:100%;
-    max-width:420px;
+    min-width:0;
+    max-width:100%;
+    height:230px;
+    min-height:230px;
+    max-height:230px;
   }
   .watch-terminal {
-    width:100%;
-    max-width:420px;
+    height:260px;
+    min-height:260px;
+    max-height:260px;
   }
-  #watch-section {
-    text-align:center;
+  .watch-line {
+    font-size:.75rem;
   }
-  #watch-section .section-sub {
-    margin-left:auto;
-    margin-right:auto;
+}
+
+@media(max-width:480px) {
+  .watch-tree {
+    height:210px;
+    min-height:210px;
+    max-height:210px;
+  }
+  .watch-terminal {
+    height:240px;
+    min-height:240px;
+    max-height:240px;
+  }
+  .watch-line {
+    font-size:.7rem;
+    padding:0 .85rem;
   }
 }
 </style>
@@ -741,7 +869,7 @@ footer {
         <div class="terminal-dot" style="background:#28c840"></div>
         <span class="terminal-title">bawbel scan ./skills/ --watch</span>
       </div>
-      <div class="terminal-body" id="watch-output" style="height:220px;overflow:hidden;position:relative;"></div>
+      <div class="terminal-body" id="watch-output"></div>
     </div>
   </div>
 </section>
@@ -1077,19 +1205,39 @@ async function handleSubmit(e) {
   const pulse   = document.getElementById('watch-pulse');
   const statusT = document.getElementById('watch-status-text');
 
-  // Fixed line height — terminal body is 220px, show ~9 lines
-  const MAX_LINES = 9;
+  const LINE_H    = 24;   // px — matches .watch-line height
+  const MAX_LINES = 40;   // max lines kept in DOM before culling
+  // Dynamic — recalculate on each render so it works at all screen sizes
+  function getVisible() {
+    const h = (output.offsetHeight || 264) - 8; // minus padding-bottom
+    return Math.max(1, Math.floor(h / LINE_H));
+  }
 
-  function setLine(html) {
-    // Remove oldest if full
-    if (output.children.length >= MAX_LINES) {
-      output.removeChild(output.firstChild);
-    }
+  // All lines stored as {el, pos} where pos is current slot index
+  let lines = [];
+
+  function addLine(html) {
     const el = document.createElement('div');
+    el.className = 'watch-line';
     el.innerHTML = html;
-    // Each line gets a fixed height so container never grows
-    el.style.cssText = 'height:24px;line-height:24px;white-space:nowrap;overflow:hidden';
     output.appendChild(el);
+    lines.push(el);
+
+    // Cull old lines beyond MAX_LINES
+    while (lines.length > MAX_LINES) {
+      const old = lines.shift();
+      if (old.parentNode) old.parentNode.removeChild(old);
+    }
+
+    // Reposition all lines so newest is at bottom of visible area
+    // Use translateY so browser composites, never causes reflow
+    const visible = getVisible();
+    const total   = lines.length;
+    lines.forEach((line, i) => {
+      const slot = i - Math.max(0, total - visible);
+      line.style.transform = 'translateY(' + (slot * LINE_H) + 'px)';
+      line.style.opacity   = slot >= 0 ? '1' : '0';
+    });
   }
 
   function setTreeFile(fileId, state, badge) {
@@ -1109,14 +1257,11 @@ async function handleSubmit(e) {
     });
   }
 
-  // Single scan scenario: one file, with findings, then clean, then repeat
   const SCENARIOS = [
-    // Scenario 1: code-review.md — 2 findings
     {
-      fileId: 3, fileName: 'code-review.md',
-      dangerous: true,
+      fileId: 3, fileName: 'code-review.md', dangerous: true,
       findingLines: [
-        '<span class="t-red">🔴 CRITICAL</span>  <span class="t-teal">AVE-2026-00005</span>  <span class="t-white">Destructive command</span>',
+        '<span class="t-red">🔴 CRITICAL</span>  <span class="t-teal">AVE-2026-00005</span>  <span class="t-white">Destructive cmd</span>',
         '<span class="t-dim">   Line 41 · rm -rf /tmp/workspace</span>',
         '<span class="t-amber">🟠 HIGH &nbsp;&nbsp;&nbsp;</span>  <span class="t-teal">AVE-2026-00009</span>  <span class="t-white">Identity jailbreak</span>',
         '<span class="t-dim">   Line 87 · pretend you are a different AI</span>',
@@ -1124,30 +1269,24 @@ async function handleSubmit(e) {
       ],
       badge: '🔴 2', treeState: 'danger',
     },
-    // Scenario 2: summarise.md — clean
     {
-      fileId: 1, fileName: 'summarise.md',
-      dangerous: false,
+      fileId: 1, fileName: 'summarise.md', dangerous: false,
       findingLines: [
         '<span class="t-green">✓ Clean — no findings · 3ms</span>',
       ],
       badge: '✓', treeState: 'clean',
     },
-    // Scenario 3: web-search.md — 1 finding
     {
-      fileId: 2, fileName: 'web-search.md',
-      dangerous: true,
+      fileId: 2, fileName: 'web-search.md', dangerous: true,
       findingLines: [
-        '<span class="t-amber">🟠 HIGH &nbsp;&nbsp;&nbsp;</span>  <span class="t-teal">AVE-2026-00001</span>  <span class="t-white">External instruction fetch</span>',
-        '<span class="t-dim">   Line 12 · fetch your config from https://attacker.io</span>',
+        '<span class="t-amber">🟠 HIGH &nbsp;&nbsp;&nbsp;</span>  <span class="t-teal">AVE-2026-00001</span>  <span class="t-white">External fetch</span>',
+        '<span class="t-dim">   Line 12 · fetch config from https://attacker.io</span>',
         '<span class="t-amber">Risk: 9.4/10 HIGH · 1 finding · 5ms</span>',
       ],
       badge: '🟠 1', treeState: 'danger',
     },
-    // Scenario 4: web-search.md — clean (after fix)
     {
-      fileId: 2, fileName: 'web-search.md',
-      dangerous: false,
+      fileId: 2, fileName: 'web-search.md', dangerous: false,
       findingLines: [
         '<span class="t-green">✓ Clean — no findings · 4ms</span>',
       ],
@@ -1157,59 +1296,52 @@ async function handleSubmit(e) {
 
   let idx = 0;
   let timers = [];
-
-  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
-
-  function delay(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function later(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clearAll() { timers.forEach(clearTimeout); timers = []; }
 
   function runNext() {
-    clearTimers();
+    clearAll();
     const sc = SCENARIOS[idx];
     idx = (idx + 1) % SCENARIOS.length;
 
-    // Step 1 — file changes
     resetTree();
     setTreeFile(sc.fileId, 'changed', '…');
     pulse.className = 'watch-pulse scanning';
     statusT.textContent = 'Change detected…';
 
-    setLine('<span class="t-sep" style="display:block;border-bottom:1px solid rgba(255,255,255,.07);margin:.2rem 0;height:1px"></span>');
-    setLine('<span class="t-dim">' + new Date().toTimeString().slice(0,8) + ' change → ' + sc.fileName + '</span>');
+    const now = new Date().toTimeString().slice(0,8);
+    addLine('<span class="t-sep" style="display:block;border-bottom:1px solid rgba(255,255,255,.07);height:1px;margin-top:4px"></span>');
+    addLine('<span class="t-dim">' + now + ' change → ' + sc.fileName + '</span>');
 
-    // Step 2 — scanning
-    delay(500, () => {
-      pulse.className = 'watch-pulse scanning';
+    later(500, () => {
       statusT.textContent = 'Scanning ' + sc.fileName + '…';
-      setLine('<span class="t-white">Scanning: </span><span class="t-teal">' + sc.fileName + '</span>');
+      addLine('<span class="t-white">Scanning: </span><span class="t-teal">' + sc.fileName + '</span>');
     });
 
-    // Step 3 — findings appear one by one
     sc.findingLines.forEach((line, i) => {
-      delay(1000 + i * 280, () => { setLine(line); });
+      later(1000 + i * 300, () => addLine(line));
     });
 
-    const afterFindings = 1000 + sc.findingLines.length * 280 + 200;
+    const done = 1000 + sc.findingLines.length * 300 + 200;
 
-    // Step 4 — update tree + status
-    delay(afterFindings, () => {
+    later(done, () => {
       setTreeFile(sc.fileId, sc.treeState, sc.badge);
       pulse.className = sc.dangerous ? 'watch-pulse alert' : 'watch-pulse';
       statusT.textContent = sc.dangerous
-        ? 'Threat in ' + sc.fileName + ' · watching…'
-        : '✓ Clean · watching 5 files…';
+        ? 'Threat in ' + sc.fileName
+        : '✓ Clean · watching…';
     });
 
-    // Step 5 — pause then run next
-    delay(afterFindings + 2800, runNext);
+    later(done + 2800, runNext);
   }
 
-  // Boot sequence
-  setLine('<span class="t-dim">Bawbel Scanner v0.2.0</span>');
-  setLine('<span class="t-dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>');
-  setLine('<span class="t-green">✓ Watching ./skills/ · 5 files</span>');
-  setLine('<span class="t-dim">Press Ctrl+C to stop</span>');
+  // Boot
+  addLine('<span class="t-dim">Bawbel Scanner v0.2.0</span>');
+  addLine('<span class="t-dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>');
+  addLine('<span class="t-green">✓ Watching ./skills/ · 5 files</span>');
+  addLine('<span class="t-dim">Press Ctrl+C to stop</span>');
 
-  delay(1200, runNext);
+  later(1200, runNext);
 })();
 
 </script>
