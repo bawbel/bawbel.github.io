@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bawbel.io/">
 <meta property="og:title" content="Bawbel — Agentic AI Security">
-<meta property="og:description" content="Open-source scanner for agentic AI components. AVE standard, PiranhaDB threat intelligence, 15 detection rules.">
+<meta property="og:description" content="Open-source scanner for agentic AI components. 40 AVE records, 37 rules, 6 detection engines, near-zero false positives. v1.0.0 now live.">
 <meta property="og:image" content="https://bawbel.io/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@bawbel_io">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"bawbel-scanner","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows","url":"https://bawbel.io","description":"Open-source CLI scanner for agentic AI components.","softwareVersion":"0.2.0","license":"https://opensource.org/licenses/Apache-2.0"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"bawbel-scanner","applicationCategory":"SecurityApplication","operatingSystem":"Linux, macOS, Windows","url":"https://bawbel.io","description":"Open-source CLI scanner for agentic AI components. 37 pattern rules, 40 AVE records, 6 detection engines, near-zero false positives.","softwareVersion":"1.0.0","license":"https://opensource.org/licenses/Apache-2.0"}
 </script>
 <style>
 :root {
@@ -319,13 +319,16 @@ section {
 /* ── AVE RECORDS ── */
 .ave-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
   gap:1rem;
+  align-items:start;
 }
 .ave-card {
   background:rgba(255,255,255,.025); border:1px solid var(--border);
   border-radius:10px; padding:1.1rem 1.25rem;
   display:flex; flex-direction:column; gap:.5rem;
+  align-self:start;
+  break-inside:avoid;
 }
 .ave-id {
   font-family:'DM Mono',monospace; font-size:.72rem;
@@ -679,7 +682,7 @@ footer {
 <div class="hero">
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
-    v0.2.0 live on PyPI &nbsp;·&nbsp; 15 AVE rules
+    v1.0.0 live on PyPI &nbsp;·&nbsp; 40 AVE records &nbsp;·&nbsp; 37 rules
   </div>
 
   <div class="hero-logo">
@@ -725,16 +728,20 @@ footer {
 <!-- STATS -->
 <div class="stats-bar fade-up">
   <div class="stat">
-    <div class="stat-num">15</div>
-    <div class="stat-label">AVE RULES</div>
+    <div class="stat-num">37</div>
+    <div class="stat-label">PATTERN RULES</div>
   </div>
   <div class="stat">
-    <div class="stat-num">4</div>
+    <div class="stat-num">40</div>
+    <div class="stat-label">AVE RECORDS</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6</div>
     <div class="stat-label">DETECTION ENGINES</div>
   </div>
   <div class="stat">
-    <div class="stat-num">3</div>
-    <div class="stat-label">OUTPUT FORMATS</div>
+    <div class="stat-num">~0</div>
+    <div class="stat-label">FALSE POSITIVES</div>
   </div>
   <div class="stat">
     <div class="stat-num">0</div>
@@ -759,7 +766,7 @@ footer {
       <span class="terminal-title">bawbel scan ./my-skill.md</span>
     </div>
     <div class="terminal-body">
-      <span class="t-dim">Bawbel Scanner v0.2.0 &nbsp;·&nbsp; github.com/bawbel/bawbel-scanner</span><br>
+      <span class="t-dim">Bawbel Scanner v1.0.0 &nbsp;·&nbsp; github.com/bawbel/bawbel-scanner</span><br>
       <span class="t-dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br>
       <span class="t-white">Scanning: &nbsp;</span><span class="t-teal">my-skill.md</span><br>
       <span class="t-white">Type: &nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-teal">skill</span><br>
@@ -792,15 +799,15 @@ footer {
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
-      <div class="feature-title">15 Detection Rules</div>
-      <div class="feature-desc">Pattern engine with rules covering all major AVE attack classes — from metamorphic payloads and crypto drain to jailbreak and PII exfiltration.</div>
+      <div class="feature-title">37 Detection Rules — 40 AVE Records</div>
+      <div class="feature-desc">Pattern engine covers all 40 agentic attack classes — from lateral movement and RAG injection to covert channels and A2A cross-agent attacks. YARA adds 39 rules, Semgrep adds 41.</div>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
       </svg>
-      <div class="feature-title">LLM Stage 2</div>
-      <div class="feature-desc">Semantic analysis via LiteLLM — any provider. Catches nuanced injections that regex misses. Works with Anthropic, OpenAI, Gemini, Ollama, and 100+ more.</div>
+      <div class="feature-title">Near-Zero False Positives</div>
+      <div class="feature-desc">5-layer FP reduction: code fence stripping, negation context, confidence scoring, LLM meta-analysis, and file-type profiles. 21 documentation files → 0 active findings.</div>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -813,22 +820,22 @@ footer {
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
       </svg>
-      <div class="feature-title">CI/CD Ready</div>
-      <div class="feature-desc">GitHub Actions, GitLab CI, pre-commit hooks. SARIF output uploads directly to the GitHub Security tab. Zero config, just <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.82rem">pip install</code>.</div>
+      <div class="feature-title">CI/CD &amp; IDE Integration</div>
+      <div class="feature-desc">Official GitHub Action, GitLab CI, pre-commit hooks. VS Code extension with inline diagnostics and auto-scan on save. SARIF uploads to GitHub Security tab in one line.</div>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0018 0V5"/><path d="M3 12a9 3 0 0018 0"/>
       </svg>
-      <div class="feature-title">PiranhaDB API</div>
-      <div class="feature-desc">Live threat intelligence API with behavioral fingerprints, IOC lists, and CVSS-AI scores for all 15 AVE records. Free and open at api.piranha.bawbel.io.</div>
+      <div class="feature-title">PiranhaDB API — 40 Records Live</div>
+      <div class="feature-desc">Free REST API with behavioral fingerprints, IOC lists, and CVSS-AI scores for all 40 AVE records. Auto-syncs from <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.82rem">bawbel-ave</code> on every deploy.</div>
     </div>
     <div class="feature-card">
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
       </svg>
       <div class="feature-title">AVE Standard</div>
-      <div class="feature-desc">Open vulnerability standard for agentic AI — like CVE but designed for agent attack classes. Every finding links to a published AVE record with remediation guidance.</div>
+      <div class="feature-desc">Open vulnerability standard for agentic AI. 40 published records — memory poisoning, lateral movement, vision injection, supply chain, covert channels, and more. Every finding links to remediation.</div>
     </div>
   </div>
 </section>
@@ -840,6 +847,7 @@ footer {
   <p class="section-sub">
     Run once and forget it. Bawbel re-scans every file the moment it changes —
     catching threats as you write, not after you ship.
+    5-layer false-positive reduction keeps the signal clean.
   </p>
 
   <div class="watch-demo">
@@ -877,8 +885,8 @@ footer {
 <!-- DETECTION ENGINES -->
 <section class="fade-up">
   <div class="section-label">Detection pipeline</div>
-  <div class="section-title">Four stages. Zero false negatives.</div>
-  <p class="section-sub">Each engine adds a layer. All four run in sequence. Skip any stage by not installing its dependency.</p>
+  <div class="section-title">Six stages. Near-zero false positives.</div>
+  <p class="section-sub">Each engine adds a layer. All six run in sequence. Skip any stage by not installing its dependency. 5-layer FP reduction runs across all text engines.</p>
 
   <table class="engines-table">
     <thead>
@@ -891,34 +899,40 @@ footer {
     </thead>
     <tbody>
       <tr>
+        <td><span class="stage-badge">0</span></td>
+        <td><strong>Magika</strong> &mdash; ML content-type verification, catches binaries disguised as skill files</td>
+        <td><code style="font-family:'DM Mono',monospace;color:var(--t400);font-size:.8rem">[magika]</code></td>
+        <td><span class="status-live"><span class="status-dot"></span>Live</span></td>
+      </tr>
+      <tr>
         <td><span class="stage-badge">1a</span></td>
-        <td><strong>Pattern</strong> &mdash; 15 regex rules, always runs</td>
+        <td><strong>Pattern</strong> &mdash; 37 regex rules, always runs, zero dependencies</td>
         <td><code style="font-family:'DM Mono',monospace;color:var(--t400);font-size:.8rem">pip install bawbel-scanner</code></td>
         <td><span class="status-live"><span class="status-dot"></span>Live</span></td>
       </tr>
       <tr>
         <td><span class="stage-badge">1b</span></td>
-        <td><strong>YARA</strong> &mdash; binary + text matching</td>
+        <td><strong>YARA</strong> &mdash; 39 rules, binary + text matching, Unicode homoglyph detection</td>
         <td><code style="font-family:'DM Mono',monospace;color:var(--t400);font-size:.8rem">[yara]</code></td>
         <td><span class="status-live"><span class="status-dot"></span>Live</span></td>
       </tr>
       <tr>
         <td><span class="stage-badge">1c</span></td>
-        <td><strong>Semgrep</strong> &mdash; structural pattern matching</td>
+        <td><strong>Semgrep</strong> &mdash; 41 rules, structural &amp; multi-line pattern matching</td>
         <td><code style="font-family:'DM Mono',monospace;color:var(--t400);font-size:.8rem">[semgrep]</code></td>
         <td><span class="status-live"><span class="status-dot"></span>Live</span></td>
       </tr>
       <tr>
         <td><span class="stage-badge">2</span></td>
-        <td><strong>LLM</strong> &mdash; semantic analysis, any provider</td>
+        <td><strong>LLM</strong> &mdash; semantic analysis, any provider via LiteLLM</td>
         <td><code style="font-family:'DM Mono',monospace;color:var(--t400);font-size:.8rem">[llm]</code> + API key</td>
         <td><span class="status-live"><span class="status-dot"></span>Live</span></td>
       </tr>
       <tr>
         <td><span class="stage-badge">3</span></td>
-        <td><strong>Behavioral sandbox</strong> &mdash; Docker + eBPF runtime</td>
+        <td><strong>Behavioral sandbox</strong> &mdash; Docker runtime isolation, eBPF syscall tracing</td>
         <td>&mdash;</td>
-        <td><span class="status-planned"><span class="status-dot"></span>v1.0 roadmap</span></td>
+        <td><span class="status-live"><span class="status-dot"></span>Live</span></td>
       </tr>
     </tbody>
   </table>
@@ -927,7 +941,7 @@ footer {
 <!-- AVE RECORDS -->
 <section class="fade-up">
   <div class="section-label">AVE Standard</div>
-  <div class="section-title">15 attack classes. All documented.</div>
+  <div class="section-title">40 attack classes. All documented.</div>
   <p class="section-sub">
     Every finding links to a published AVE record — behavioral fingerprints, IOCs, CVSS-AI scores, and remediation steps.
     Browse all records at <a href="https://api.piranha.bawbel.io" target="_blank">api.piranha.bawbel.io</a>.
@@ -1008,6 +1022,172 @@ footer {
       <div class="ave-id">AVE-2026-00015</div>
       <div class="ave-title">System Prompt Extraction</div>
       <div class="ave-meta"><span class="sev-badge sev-medium">MEDIUM</span><span class="cvss-score">6.2</span></div>
+    </div>
+
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00016</div>
+      <div class="ave-title">Indirect Prompt Injection via RAG</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.2</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00017</div>
+      <div class="ave-title">MCP Server Impersonation</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.6</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00018</div>
+      <div class="ave-title">Tool Result Manipulation</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.1</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00019</div>
+      <div class="ave-title">Agent Memory Poisoning</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.2</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00020</div>
+      <div class="ave-title">Cross-Agent Injection (A2A)</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.7</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00021</div>
+      <div class="ave-title">Autonomous Action — No Confirmation</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.3</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00022</div>
+      <div class="ave-title">Scope Creep — Undeclared Resources</div>
+      <div class="ave-meta"><span class="sev-badge sev-medium">MEDIUM</span><span class="cvss-score">6.8</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00023</div>
+      <div class="ave-title">Context Window Flooding</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.0</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00024</div>
+      <div class="ave-title">Binary Content Disguised as Skill File</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.5</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00025</div>
+      <div class="ave-title">Fake Conversation History Injection</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.5</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00026</div>
+      <div class="ave-title">Exfiltration via Tool Output Encoding</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.1</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00027</div>
+      <div class="ave-title">Multi-Turn Instruction Persistence</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.4</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00028</div>
+      <div class="ave-title">Prompt Injection via File Content</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.3</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00029</div>
+      <div class="ave-title">Homoglyph &amp; Unicode Obfuscation</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.0</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00030</div>
+      <div class="ave-title">False Role Claim Escalation</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.0</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00031</div>
+      <div class="ave-title">Feedback Loop / RLHF Poisoning</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.6</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00032</div>
+      <div class="ave-title">Internal Network Reconnaissance</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.2</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00033</div>
+      <div class="ave-title">Unsafe Deserialization / Eval</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.3</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00034</div>
+      <div class="ave-title">Dynamic Third-Party Skill Import</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.2</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00035</div>
+      <div class="ave-title">Sensor / Telemetry Falsification</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">7.9</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00036</div>
+      <div class="ave-title">Lateral Movement — Internal Pivot</div>
+      <div class="ave-meta"><span class="sev-badge sev-critical">CRITICAL</span><span class="cvss-score">9.4</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00037</div>
+      <div class="ave-title">Prompt Injection via Image / Vision</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.5</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00038</div>
+      <div class="ave-title">Excessive Agency — Unbounded Tools</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.1</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00039</div>
+      <div class="ave-title">Steganographic Covert Channel</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.3</span></div>
+    </div>
+    <div class="ave-card">
+      <div class="ave-id">AVE-2026-00040</div>
+      <div class="ave-title">Insecure Output — SQL/XSS/Shell Injection</div>
+      <div class="ave-meta"><span class="sev-badge sev-high">HIGH</span><span class="cvss-score">8.2</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- INTEGRATIONS -->
+<section class="fade-up" style="padding-top:3rem;padding-bottom:2rem">
+  <div class="section-label">Integrations</div>
+  <div class="section-title">Works where you already work</div>
+  <p class="section-sub">One-line setup in every environment. Zero config for the common case.</p>
+
+  <div class="features-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+      </svg>
+      <div class="feature-title">GitHub Actions</div>
+      <div class="feature-desc"><code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.8rem">uses: bawbel/bawbel-integrations@v1</code> — installs scanner, runs scan, uploads SARIF to Security tab. One step.</div>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l3 3-3 3M13 15h3"/>
+      </svg>
+      <div class="feature-title">VS Code Extension</div>
+      <div class="feature-desc">Search <strong>Bawbel Scanner</strong> in the Marketplace. Inline squiggles, status bar, auto-scan on save, <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.8rem">Cmd+Shift+B</code> shortcut. Zero setup.</div>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+      </svg>
+      <div class="feature-title">Pre-commit Hook</div>
+      <div class="feature-desc">Block malicious skills before they enter the repo. Add to <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.8rem">.pre-commit-config.yaml</code> — catches threats at the commit boundary.</div>
+    </div>
+    <div class="feature-card">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+      </svg>
+      <div class="feature-title">Docker</div>
+      <div class="feature-desc">Three build targets: <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.8rem">production</code>, <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.8rem">dev</code>, <code style="color:var(--t400);font-family:'DM Mono',monospace;font-size:.8rem">test</code>. Docker Compose with 7 services. Minimal non-root image.</div>
     </div>
   </div>
 </section>
@@ -1116,7 +1296,7 @@ footer {
     <div class="section-label" style="justify-content:center;display:flex">Stay updated</div>
     <div class="section-title" style="font-size:1.6rem">Get notified when we ship</div>
     <p style="color:rgba(255,255,255,.45);font-size:.9rem;margin-top:.5rem">
-      Verified registry, behavioral sandbox, v1.0. No spam.
+      Enterprise registry, telemetry weights, v1.1 roadmap. No spam.
     </p>
     <form class="form-row" id="signupForm" onsubmit="handleSubmit(event)">
       <input type="email" id="emailInput" placeholder="your@email.com"
@@ -1261,11 +1441,11 @@ async function handleSubmit(e) {
     {
       fileId: 3, fileName: 'code-review.md', dangerous: true,
       findingLines: [
-        '<span class="t-red">🔴 CRITICAL</span>  <span class="t-teal">AVE-2026-00005</span>  <span class="t-white">Destructive cmd</span>',
+        '<span class="t-red">🔴 CRITICAL</span>  <span class="t-teal">AVE-2026-00036</span>  <span class="t-white">Lateral movement</span>',
         '<span class="t-dim">   Line 41 · rm -rf /tmp/workspace</span>',
         '<span class="t-amber">🟠 HIGH &nbsp;&nbsp;&nbsp;</span>  <span class="t-teal">AVE-2026-00009</span>  <span class="t-white">Identity jailbreak</span>',
         '<span class="t-dim">   Line 87 · pretend you are a different AI</span>',
-        '<span class="t-red">Risk: 9.1/10 CRITICAL · 2 findings · 6ms</span>',
+        '<span class="t-red">Risk: 9.4/10 CRITICAL · 2 findings · 6ms</span>',
       ],
       badge: '🔴 2', treeState: 'danger',
     },
@@ -1336,7 +1516,7 @@ async function handleSubmit(e) {
   }
 
   // Boot
-  addLine('<span class="t-dim">Bawbel Scanner v0.2.0</span>');
+  addLine('<span class="t-dim">Bawbel Scanner v1.0.0</span>');
   addLine('<span class="t-dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>');
   addLine('<span class="t-green">✓ Watching ./skills/ · 5 files</span>');
   addLine('<span class="t-dim">Press Ctrl+C to stop</span>');
