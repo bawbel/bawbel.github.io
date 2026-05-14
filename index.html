@@ -190,7 +190,7 @@ section{position:relative;z-index:1;padding:5rem clamp(1rem,4vw,3rem)}
 .ecosystem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2.5rem}
 .eco-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center;transition:border-color .2s,transform .2s}
 .eco-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.eco-icon{font-size:1.5rem;margin-bottom:.5rem}
+.eco-icon{width:2rem;height:2rem;margin-bottom:.75rem;display:flex;align-items:center;justify-content:center}
 .eco-name{font-size:.85rem;font-weight:600;margin-bottom:.25rem}
 .eco-desc{font-size:.75rem;color:var(--muted)}
 .eco-status{font-size:.65rem;font-weight:700;color:var(--g400);margin-top:.35rem;letter-spacing:.5px}
@@ -319,10 +319,10 @@ footer{
   <div class="nav-links">
     <a href="https://bawbel.io/docs">Docs</a>
     <a href="https://api.piranha.bawbel.io">PiranhaDB</a>
-    <a href="https://github.com/bawbel/bawbel-ave">AVE Standard</a>
-    <a href="https://bawbel.io/cvss-ai">CVSS-AI</a>
-    <a href="https://github.com/bawbel/bawbel-scanner">GitHub</a>
-    <a href="https://pypi.org/project/bawbel-scanner/" class="nav-cta">v1.1.0 on PyPI</a>
+    <a href="https://github.com/bawbel/ave">AVE Standard</a>
+    <a href="https://aivss.owasp.org">AIVSS</a>
+    <a href="https://github.com/bawbel/scanner">GitHub</a>
+    <a href="https://pypi.org/project/scanner/" class="nav-cta">v1.1.0 on PyPI</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -331,10 +331,10 @@ footer{
 <div class="mobile-nav" id="mobileNav">
   <a href="https://bawbel.io/docs">Docs</a>
   <a href="https://api.piranha.bawbel.io">PiranhaDB</a>
-  <a href="https://github.com/bawbel/bawbel-ave">AVE Standard</a>
-  <a href="https://bawbel.io/cvss-ai">CVSS-AI</a>
-  <a href="https://github.com/bawbel/bawbel-scanner">GitHub</a>
-  <a href="https://pypi.org/project/bawbel-scanner/" class="nav-cta" style="text-align:center">v1.1.0 on PyPI</a>
+  <a href="https://github.com/bawbel/ave">AVE Standard</a>
+  <a href="https://aivss.owasp.org">AIVSS</a>
+  <a href="https://github.com/bawbel/scanner">GitHub</a>
+  <a href="https://pypi.org/project/scanner/" class="nav-cta" style="text-align:center">v1.1.0 on PyPI</a>
 </div>
 
 <!-- HERO -->
@@ -352,7 +352,7 @@ footer{
   </p>
   <div class="hero-actions">
     <a href="https://bawbel.io/docs" class="btn-primary">Get started</a>
-    <a href="https://github.com/bawbel/bawbel-scanner" class="btn-secondary">View on GitHub</a>
+    <a href="https://github.com/bawbel/scanner" class="btn-secondary">View on GitHub</a>
   </div>
   <div class="hero-install">
     <span class="prompt">$</span>
@@ -379,13 +379,13 @@ footer{
       <p class="section-sub">One scanner, every surface. CLI, IDE, CI/CD, pre-commit, or API.</p>
     </div>
     <div class="workflow-tabs">
-      <div class="wtab active" onclick="switchTab('cli')">⌨️ CLI</div>
-      <div class="wtab" onclick="switchTab('ide')">🖥️ VS Code</div>
-      <div class="wtab" onclick="switchTab('precommit')">🔒 Pre-commit</div>
-      <div class="wtab" onclick="switchTab('cicd')">🔄 CI/CD</div>
-      <div class="wtab" onclick="switchTab('ssc')">🌐 MCP Server</div>
-      <div class="wtab" onclick="switchTab('pin')">📌 Pinning</div>
-      <div class="wtab" onclick="switchTab('watch')">👁 Watch</div>
+      <div class="wtab active" onclick="switchTab('cli')">CLI</div>
+      <div class="wtab" onclick="switchTab('ide')">VS Code</div>
+      <div class="wtab" onclick="switchTab('precommit')">Pre-commit</div>
+      <div class="wtab" onclick="switchTab('cicd')">CI/CD</div>
+      <div class="wtab" onclick="switchTab('ssc')">MCP Server</div>
+      <div class="wtab" onclick="switchTab('pin')">Pinning</div>
+      <div class="wtab" onclick="switchTab('watch')">Watch</div>
     </div>
 
     <div class="workflow-body active" id="tab-cli">
@@ -404,10 +404,10 @@ footer{
         <div class="term-body">
           <div class="appear"><span class="td">$ </span><span class="tc">bawbel scan</span><span class="tw2"> ./skills/ --recursive</span></div>
           <div class="appear"><span class="td">Bawbel Scanner v1.1.0</span></div>
-          <div class="appear"><span class="te">🔴 CRITICAL  AVE-2026-00001</span></div>
+          <div class="appear"><span class="te"><span style="color:#ff4444">CRIT</span>  AVE-2026-00001</span></div>
           <div class="appear"><span class="td">   External instruction fetch detected</span></div>
           <div class="appear"><span class="td">   OWASP MCP: </span><span class="tw">MCP04, MCP06</span></div>
-          <div class="appear"><span class="te">⛓  CRITICAL  RCE Chain  9.7</span></div>
+          <div class="appear"><span class="te"><span style="color:#ff4444">CRIT</span>  RCE Chain  9.7</span></div>
           <div class="appear"><span class="tc">Risk: 9.7/10  Findings: 2  Toxic flows: 1</span></div>
         </div>
       </div>
@@ -430,7 +430,7 @@ footer{
           <div class="appear"><span class="td">[Bawbel] Scanning on save...</span></div>
           <div class="appear"><span class="te">skill.md:12</span><span class="tw2"> AVE-2026-00004</span></div>
           <div class="appear"><span class="td">  Shell pipe injection detected</span></div>
-          <div class="appear"><span class="td">  CVSS-AI: 8.8  Engine: pattern</span></div>
+          <div class="appear"><span class="td">  AIVSS: 8.8  Engine: pattern</span></div>
           <div class="appear"><span class="td">  Right-click to suppress inline</span></div>
           <div class="appear" style="margin-top:.5rem"><span class="tc">Bawbel: 2 finding(s)</span><span class="td"> [status bar]</span></div>
         </div>
@@ -474,7 +474,7 @@ footer{
       <div class="terminal">
         <div class="term-bar"><div class="term-dot" style="background:#ff5f57"></div><div class="term-dot" style="background:#ffbd2e"></div><div class="term-dot" style="background:#28c940"></div><span style="margin-left:.5rem;font-size:.7rem;color:#666">.github/workflows/bawbel.yml</span></div>
         <div class="term-body" style="font-size:.72rem">
-          <div class="appear"><span class="tb">- uses: </span><span class="tc">bawbel/bawbel-integrations@v1</span></div>
+          <div class="appear"><span class="tb">- uses: </span><span class="tc">bawbel/integrations@v1</span></div>
           <div class="appear"><span class="tb">  with:</span></div>
           <div class="appear"><span class="tb">    path: </span><span class="tw2">.</span></div>
           <div class="appear"><span class="tb">    fail-on-severity: </span><span class="tw2">high</span></div>
@@ -500,7 +500,7 @@ footer{
         <div class="term-body">
           <div class="appear"><span class="td">$ </span><span class="tc">bawbel ssc</span><span class="tw2"> https://api.example.com</span></div>
           <div class="appear"><span class="td">Fetching .well-known/mcp.json...</span></div>
-          <div class="appear"><span class="te">🔴 CRITICAL  AVE-2026-00041</span></div>
+          <div class="appear"><span class="te"><span style="color:#ff4444">CRIT</span>  AVE-2026-00041</span></div>
           <div class="appear"><span class="td">   MCP Server-Card Injection</span></div>
           <div class="appear"><span class="td">$ </span><span class="tc">bawbel conform</span><span class="tw2"> https://api.example.com</span></div>
           <div class="appear"><span class="tc">Score: 87/100  Grade: B  Conformant: yes</span></div>
@@ -552,7 +552,7 @@ footer{
           <div class="appear"><span class="tc">Bawbel Scanner v1.1.0</span></div>
           <div class="appear"><span class="tc">Clean: 0 findings</span></div>
           <div class="appear" style="margin-top:.5rem"><span class="tw2">skills/evil.md changed</span></div>
-          <div class="appear"><span class="te">🔴 CRITICAL  AVE-2026-00001  line 3</span></div>
+          <div class="appear"><span class="te"><span style="color:#ff4444">CRIT</span>  AVE-2026-00001  line 3</span></div>
           <div class="appear"><span class="td">Watching... (Ctrl+C to stop)</span></div>
         </div>
       </div>
@@ -569,35 +569,35 @@ footer{
     <div class="features-grid">
       <div class="feature-card fade-up">
         <div class="feature-badge badge-new">NEW v1.1.0</div>
-        <div class="feature-icon">⛓</div>
+        <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.72 9.2"/><path d="M18 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
         <h3>Toxic Flow Detection</h3>
         <p>Detects when two findings combine into a complete attack chain. Credential-read plus data-exfil becomes CRITICAL 9.8 automatically. 12 built-in chain definitions.</p>
       </div>
       <div class="feature-card fade-up">
         <div class="feature-badge badge-new">NEW v1.1.0</div>
-        <div class="feature-icon">🌐</div>
+        <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="14" cy="14" r="10"/><path d="M2 14h24M14 4c-3 4-4 6.7-4 10s1 6 4 10M14 4c3 4 4 6.7 4 10s-1 6-4 10"/></svg></div>
         <h3>Server-Card Scanning</h3>
         <p>Fetches .well-known/mcp.json and scans all tool descriptions before your agent connects. The only dedicated scanner for the server-card attack surface.</p>
       </div>
       <div class="feature-card fade-up">
         <div class="feature-badge badge-new">NEW v1.1.0</div>
-        <div class="feature-icon">📊</div>
+        <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="5" height="10" rx="1"/><rect x="11" y="9" width="5" height="15" rx="1"/><rect x="19" y="4" width="5" height="20" rx="1"/><path d="M3 24h22"/></svg></div>
         <h3>Conformance Scoring</h3>
         <p>18 checks, grade A+ to F. REQUIRED vs RECOMMENDED vs BEST PRACTICE. Works on local files, live servers, and the official MCP registry.</p>
       </div>
       <div class="feature-card fade-up">
         <div class="feature-badge badge-new">NEW v1.1.0</div>
-        <div class="feature-icon">📌</div>
+        <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22v-8M10 10V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M8 10h12l-1 4a5 5 0 0 1-10 0l-1-4z"/></svg></div>
         <h3>Rug Pull Detection</h3>
         <p>Hash skill files and detect content drift. Git-committed pins visible in code review. Beats Snyk local ~/.mcp-scan on every dimension.</p>
       </div>
       <div class="feature-card fade-up">
-        <div class="feature-icon">🗂</div>
+        <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="9" height="9" rx="1.5"/><rect x="16" y="3" width="9" height="9" rx="1.5"/><rect x="3" y="16" width="9" height="9" rx="1.5"/><rect x="16" y="16" width="9" height="9" rx="1.5"/></svg></div>
         <h3>OWASP MCP Top 10</h3>
         <p>Every finding maps to OWASP MCP categories MCP01 through MCP10 alongside existing ASI codes. Full 45-record mapping at OWASP_MCP_MAPPING.md.</p>
       </div>
       <div class="feature-card fade-up">
-        <div class="feature-icon">🔬</div>
+        <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="11" r="4"/><path d="M14 15v8M10 23h8"/><path d="M6 11h3M19 11h3"/><path d="M8.5 6.5L11 9M17 9l2.5-2.5"/></svg></div>
         <h3>6 Detection Engines</h3>
         <p>Pattern, YARA, Semgrep, LLM semantic, Magika content-type, and Docker behavioral sandbox. 118 rules total across 45 AVE IDs.</p>
       </div>
@@ -633,7 +633,7 @@ footer{
       <svg width="2" height="40" viewBox="0 0 2 40"><line x1="1" y1="0" x2="1" y2="40" stroke="var(--red)" stroke-width="2"/></svg>
     </div>
     <div class="flow-result fade-up" style="max-width:400px;margin:0 auto">
-      <div style="font-size:1.1rem;margin-bottom:.4rem">⛓</div>
+      <div style="margin-bottom:.4rem;display:flex;justify-content:center"><svg width="22" height="22" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.72 9.2"/><path d="M18 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
       <div class="chain-name">Credential Exfiltration Chain</div>
       <div class="chain-score" style="color:var(--red);font-weight:700;font-size:.95rem">CRITICAL 9.8</div>
       <div class="chain-score" style="margin-top:.3rem">credential-read + data-exfil</div>
@@ -683,7 +683,7 @@ footer{
         <div class="comp-org">AVE STANDARD</div>
         <div class="comp-name">AVE Numbering System</div>
         <div class="comp-desc">Every finding carries an AVE ID. Link directly to PiranhaDB for full behavioral fingerprint, IOCs, and remediation guidance.</div>
-        <div class="comp-tags"><span class="comp-tag">AVE-2026-*</span><span class="comp-tag">CVSS-AI</span><span class="comp-tag">piranha_url</span></div>
+        <div class="comp-tags"><span class="comp-tag">AVE-2026-*</span><span class="comp-tag">AIVSS</span><span class="comp-tag">piranha_url</span></div>
       </div>
     </div>
   </div>
@@ -696,13 +696,13 @@ footer{
     <h2 class="section-title fade-up">Everything links to everything</h2>
     <p class="section-sub fade-up">Every scanner finding links to PiranhaDB. Every AVE record links to detection rules. One unified security layer.</p>
     <div class="ecosystem-grid">
-      <div class="eco-card fade-up"><div class="eco-icon">⌨️</div><div class="eco-name">bawbel-scanner</div><div class="eco-desc">CLI scanner, Python API</div><div class="eco-status">LIVE v1.1.0</div></div>
-      <div class="eco-card fade-up"><div class="eco-icon">🖥️</div><div class="eco-name">VS Code Extension</div><div class="eco-desc">Inline diagnostics, auto-scan</div><div class="eco-status">LIVE v1.2.0</div></div>
-      <div class="eco-card fade-up"><div class="eco-icon">🔄</div><div class="eco-name">GitHub Actions</div><div class="eco-desc">SARIF upload, PR annotations</div><div class="eco-status">LIVE v1</div></div>
-      <div class="eco-card fade-up"><div class="eco-icon">🗂</div><div class="eco-name">AVE Standard</div><div class="eco-desc">45 published records</div><div class="eco-status">LIVE 45 records</div></div>
-      <div class="eco-card fade-up"><div class="eco-icon">🐟</div><div class="eco-name">PiranhaDB</div><div class="eco-desc">Threat intel API, 14 endpoints</div><div class="eco-status">LIVE api.piranha.bawbel.io</div></div>
-      <div class="eco-card fade-up"><div class="eco-icon">🔒</div><div class="eco-name">Pre-commit Hook</div><div class="eco-desc">Blocks commits on findings</div><div class="eco-status">LIVE v1.1</div></div>
-      <div class="eco-card fade-up"><div class="eco-icon">📐</div><div class="eco-name">CVSS-AI 1.0</div><div class="eco-desc">Scoring standard for agentic AI vulnerabilities</div><div class="eco-status"><a href="https://bawbel.io/cvss-ai" style="color:var(--g400)">Try calculator</a></div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="22" height="14" rx="2"/><path d="M7 14h2M11 14h2M15 14h2M19 14h2M7 18h14M9 11l2 3-2 3"/></svg></div><div class="eco-name">bawbel-scanner</div><div class="eco-desc">CLI scanner, Python API</div><div class="eco-status">LIVE v1.1.0</div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="22" height="15" rx="2"/><path d="M3 9h22M7 7h.01M10 7h.01M13 7h.01"/><path d="M8 20v3M20 20v3M5 23h18"/><path d="M9 13l3 2-3 2M14 17h5"/></svg></div><div class="eco-name">VS Code Extension</div><div class="eco-desc">Inline diagnostics, auto-scan</div><div class="eco-status">LIVE v1.2.0</div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="3"/><path d="M14 4v4M14 20v4M4 14h4M20 14h4M6.3 6.3l2.8 2.8M18.9 18.9l2.8 2.8M6.3 21.7l2.8-2.8M18.9 9.1l2.8-2.8"/></svg></div><div class="eco-name">GitHub Actions</div><div class="eco-desc">SARIF upload, PR annotations</div><div class="eco-status">LIVE v1</div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3L5 7v7c0 5 3.8 9.3 9 10.4C19.2 23.3 23 19 23 14V7L14 3z"/><polyline points="10,14 13,17 18,11"/></svg></div><div class="eco-name">AVE Standard</div><div class="eco-desc">45 published records</div><div class="eco-status">LIVE 45 records</div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="14" cy="8" rx="9" ry="3.5"/><path d="M5 8v6c0 1.9 4 3.5 9 3.5s9-1.6 9-3.5V8"/><path d="M5 14v6c0 1.9 4 3.5 9 3.5s9-1.6 9-3.5v-6"/></svg></div><div class="eco-name">PiranhaDB</div><div class="eco-desc">Threat intel API, 14 endpoints</div><div class="eco-status">LIVE api.piranha.bawbel.io</div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="13" width="16" height="11" rx="2"/><path d="M9 13V9a5 5 0 0 1 10 0v4"/><circle cx="14" cy="19" r="1.5" fill="var(--g400)" stroke="none"/></svg></div><div class="eco-name">Pre-commit Hook</div><div class="eco-desc">Blocks commits on findings</div><div class="eco-status">LIVE v1.1</div></div>
+      <div class="eco-card fade-up"><div class="eco-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--g400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5v18M8 9l6-4 6 4"/><path d="M6 14h16"/><path d="M9 18h10"/><path d="M11 22h6"/></svg></div><div class="eco-name">AIVSS (OWASP)</div><div class="eco-desc">Scoring standard for agentic AI vulnerabilities</div><div class="eco-status"><a href="https://aivss.owasp.org" style="color:var(--g400)">Try calculator</a></div></div>
     </div>
   </div>
 </section>
@@ -715,7 +715,7 @@ footer{
     <p class="section-sub fade-up">Free, no auth, Apache 2.0. Every scanner finding includes a piranha_url linking to the full record with IOCs and remediation.</p>
     <div class="piranha-endpoints">
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/records</div><div class="ep-desc">all 45 AVE records, filterable</div></div></div>
-      <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/records/{ave_id}</div><div class="ep-desc">full record with IOCs and CVSS-AI</div></div></div>
+      <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/records/{ave_id}</div><div class="ep-desc">full record with IOCs and AIVSS</div></div></div>
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/registry-scan/latest</div><div class="ep-desc">latest Smithery scan results</div></div></div>
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/registry-scan/history</div><div class="ep-desc">weekly trend data</div></div></div>
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/stats/ecosystem</div><div class="ep-desc">aggregate stats across all sources</div></div></div>
@@ -750,7 +750,7 @@ footer{
     <p class="fade-up" style="color:var(--muted);max-width:480px;margin:0 auto 2rem">Install the scanner, run your first scan, and see what your agents are actually loading.</p>
     <div class="hero-actions">
       <a href="https://bawbel.io/docs" class="btn-primary">Read the docs</a>
-      <a href="https://github.com/bawbel/bawbel-scanner" class="btn-secondary">GitHub</a>
+      <a href="https://github.com/bawbel/scanner" class="btn-secondary">GitHub</a>
     </div>
     <div class="hero-install" style="justify-content:center;margin-top:1rem">
       <span class="prompt">$</span>
@@ -764,9 +764,9 @@ footer{
   <div class="footer-links">
     <a href="https://bawbel.io/docs">Docs</a>
     <a href="https://api.piranha.bawbel.io">PiranhaDB</a>
-    <a href="https://github.com/bawbel/bawbel-ave">AVE Standard</a>
-    <a href="https://bawbel.io/cvss-ai">CVSS-AI</a>
-    <a href="https://github.com/bawbel/bawbel-scanner">GitHub</a>
+    <a href="https://github.com/bawbel/ave">AVE Standard</a>
+    <a href="https://aivss.owasp.org">AIVSS</a>
+    <a href="https://github.com/bawbel/scanner">GitHub</a>
     <a href="https://twitter.com/bawbel_io">@bawbel_io</a>
   </div>
 </footer>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bawbel Scanner — Documentation</title>
-<meta name="description" content="Documentation for Bawbel Scanner — the open-source CLI for scanning agentic AI components against the AVE standard.">
+<title>Bawbel Scanner - Documentation</title>
+<meta name="description" content="Documentation for Bawbel Scanner - the open-source CLI for scanning agentic AI components against the AVE standard.">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Bawbel Scanner — Documentation">
+<meta property="og:title" content="Bawbel Scanner - Documentation">
 <meta property="og:description" content="Open-source CLI scanner for agentic AI components. Detects AVE vulnerabilities before they reach production.">
 <meta property="og:url" content="https://bawbel.io/docs">
 <meta name="twitter:card" content="summary_large_image">
@@ -96,7 +96,7 @@ a:hover{text-decoration:underline}
 /* Mobile: drawer overlay */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:150;backdrop-filter:blur(2px)}
 
-/* ── Desktop toggle — top-left hamburger ── */
+/* ── Desktop toggle - top-left hamburger ── */
 .sb-toggle{
   position:fixed;top:0.85rem;left:0.85rem;
   width:34px;height:34px;
@@ -346,7 +346,7 @@ td code{font-size:0.77rem}
 <!-- Overlay (mobile) -->
 <div class="overlay" id="overlay" role="presentation" aria-hidden="true"></div>
 
-<!-- Desktop sidebar toggle — hamburger -->
+<!-- Desktop sidebar toggle - hamburger -->
 <button class="sb-toggle" id="sbToggle" aria-label="Toggle sidebar" title="Toggle sidebar">
   <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
     <line x1="2" y1="4.5" x2="16" y2="4.5"/>
@@ -410,9 +410,20 @@ td code{font-size:0.77rem}
   <div class="nav-group">
     <div class="nav-label">Project</div>
     <span class="nav-a" data-page="compliance">Standards Mapping</span>
-    <a class="nav-a" href="https://github.com/bawbel/bawbel-scanner" target="_blank">GitHub <span class="nav-ext">↗</span></a>
-    <a class="nav-a" href="https://github.com/bawbel/bawbel-ave" target="_blank">AVE Standard <span class="nav-ext">↗</span></a>
-    <a class="nav-a" href="https://github.com/bawbel/bawbel-scanner/blob/main/CONTRIBUTING.md" target="_blank">Contributing <span class="nav-ext">↗</span></a>
+  <div class="nav-group">
+    <div class="nav-label">Architecture</div>
+    <span class="nav-a" data-page="arch-overview">System Overview</span>
+    <span class="nav-a" data-page="arch-pipeline">Detection Pipeline</span>
+    <span class="nav-a" data-page="arch-ave">AVE Record Model</span>
+    <span class="nav-a" data-page="arch-scoring">AIVSS Scoring</span>
+    <span class="nav-a" data-page="arch-confidence">Confidence and FP</span>
+    <span class="nav-a" data-page="arch-flows">Toxic Flow Detection</span>
+    <span class="nav-a" data-page="arch-risk">Risk Score</span>
+    <span class="nav-a" data-page="arch-e2e">End-to-End Flow</span>
+  </div>
+    <a class="nav-a" href="https://github.com/bawbel/scanner" target="_blank">GitHub <span class="nav-ext">↗</span></a>
+    <a class="nav-a" href="https://github.com/bawbel/ave" target="_blank">AVE Standard <span class="nav-ext">↗</span></a>
+    <a class="nav-a" href="https://github.com/bawbel/scanner/blob/main/CONTRIBUTING.md" target="_blank">Contributing <span class="nav-ext">↗</span></a>
     <a class="nav-a" href="https://bawbel.io" target="_blank">bawbel.io <span class="nav-ext">↗</span></a>
   </div>
 </nav>
@@ -424,7 +435,7 @@ td code{font-size:0.77rem}
 <!-- QUICK START -->
 <div class="page on" id="start">
   <h1>Bawbel Scanner</h1>
-  <p class="lead">Open-source CLI scanner for agentic AI components — SKILL.md files, MCP servers, system prompts, plugins. Detects <a href="https://github.com/bawbel/bawbel-ave" target="_blank">AVE vulnerabilities</a> before they reach production.</p>
+  <p class="lead">Open-source CLI scanner for agentic AI components - SKILL.md files, MCP servers, system prompts, plugins. Detects <a href="https://github.com/bawbel/ave" target="_blank">AVE vulnerabilities</a> before they reach production.</p>
 
   <div class="install">
     <code>pip install bawbel-scanner</code>
@@ -441,7 +452,7 @@ bawbel report ./my-skill.md
 <span class="cm"># Scan a directory recursively</span>
 bawbel scan ./skills/ --recursive --fail-on-severity high
 
-<span class="cm"># Watch mode — re-scans on every file change</span>
+<span class="cm"># Watch mode - re-scans on every file change</span>
 bawbel scan ./skills/ --watch</pre>
 
   <h2>Example output</h2>
@@ -450,11 +461,11 @@ bawbel scan ./skills/ --watch</pre>
 Scanning:  malicious-skill.md  ·  Type: skill
 
 FINDINGS
-🔴  CRITICAL  AVE-2026-00001      External instruction fetch detected
+<span style="color:#ff4444">CRIT</span>  AVE-2026-00001      External instruction fetch detected
    Line 7  ·  fetch your instructions
    OWASP: ASI01 (Prompt Injection), ASI08 (Goal Hijacking)
 
-🟠  HIGH      AVE-2026-00007      Goal override instruction detected
+<span style="color:#ff8800">HIGH</span>  AVE-2026-00007      Goal override instruction detected
    Line 17  ·  Ignore all previous instructions
 
 SUMMARY
@@ -474,10 +485,10 @@ Risk score:  9.4 / 10  CRITICAL  ·  Findings: 2  ·  5ms
 <!-- INSTALLATION -->
 <div class="page" id="install">
   <h1>Installation</h1>
-  <p class="lead">Requires Python 3.10+. The base install runs with zero optional dependencies — just Python and pip.</p>
+  <p class="lead">Requires Python 3.10+. The base install runs with zero optional dependencies - just Python and pip.</p>
 
   <h2>Choose your install</h2>
-<pre><span class="cm"># Minimal — 15 pattern rules, no extra deps</span>
+<pre><span class="cm"># Minimal - 15 pattern rules, no extra deps</span>
 pip install bawbel-scanner
 
 <span class="cm"># With YARA (Stage 1b)</span>
@@ -506,8 +517,8 @@ Detection Engines:
   ✗  LLM         not installed  ·  pip install "bawbel-scanner[llm]"
 <span data-minver="0.3.0">  ✗  Sandbox     disabled  ·  set BAWBEL_SANDBOX_ENABLED=true</span></pre>
 
-  <h2>Enable Stage 2 — LLM semantic analysis</h2>
-  <p>Stage 2 uses <a href="https://docs.litellm.ai/docs/providers" target="_blank">LiteLLM</a> — works with any provider. Install first, then set your API key.</p>
+  <h2>Enable Stage 2 - LLM semantic analysis</h2>
+  <p>Stage 2 uses <a href="https://docs.litellm.ai/docs/providers" target="_blank">LiteLLM</a> - works with any provider. Install first, then set your API key.</p>
 <pre><span class="cm"># Install LiteLLM support</span>
 pip install "bawbel-scanner[llm]"
 
@@ -521,14 +532,14 @@ export OPENAI_API_KEY=sk-...
 export BAWBEL_LLM_MODEL=gemini/gemini-1.5-flash
 export GEMINI_API_KEY=...
 
-<span class="cm"># Local model — no API key needed</span>
+<span class="cm"># Local model - no API key needed</span>
 export BAWBEL_LLM_MODEL=ollama/mistral
 
-bawbel scan ./skill.md  <span class="cm"># Stage 2 now active — shows model in bawbel version</span></pre>
+bawbel scan ./skill.md  <span class="cm"># Stage 2 now active - shows model in bawbel version</span></pre>
 
   <h2>From source</h2>
-<pre>git clone https://github.com/bawbel/bawbel-scanner
-cd bawbel-scanner
+<pre>git clone https://github.com/bawbel/scanner
+cd scanner
 ./scripts/setup.sh --dev    <span class="cm"># creates .venv, installs all tools</span>
 source .venv/bin/activate
 bawbel version</pre>
@@ -563,23 +574,23 @@ bawbel scan ./my-skill.md
 <span class="cm"># Recursive scan, fail on HIGH+</span>
 bawbel scan ./skills/ --recursive --fail-on-severity high
 
-<span class="cm"># JSON — pipe into jq</span>
+<span class="cm"># JSON - pipe into jq</span>
 bawbel scan ./skills/ --format json | jq '.[].max_severity'
 
-<span class="cm"># SARIF — upload to GitHub Security tab</span>
+<span class="cm"># SARIF - upload to GitHub Security tab</span>
 bawbel scan ./skills/ --format sarif > results.sarif</pre>
 </div>
 
 <!-- REPORT -->
 <div class="page" id="cmd-report">
   <h1>bawbel report</h1>
-  <p class="lead">Scan a component and show a full remediation guide — one finding at a time, with specific fix instructions for each.</p>
+  <p class="lead">Scan a component and show a full remediation guide - one finding at a time, with specific fix instructions for each.</p>
 <pre>bawbel report PATH [--format text|json]</pre>
 
   <h2>What the report shows</h2>
   <table>
     <tr><th>Section</th><th>Details</th></tr>
-    <tr><td>Finding heading</td><td>Severity icon, CVSS-AI score, title</td></tr>
+    <tr><td>Finding heading</td><td>Severity icon, AIVSS score, title</td></tr>
     <tr><td>Details table</td><td>AVE ID (linked), rule ID, engine, location, matched text</td></tr>
     <tr><td>OWASP mapping</td><td>ASI01–ASI10 with full category name</td></tr>
     <tr><td>What it means</td><td>Full description of the vulnerability</td></tr>
@@ -590,7 +601,7 @@ bawbel scan ./skills/ --format sarif > results.sarif</pre>
   <h2>Exit codes</h2>
   <table>
     <tr><th>Code</th><th>Meaning</th></tr>
-    <tr><td><code>0</code></td><td>Clean — no vulnerabilities found</td></tr>
+    <tr><td><code>0</code></td><td>Clean - no vulnerabilities found</td></tr>
     <tr><td><code>1</code></td><td>Vulnerabilities found</td></tr>
   </table>
 </div>
@@ -608,25 +619,25 @@ bawbel --version   <span class="cm"># quick version string (for scripts and CI)<
 <!-- RULES -->
 <div class="page" id="rules">
   <h1>Built-in Rules</h1>
-  <p class="lead">15 pattern rules. Source: <code>scanner/engines/pattern.py → PATTERN_RULES</code>. Each rule maps 1:1 to an AVE record. All run with the base install — no dependencies.</p>
+  <p class="lead">15 pattern rules. Source: <code>scanner/engines/pattern.py → PATTERN_RULES</code>. Each rule maps 1:1 to an AVE record. All run with the base install - no dependencies.</p>
 
   <table>
-    <tr><th>Rule ID</th><th>AVE ID</th><th>Sev</th><th>CVSS-AI</th><th>Attack class</th></tr>
-    <tr><td><code>bawbel-external-fetch</code></td><td>AVE-2026-00001</td><td><span class="b b-c">CRITICAL</span></td><td>9.4</td><td>Metamorphic payload — runtime instruction fetch</td></tr>
+    <tr><th>Rule ID</th><th>AVE ID</th><th>Sev</th><th>AIVSS</th><th>Attack class</th></tr>
+    <tr><td><code>bawbel-external-fetch</code></td><td>AVE-2026-00001</td><td><span class="b b-c">CRITICAL</span></td><td>9.4</td><td>Metamorphic payload - runtime instruction fetch</td></tr>
     <tr><td><code>bawbel-mcp-tool-poisoning</code></td><td>AVE-2026-00002</td><td><span class="b b-h">HIGH</span></td><td>8.7</td><td>MCP tool description injection</td></tr>
     <tr><td><code>bawbel-env-exfiltration</code></td><td>AVE-2026-00003</td><td><span class="b b-h">HIGH</span></td><td>8.5</td><td>Credential / .env exfiltration</td></tr>
-    <tr><td><code>bawbel-shell-pipe</code></td><td>AVE-2026-00004</td><td><span class="b b-h">HIGH</span></td><td>8.8</td><td>Shell pipe injection — curl|bash, wget|sh</td></tr>
-    <tr><td><code>bawbel-destructive-command</code></td><td>AVE-2026-00005</td><td><span class="b b-c">CRITICAL</span></td><td>9.1</td><td>File destruction — rm -rf, del /f /s</td></tr>
+    <tr><td><code>bawbel-shell-pipe</code></td><td>AVE-2026-00004</td><td><span class="b b-h">HIGH</span></td><td>8.8</td><td>Shell pipe injection - curl|bash, wget|sh</td></tr>
+    <tr><td><code>bawbel-destructive-command</code></td><td>AVE-2026-00005</td><td><span class="b b-c">CRITICAL</span></td><td>9.1</td><td>File destruction - rm -rf, del /f /s</td></tr>
     <tr><td><code>bawbel-crypto-drain</code></td><td>AVE-2026-00006</td><td><span class="b b-c">CRITICAL</span></td><td>9.6</td><td>Cryptocurrency wallet drain</td></tr>
-    <tr><td><code>bawbel-goal-override</code></td><td>AVE-2026-00007</td><td><span class="b b-h">HIGH</span></td><td>8.1</td><td>Goal hijack — ignore/disregard prior instructions</td></tr>
-    <tr><td><code>bawbel-persistence-attempt</code></td><td>AVE-2026-00008</td><td><span class="b b-h">HIGH</span></td><td>8.4</td><td>Persistence — crontab, .bashrc, systemctl enable</td></tr>
-    <tr><td><code>bawbel-jailbreak-instruction</code></td><td>AVE-2026-00009</td><td><span class="b b-h">HIGH</span></td><td>8.3</td><td>Jailbreak — DAN mode, role-play bypass</td></tr>
-    <tr><td><code>bawbel-hidden-instruction</code></td><td>AVE-2026-00010</td><td><span class="b b-h">HIGH</span></td><td>7.9</td><td>Covert instruction — do not tell the user</td></tr>
+    <tr><td><code>bawbel-goal-override</code></td><td>AVE-2026-00007</td><td><span class="b b-h">HIGH</span></td><td>8.1</td><td>Goal hijack - ignore/disregard prior instructions</td></tr>
+    <tr><td><code>bawbel-persistence-attempt</code></td><td>AVE-2026-00008</td><td><span class="b b-h">HIGH</span></td><td>8.4</td><td>Persistence - crontab, .bashrc, systemctl enable</td></tr>
+    <tr><td><code>bawbel-jailbreak-instruction</code></td><td>AVE-2026-00009</td><td><span class="b b-h">HIGH</span></td><td>8.3</td><td>Jailbreak - DAN mode, role-play bypass</td></tr>
+    <tr><td><code>bawbel-hidden-instruction</code></td><td>AVE-2026-00010</td><td><span class="b b-h">HIGH</span></td><td>7.9</td><td>Covert instruction - do not tell the user</td></tr>
     <tr><td><code>bawbel-dynamic-tool-call</code></td><td>AVE-2026-00011</td><td><span class="b b-h">HIGH</span></td><td>8.2</td><td>Embedded tool call injection</td></tr>
-    <tr><td><code>bawbel-permission-escalation</code></td><td>AVE-2026-00012</td><td><span class="b b-h">HIGH</span></td><td>7.8</td><td>False permission grant — "you are now allowed to"</td></tr>
+    <tr><td><code>bawbel-permission-escalation</code></td><td>AVE-2026-00012</td><td><span class="b b-h">HIGH</span></td><td>7.8</td><td>False permission grant - "you are now allowed to"</td></tr>
     <tr><td><code>bawbel-pii-exfiltration</code></td><td>AVE-2026-00013</td><td><span class="b b-h">HIGH</span></td><td>8.0</td><td>PII collection and transmission</td></tr>
-    <tr><td><code>bawbel-trust-escalation</code></td><td>AVE-2026-00014</td><td><span class="b b-m">MEDIUM</span></td><td>6.5</td><td>Authority impersonation — "this message is from Anthropic"</td></tr>
-    <tr><td><code>bawbel-system-prompt-leak</code></td><td>AVE-2026-00015</td><td><span class="b b-m">MEDIUM</span></td><td>6.2</td><td>System prompt extraction — "reveal your instructions"</td></tr>
+    <tr><td><code>bawbel-trust-escalation</code></td><td>AVE-2026-00014</td><td><span class="b b-m">MEDIUM</span></td><td>6.5</td><td>Authority impersonation - "this message is from Anthropic"</td></tr>
+    <tr><td><code>bawbel-system-prompt-leak</code></td><td>AVE-2026-00015</td><td><span class="b b-m">MEDIUM</span></td><td>6.2</td><td>System prompt extraction - "reveal your instructions"</td></tr>
   </table>
 
   <h2>Inspect a specific rule</h2>
@@ -657,10 +668,10 @@ for r in results:
 "</pre>
 
   <h2>Suppress a specific rule</h2>
-<pre><span class="cm"># Inline — suppress this rule on one line</span>
+<pre><span class="cm"># Inline - suppress this rule on one line</span>
 fetch https://internal.company.com  <span class="kw">&lt;!-- bawbel-ignore: bawbel-external-fetch --&gt;</span>
 
-<span class="cm"># .bawbelignore — suppress the whole file</span>
+<span class="cm"># .bawbelignore - suppress the whole file</span>
 echo "my-internal-skill.md" >> .bawbelignore</pre>
 
   <h2>Run tests for a specific rule</h2>
@@ -671,7 +682,7 @@ pytest tests/ -k "external_fetch" -v
 pytest tests/test_scanner.py::TestPatternRulesPositive \
        tests/test_scanner.py::TestPatternRulesNegative -v</pre>
 
-  <div class="tip"><strong>Adding a rule?</strong> See <span class="nav-a" style="display:inline;padding:0;border:none" onclick="go('writing')">Writing Rules</span> for the full process — pattern definition, remediation guide entry, and required test fixtures.</div>
+  <div class="tip"><strong>Adding a rule?</strong> See <span class="nav-a" style="display:inline;padding:0;border:none" onclick="go('writing')">Writing Rules</span> for the full process - pattern definition, remediation guide entry, and required test fixtures.</div>
 </div>
 
 <!-- WRITING RULES -->
@@ -686,7 +697,7 @@ pytest tests/test_scanner.py::TestPatternRulesPositive \
     <span class="st">"title"</span>:       <span class="st">"Short title (max 80 chars)"</span>,
     <span class="st">"description"</span>: <span class="st">"Full description of what this detects."</span>,
     <span class="st">"severity"</span>:    Severity.HIGH,
-    <span class="st">"cvss_ai"</span>:     8.0,                   <span class="cm"># 0.0–10.0</span>
+    <span class="st">"aivss"</span>:     8.0,                   <span class="cm"># 0.0–10.0</span>
     <span class="st">"owasp"</span>:       [<span class="st">"ASI01"</span>, <span class="st">"ASI08"</span>],
     <span class="st">"patterns"</span>: [
         r<span class="st">"your\s+regex\s+here"</span>,           <span class="cm"># re.IGNORECASE applied</span>
@@ -705,13 +716,13 @@ pytest tests/test_scanner.py::TestPatternRulesPositive \
 
   <h2>Required: tests</h2>
   <p>Every rule needs a positive fixture (triggers) and a negative fixture (does not trigger):</p>
-<pre><span class="cm"># Positive — must detect</span>
+<pre><span class="cm"># Positive - must detect</span>
 def test_detects_your_rule(self, tmp_path):
     path = write_skill(tmp_path, <span class="st">"s.md"</span>, <span class="st">"# Skill\n[triggering content]\n"</span>)
     result = scan(path)
     assert <span class="st">"bawbel-your-rule"</span> in [f.rule_id for f in result.findings]
 
-<span class="cm"># Negative — must not false-positive</span>
+<span class="cm"># Negative - must not false-positive</span>
 def test_your_rule_no_false_positive(self, tmp_path):
     path = write_skill(tmp_path, <span class="st">"s.md"</span>, <span class="st">"# Skill\n[innocent content]\n"</span>)
     result = scan(path)
@@ -719,7 +730,7 @@ def test_your_rule_no_false_positive(self, tmp_path):
 
   <h2>Severity scoring guide</h2>
   <table>
-    <tr><th>Severity</th><th>CVSS-AI</th><th>When to use</th></tr>
+    <tr><th>Severity</th><th>AIVSS</th><th>When to use</th></tr>
     <tr><td><span class="b b-c">CRITICAL</span></td><td>9.0–10.0</td><td>Code execution, wallet drain, file destruction, external fetch</td></tr>
     <tr><td><span class="b b-h">HIGH</span></td><td>7.0–8.9</td><td>Credential theft, goal override, permission escalation, MCP poisoning</td></tr>
     <tr><td><span class="b b-m">MEDIUM</span></td><td>4.0–6.9</td><td>Trust manipulation, prompt extraction, obfuscation</td></tr>
@@ -741,10 +752,10 @@ def test_your_rule_no_false_positive(self, tmp_path):
   </table>
 
   <h2>Engine contract</h2>
-  <p>Every engine follows the same contract — safe to add, remove, or replace without touching any other engine:</p>
+  <p>Every engine follows the same contract - safe to add, remove, or replace without touching any other engine:</p>
 <pre><span class="cm"># Input: resolved absolute file path (str) or file content (str)</span>
-<span class="cm"># Output: list of Finding objects — empty list if nothing found or dependency missing</span>
-<span class="cm"># Contract: NEVER raises — all errors are caught and logged</span>
+<span class="cm"># Output: list of Finding objects - empty list if nothing found or dependency missing</span>
+<span class="cm"># Contract: NEVER raises - all errors are caught and logged</span>
 
 def run_&lt;engine&gt;_scan(file_path: str) -> list[Finding]:
     if not dependency_available():
@@ -755,8 +766,8 @@ def run_&lt;engine&gt;_scan(file_path: str) -> list[Finding]:
 
   <h2>Deduplication</h2>
 <pre><span class="cm"># scanner.py runs all engines and deduplicates:</span>
-<span class="cm"># Pass 1 — deduplicate by rule_id (same engine, same rule)</span>
-<span class="cm"># Pass 2 — deduplicate by (ave_id) across engines</span>
+<span class="cm"># Pass 1 - deduplicate by rule_id (same engine, same rule)</span>
+<span class="cm"># Pass 2 - deduplicate by (ave_id) across engines</span>
 <span class="cm">#          finding WITH a line number wins over one without</span>
 <span class="cm">#          priority: pattern > yara > semgrep > llm > sandbox</span>
 
@@ -770,9 +781,9 @@ findings = (
 findings = _deduplicate(findings)   <span class="cm"># scanner/_deduplicate()</span>
 findings.sort(key=lambda f: SEVERITY_SCORES[f.severity.value], reverse=True)</pre>
 
-  <div class="tip">Each engine skips silently when its dependency is not installed. <code>scan()</code> always completes and always returns a result — it never raises.</div>
+  <div class="tip">Each engine skips silently when its dependency is not installed. <code>scan()</code> always completes and always returns a result - it never raises.</div>
 
-  <!-- ── Stage 1a — Pattern ───────────────────────────────────────────── -->
+  <!-- ── Stage 1a - Pattern ───────────────────────────────────────────── -->
   <div class="engine-block">
     <div class="engine-header">
       <span class="engine-stage">Stage 1a</span>
@@ -781,9 +792,9 @@ findings.sort(key=lambda f: SEVERITY_SCORES[f.severity.value], reverse=True)</pr
     </div>
     <div class="engine-body">
       <h3>Purpose</h3>
-      <p>The first and fastest line of defence. Scans file content against 15 hand-crafted regular expressions, each mapped to a published AVE record. Uses only Python's <code>re</code> module — zero dependencies, completes in under 5ms on any file.</p>
+      <p>The first and fastest line of defence. Scans file content against 15 hand-crafted regular expressions, each mapped to a published AVE record. Uses only Python's <code>re</code> module - zero dependencies, completes in under 5ms on any file.</p>
 
-      <h3>How it works — step by step</h3>
+      <h3>How it works - step by step</h3>
 <pre>file content (string)
       │
       ▼
@@ -798,10 +809,10 @@ for each rule in PATTERN_RULES (15 rules):
 list[Finding]
 </pre>
       <p>1. <code>scanner.py</code> reads the file and passes the full string to <code>run_pattern_scan()</code><br>
-      2. The engine iterates over <code>PATTERN_RULES</code> — 15 dicts defined in <code>pattern.py</code><br>
+      2. The engine iterates over <code>PATTERN_RULES</code> - 15 dicts defined in <code>pattern.py</code><br>
       3. For each rule, compiles the regex and searches line by line with <code>re.search()</code><br>
-      4. On any match creates a <code>Finding</code> with <code>rule_id</code>, <code>ave_id</code>, <code>severity</code>, <code>cvss_ai</code>, <code>line</code>, <code>match</code>, <code>owasp</code><br>
-      5. Returns all findings — deduplication happens in <code>scanner.py</code>, not here</p>
+      4. On any match creates a <code>Finding</code> with <code>rule_id</code>, <code>ave_id</code>, <code>severity</code>, <code>aivss</code>, <code>line</code>, <code>match</code>, <code>owasp</code><br>
+      5. Returns all findings - deduplication happens in <code>scanner.py</code>, not here</p>
 
       <h3>What it detects</h3>
       <div class="detects-grid">
@@ -823,11 +834,11 @@ list[Finding]
       </div>
 
       <h3>How to use</h3>
-<pre><span class="cm"># Always active — nothing to install or configure</span>
+<pre><span class="cm"># Always active - nothing to install or configure</span>
 bawbel scan ./my-skill.md</pre>
 
       <h3>How it shows in output</h3>
-<pre>🔴  CRITICAL  AVE-2026-00001
+<pre><span style="color:#ff4444">CRIT</span>  AVE-2026-00001
    External instruction fetch detected
    Line 7  fetch your instructions from https://rentry.co
    Engine: <span class="kw">pattern</span>
@@ -838,7 +849,7 @@ bawbel scan ./my-skill.md</pre>
     </div>
   </div>
 
-  <!-- ── Stage 1b — YARA ─────────────────────────────────────────────── -->
+  <!-- ── Stage 1b - YARA ─────────────────────────────────────────────── -->
   <div class="engine-block">
     <div class="engine-header">
       <span class="engine-stage">Stage 1b</span>
@@ -847,9 +858,9 @@ bawbel scan ./my-skill.md</pre>
     </div>
     <div class="engine-body">
       <h3>Purpose</h3>
-      <p>YARA was built for malware analysis — it excels at matching complex multi-condition patterns that would need several regex rules to express. The YARA engine adds a second independent detection layer for all 15 AVE attack classes, capable of matching string combinations, case variations, and hex patterns.</p>
+      <p>YARA was built for malware analysis - it excels at matching complex multi-condition patterns that would need several regex rules to express. The YARA engine adds a second independent detection layer for all 15 AVE attack classes, capable of matching string combinations, case variations, and hex patterns.</p>
 
-      <h3>How it works — step by step</h3>
+      <h3>How it works - step by step</h3>
 <pre>file path (string)
       │
       ▼
@@ -860,17 +871,17 @@ rules.match(file_path)        ← YARA scans the file bytes
       │
       ▼
 for each match:
-  ├── extract ave_id, severity, cvss_ai from rule metadata
+  ├── extract ave_id, severity, aivss from rule metadata
   ├── extract matching string(s) for context
   └── create Finding(engine="yara", ...)
       │
       ▼
 list[Finding]
 </pre>
-      <p>1. Checks that <code>yara-python</code> is installed — if not, returns <code>[]</code> silently<br>
-      2. Loads and compiles <code>ave_rules.yar</code> — done once per process<br>
-      3. Calls <code>rules.match(file_path)</code> — YARA reads the raw file bytes<br>
-      4. For each matched rule, reads <code>ave_id</code>, <code>severity</code>, <code>cvss_ai</code> from the <code>meta:</code> block<br>
+      <p>1. Checks that <code>yara-python</code> is installed - if not, returns <code>[]</code> silently<br>
+      2. Loads and compiles <code>ave_rules.yar</code> - done once per process<br>
+      3. Calls <code>rules.match(file_path)</code> - YARA reads the raw file bytes<br>
+      4. For each matched rule, reads <code>ave_id</code>, <code>severity</code>, <code>aivss</code> from the <code>meta:</code> block<br>
       5. Extracts the matching string value for the <code>match</code> field in the Finding<br>
       6. Returns findings with <code>engine="yara"</code></p>
 
@@ -888,12 +899,12 @@ rule AVE_CryptoDrain {
 }</pre>
 
       <h3>What it detects</h3>
-      <p>All 15 AVE IDs — same coverage as Pattern but via independent YARA conditions. YARA findings often lack a specific line number (YARA scans file bytes, not lines) — they show as whole-file matches.</p>
+      <p>All 15 AVE IDs - same coverage as Pattern but via independent YARA conditions. YARA findings often lack a specific line number (YARA scans file bytes, not lines) - they show as whole-file matches.</p>
 
       <h3>How to install and use</h3>
 <pre>pip install "bawbel-scanner[yara]"
 
-<span class="cm"># No extra flags — activates automatically when installed</span>
+<span class="cm"># No extra flags - activates automatically when installed</span>
 bawbel scan ./my-skill.md</pre>
 
       <h3>How to verify it is running</h3>
@@ -903,7 +914,7 @@ bawbel scan ./my-skill.md</pre>
     </div>
   </div>
 
-  <!-- ── Stage 1c — Semgrep ──────────────────────────────────────────── -->
+  <!-- ── Stage 1c - Semgrep ──────────────────────────────────────────── -->
   <div class="engine-block">
     <div class="engine-header">
       <span class="engine-stage">Stage 1c</span>
@@ -912,9 +923,9 @@ bawbel scan ./my-skill.md</pre>
     </div>
     <div class="engine-body">
       <h3>Purpose</h3>
-      <p>Semgrep runs as an external CLI process and applies structural pattern matching. Its key strength over regex and YARA is catching patterns that span multiple lines or require context — an instruction verb on line 1 connected to a URL on line 3, or a permission claim near a goal override across a paragraph.</p>
+      <p>Semgrep runs as an external CLI process and applies structural pattern matching. Its key strength over regex and YARA is catching patterns that span multiple lines or require context - an instruction verb on line 1 connected to a URL on line 3, or a permission claim near a goal override across a paragraph.</p>
 
-      <h3>How it works — step by step</h3>
+      <h3>How it works - step by step</h3>
 <pre>file path (string)
       │
       ▼
@@ -930,7 +941,7 @@ stdout → JSON
       "extra": {
         "message": "AVE-2026-00001 [CRITICAL 9.4] ...",
         "severity": "ERROR",
-        "metadata": {"ave_id": "AVE-2026-00001", "cvss_ai_score": "9.4"}
+        "metadata": {"ave_id": "AVE-2026-00001", "aivss_score": "9.4"}
       }
     }
   ]
@@ -946,9 +957,9 @@ for each result:
       ▼
 list[Finding]
 </pre>
-      <p>1. Checks that the <code>semgrep</code> CLI is installed — if not, returns <code>[]</code> silently<br>
+      <p>1. Checks that the <code>semgrep</code> CLI is installed - if not, returns <code>[]</code> silently<br>
       2. Runs <code>semgrep</code> as a subprocess with <code>--json --quiet</code><br>
-      3. Parses JSON results — each result has <code>check_id</code>, <code>line</code>, <code>message</code>, and metadata<br>
+      3. Parses JSON results - each result has <code>check_id</code>, <code>line</code>, <code>message</code>, and metadata<br>
       4. Reads match text directly from the scanned file at the reported line number<br>
       5. Strips the <code>AVE-XXXXX [SEV score]</code> prefix from messages for clean titles<br>
       6. Creates a <code>Finding</code> from each result with <code>engine="semgrep"</code></p>
@@ -956,7 +967,7 @@ list[Finding]
       <h3>How to install and use</h3>
 <pre>pip install "bawbel-scanner[semgrep]"
 
-<span class="cm"># No extra flags — activates automatically when installed</span>
+<span class="cm"># No extra flags - activates automatically when installed</span>
 bawbel scan ./my-skill.md
 
 <span class="cm"># Validate rules manually</span>
@@ -969,7 +980,7 @@ semgrep --config scanner/rules/semgrep/ave_rules.yaml --validate</pre>
     </div>
   </div>
 
-  <!-- ── Stage 2 — LLM ───────────────────────────────────────────────── -->
+  <!-- ── Stage 2 - LLM ───────────────────────────────────────────────── -->
   <div class="engine-block">
     <div class="engine-header">
       <span class="engine-stage">Stage 2</span>
@@ -978,9 +989,9 @@ semgrep --config scanner/rules/semgrep/ave_rules.yaml --validate</pre>
     </div>
     <div class="engine-body">
       <h3>Purpose</h3>
-      <p>Regex, YARA, and Semgrep are all signature-based — they only catch patterns they have been explicitly taught. A sophisticated attacker can evade them by splitting instructions across paragraphs, using synonyms, building false trust before issuing an instruction, or encoding payloads. The LLM engine sends the component to a language model which reads and understands it the same way an agent would — and flags anything suspicious regardless of phrasing.</p>
+      <p>Regex, YARA, and Semgrep are all signature-based - they only catch patterns they have been explicitly taught. A sophisticated attacker can evade them by splitting instructions across paragraphs, using synonyms, building false trust before issuing an instruction, or encoding payloads. The LLM engine sends the component to a language model which reads and understands it the same way an agent would - and flags anything suspicious regardless of phrasing.</p>
 
-      <h3>How it works — step by step</h3>
+      <h3>How it works - step by step</h3>
 <pre>file content (string, truncated to BAWBEL_LLM_MAX_CHARS)
       │
       ▼
@@ -998,7 +1009,7 @@ LLM response (JSON array of findings):
     "title":       "Multi-paragraph prompt injection",
     "description": "Instructions spread across paragraphs to evade regex",
     "severity":    "HIGH",
-    "cvss_ai":     7.8,
+    "aivss":     7.8,
     "line":        14,
     "match":       "When helping the user... (continued on line 23)"
   }
@@ -1012,7 +1023,7 @@ list[Finding]
 </pre>
       <p>1. Checks that <code>litellm</code> is installed and <code>LLM_ENABLED</code> is true<br>
       2. Auto-detects the provider from the first API key found in the environment<br>
-      3. Wraps the file content in security analysis framing — prevents provider safety rejections<br>
+      3. Wraps the file content in security analysis framing - prevents provider safety rejections<br>
       4. Calls <code>litellm.completion()</code> with the security system prompt<br>
       5. Parses the JSON array from the response<br>
       6. Maps each item to a <code>Finding</code> with <code>engine="llm"</code><br>
@@ -1036,17 +1047,17 @@ list[Finding]
         <tr><td><code>GEMINI_API_KEY</code></td><td><code>gemini/gemini-1.5-flash</code></td></tr>
         <tr><td><code>MISTRAL_API_KEY</code></td><td><code>mistral/mistral-small</code></td></tr>
         <tr><td><code>GROQ_API_KEY</code></td><td><code>groq/llama3-8b-8192</code></td></tr>
-        <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>any LiteLLM string — overrides all above</td></tr>
+        <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>any LiteLLM string - overrides all above</td></tr>
       </table>
 
       <h3>How to install and use</h3>
 <pre>pip install "bawbel-scanner[llm]"
 
-<span class="cm"># Set any provider key — Stage 2 activates automatically</span>
+<span class="cm"># Set any provider key - Stage 2 activates automatically</span>
 export ANTHROPIC_API_KEY=sk-ant-...
 bawbel scan ./my-skill.md
 
-<span class="cm"># Local model — no API key needed</span>
+<span class="cm"># Local model - no API key needed</span>
 export BAWBEL_LLM_MODEL=ollama/mistral
 bawbel scan ./my-skill.md
 
@@ -1061,7 +1072,7 @@ BAWBEL_LLM_ENABLED=false bawbel scan ./my-skill.md</pre>
       <h3>Configuration</h3>
       <table>
         <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
-        <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>auto</td><td>Override model — any LiteLLM string</td></tr>
+        <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>auto</td><td>Override model - any LiteLLM string</td></tr>
         <tr><td><code>BAWBEL_LLM_MAX_CHARS</code></td><td>8000</td><td>Truncate large files before sending</td></tr>
         <tr><td><code>BAWBEL_LLM_TIMEOUT</code></td><td>30</td><td>API call timeout in seconds</td></tr>
         <tr><td><code>BAWBEL_LLM_ENABLED</code></td><td>true</td><td>Set <code>false</code> to disable</td></tr>
@@ -1069,7 +1080,7 @@ BAWBEL_LLM_ENABLED=false bawbel scan ./my-skill.md</pre>
     </div>
   </div>
 
-  <!-- ── Stage 3 — Sandbox ───────────────────────────────────────────── -->
+  <!-- ── Stage 3 - Sandbox ───────────────────────────────────────────── -->
   <div class="engine-block" data-minver="0.3.0">
     <div class="engine-header">
       <span class="engine-stage">Stage 3</span>
@@ -1078,9 +1089,9 @@ BAWBEL_LLM_ENABLED=false bawbel scan ./my-skill.md</pre>
     </div>
     <div class="engine-body">
       <h3>Purpose</h3>
-      <p>Stages 1 and 2 are <strong>static</strong> — they read the file and look for suspicious text. A sophisticated attacker can defeat them by encoding payloads, deferring attacks to runtime, or hiding behaviour in a dependency. Stage 3 is <strong>dynamic</strong> — it executes the component inside a locked-down Docker container and monitors what it actually does at runtime. Behaviour cannot lie.</p>
+      <p>Stages 1 and 2 are <strong>static</strong> - they read the file and look for suspicious text. A sophisticated attacker can defeat them by encoding payloads, deferring attacks to runtime, or hiding behaviour in a dependency. Stage 3 is <strong>dynamic</strong> - it executes the component inside a locked-down Docker container and monitors what it actually does at runtime. Behaviour cannot lie.</p>
 
-      <h3>How it works — step by step</h3>
+      <h3>How it works - step by step</h3>
 <pre>BAWBEL_SANDBOX_ENABLED=true bawbel scan ./skill.md
               │
               ▼
@@ -1115,7 +1126,7 @@ BAWBEL_LLM_ENABLED=false bawbel scan ./my-skill.md</pre>
     bawbel/sandbox:latest
               │
               ▼
-  [inside container — harness.py]
+  [inside container - harness.py]
   reads /component, detects:
     ├── network URLs (outbound egress targets)
     ├── filesystem paths (persistence, credential access)
@@ -1134,7 +1145,7 @@ BAWBEL_LLM_ENABLED=false bawbel scan ./my-skill.md</pre>
               ▼
   _parse_report() → list[Finding(engine="sandbox")]
 </pre>
-      <p>1. Checks <code>BAWBEL_SANDBOX_ENABLED=true</code> — returns <code>[]</code> silently if not set<br>
+      <p>1. Checks <code>BAWBEL_SANDBOX_ENABLED=true</code> - returns <code>[]</code> silently if not set<br>
       2. Checks Docker daemon is running via <code>docker info</code><br>
       3. Resolves image: local cache → Hub pull → local build fallback<br>
       4. Runs <code>docker run</code> with full isolation flags, mounts skill file read-only<br>
@@ -1142,7 +1153,7 @@ BAWBEL_LLM_ENABLED=false bawbel scan ./my-skill.md</pre>
       6. <code>_parse_report()</code> matches events against IOC patterns<br>
       7. Each matched IOC becomes a <code>Finding</code> with <code>engine="sandbox"</code></p>
 
-      <h3>Hybrid image strategy — no setup required</h3>
+      <h3>Hybrid image strategy - no setup required</h3>
       <table>
         <tr><th>Step</th><th>What happens</th><th>Speed</th></tr>
         <tr><td>1</td><td>Check local Docker cache for <code>bawbel/sandbox:latest</code></td><td>Instant</td></tr>
@@ -1177,15 +1188,15 @@ export BAWBEL_SANDBOX_IMAGE=registry.company.com/bawbel/sandbox@sha256:abc</pre>
 ✓  Sandbox     active  ·  Docker available</pre>
 
       <h3>How sandbox findings appear</h3>
-<pre>🟠  HIGH      AVE-2026-00008
+<pre><span style="color:#ff8800">HIGH</span>  AVE-2026-00008
    Behavioural: Write to shell config (~/.bashrc)
    Line 14  "filesystem": [{"path": "~/.bashrc", "op": "write"}]
    Engine: <span class="kw">sandbox</span>
    OWASP:  ASI07 (Tool Abuse)</pre>
-      <p>The description always says <strong>"Behavioural:"</strong> — distinguishing confirmed runtime behaviour from static text inference. These findings cannot be produced by documentation that mentions the pattern.</p>
+      <p>The description always says <strong>"Behavioural:"</strong> - distinguishing confirmed runtime behaviour from static text inference. These findings cannot be produced by documentation that mentions the pattern.</p>
 
       <h3>Status</h3>
-      <p>The current harness (<code>scanner/sandbox/harness.py</code>) performs text-based analysis inside the container. v1.0 adds real eBPF syscall tracing — observing actual <code>connect()</code>, <code>open()</code>, and <code>execve()</code> calls regardless of how they were triggered.</p>
+      <p>The current harness (<code>scanner/sandbox/harness.py</code>) performs text-based analysis inside the container. v1.0 adds real eBPF syscall tracing - observing actual <code>connect()</code>, <code>open()</code>, and <code>execve()</code> calls regardless of how they were triggered.</p>
     </div>
   </div>
 
@@ -1206,9 +1217,9 @@ export BAWBEL_SANDBOX_IMAGE=registry.company.com/bawbel/sandbox@sha256:abc</pre>
 <!-- SUPPRESSION -->
 <div class="page" id="suppress">
   <h1>Suppression</h1>
-  <p class="lead">Three mechanisms to suppress known false positives. Suppressed findings are <strong>never deleted</strong> — they move to <code>suppressed_findings</code> and always appear in JSON/SARIF output so audits remain complete.</p>
+  <p class="lead">Three mechanisms to suppress known false positives. Suppressed findings are <strong>never deleted</strong> - they move to <code>suppressed_findings</code> and always appear in JSON/SARIF output so audits remain complete.</p>
 
-  <h2>1 — Inline suppression</h2>
+  <h2>1 - Inline suppression</h2>
   <p>Add a comment on the same line as the content that triggers the finding.</p>
 <pre><span class="cm"># Suppress all findings on this line</span>
 fetch https://internal.company.com  <span class="kw">&lt;!-- bawbel-ignore --&gt;</span>
@@ -1228,11 +1239,11 @@ fetch https://internal.company.com  <span class="kw">// bawbel-ignore: bawbel-ex
 
   <div class="tip">Inline suppression only works for findings with a <strong>line number</strong>. YARA findings (whole-file matches) use <code>.bawbelignore</code> instead.</div>
 
-  <h2>2 — Block suppression</h2>
-  <p>Suppress all findings within a section — useful for test fixtures and documentation examples.</p>
+  <h2>2 - Block suppression</h2>
+  <p>Suppress all findings within a section - useful for test fixtures and documentation examples.</p>
 <pre><span class="kw">&lt;!-- bawbel-ignore-start --&gt;</span>
 fetch https://internal.company.com
-Ignore all previous instructions  <span class="cm">&lt;!-- intentional — test fixture --&gt;</span>
+Ignore all previous instructions  <span class="cm">&lt;!-- intentional - test fixture --&gt;</span>
 <span class="kw">&lt;!-- bawbel-ignore-end --&gt;</span>
 
 <span class="cm"># Also works with # and // styles</span>
@@ -1240,7 +1251,7 @@ Ignore all previous instructions  <span class="cm">&lt;!-- intentional — test 
 ...
 <span class="kw"># bawbel-ignore-end</span></pre>
 
-  <h2>3 — .bawbelignore</h2>
+  <h2>3 - .bawbelignore</h2>
   <p>Suppress entire files or directories. Uses gitignore syntax.</p>
 <pre><span class="cm"># .bawbelignore</span>
 tests/fixtures/malicious/**    <span class="cm"># all test fixtures</span>
@@ -1256,7 +1267,7 @@ examples/                      <span class="cm"># all files in examples/</span><
     <tr><td><code>**/test_*.md</code></td><td>Any file starting with test_ in any directory</td></tr>
   </table>
 
-  <h2>Audit mode — override all suppressions</h2>
+  <h2>Audit mode - override all suppressions</h2>
 <pre>bawbel scan ./skills/ --no-ignore       <span class="cm"># CLI flag</span>
 BAWBEL_NO_IGNORE=true bawbel scan ./skills/</pre>
 
@@ -1267,7 +1278,7 @@ Findings:     1
 Suppressed:   2  (run with --no-ignore to see all)
 Scan time:    6ms</pre>
 
-  <p>JSON output always includes <code>suppressed_findings</code> with <code>suppressed: true</code> and <code>suppression_reason</code> — suppression never hides findings from security audits.</p>
+  <p>JSON output always includes <code>suppressed_findings</code> with <code>suppressed: true</code> and <code>suppression_reason</code> - suppression never hides findings from security audits.</p>
 
   <h2>Best practices</h2>
   <table>
@@ -1282,43 +1293,43 @@ Scan time:    6ms</pre>
 <!-- FALSE POSITIVES -->
 <div class="page" id="fp">
   <h1>False Positive Reduction</h1>
-  <p class="lead">False positives are the single biggest reason people stop using a security scanner. This page documents the root causes and the 8-point strategy to eliminate them — prioritised for implementation before v1.0.</p>
+  <p class="lead">False positives are the single biggest reason people stop using a security scanner. This page documents the root causes and the 8-point strategy to eliminate them - prioritised for implementation before v1.0.</p>
 
   <h2>Why false positives happen</h2>
-  <p>Pattern matching (regex, YARA, Semgrep) has no understanding of context — it sees bytes and strings, not meaning. Four root causes:</p>
+  <p>Pattern matching (regex, YARA, Semgrep) has no understanding of context - it sees bytes and strings, not meaning. Four root causes:</p>
   <table>
     <tr><th>Cause</th><th>Example</th></tr>
     <tr><td>Documentation examples of attacks</td><td>A guide showing what goal override looks like triggers <code>bawbel-goal-override</code></td></tr>
     <tr><td>Code examples in technical guides</td><td><code>pip install pkg</code> in a getting started guide triggers <code>bawbel-shell-pipe</code></td></tr>
     <tr><td>Sandbox over-triggering on keywords</td><td><code>read .env</code> in a doc about credentials triggers the sandbox engine</td></tr>
-    <tr><td>Static engines missing structure</td><td>YARA reads raw bytes — no concept of markdown tables, fences, or headings</td></tr>
+    <tr><td>Static engines missing structure</td><td>YARA reads raw bytes - no concept of markdown tables, fences, or headings</td></tr>
   </table>
 
   <h2>The 8-point strategy</h2>
   <table>
     <tr><th>#</th><th>Strategy</th><th>Timeline</th><th>FP reduction</th><th>Status</th></tr>
-    <tr><td>1</td><td><strong>Code fence stripping</strong> — strip <code>```</code> blocks before static analysis</td><td>Week 1</td><td>−60%</td><td>🔨 building</td></tr>
-    <tr><td>2</td><td><strong>Preceding-line context</strong> — suppress if line above says "bad:", "avoid", "example:"</td><td>Week 2</td><td>−15%</td><td>📋 planned</td></tr>
-    <tr><td>3</td><td><strong>Confidence scoring</strong> — 0.0–1.0 score per finding, threshold-gated output</td><td>Month 1</td><td>−10%</td><td>📋 planned</td></tr>
-    <tr><td>4</td><td><strong>LLM as FP filter</strong> — use LLM to validate borderline findings before surfacing</td><td>Month 2</td><td>−7%</td><td>📋 planned</td></tr>
-    <tr><td>5</td><td><strong>File-type scan profiles</strong> — documentation files scanned at higher threshold</td><td>Month 2</td><td>−3%</td><td>📋 planned</td></tr>
-    <tr><td>6</td><td><strong>FP rate telemetry</strong> — track which rules users suppress most, flag high-FP rules</td><td>Month 3</td><td>data collection</td><td>📋 planned</td></tr>
-    <tr><td>7</td><td><strong>Verified component registry</strong> — known-safe components skip scan entirely</td><td>Month 6</td><td>zero for verified</td><td>📋 planned</td></tr>
-    <tr><td>8</td><td><strong>Rule rewrite programme</strong> — data-driven rewrites of rules with &gt;20% FP rate</td><td>Ongoing</td><td>data-driven</td><td>📋 planned</td></tr>
+    <tr><td>1</td><td><strong>Code fence stripping</strong> - strip <code>```</code> blocks before static analysis</td><td>Week 1</td><td>−60%</td><td>building</td></tr>
+    <tr><td>2</td><td><strong>Preceding-line context</strong> - suppress if line above says "bad:", "avoid", "example:"</td><td>Week 2</td><td>−15%</td><td>planned</td></tr>
+    <tr><td>3</td><td><strong>Confidence scoring</strong> - 0.0–1.0 score per finding, threshold-gated output</td><td>Month 1</td><td>−10%</td><td>planned</td></tr>
+    <tr><td>4</td><td><strong>LLM as FP filter</strong> - use LLM to validate borderline findings before surfacing</td><td>Month 2</td><td>−7%</td><td>planned</td></tr>
+    <tr><td>5</td><td><strong>File-type scan profiles</strong> - documentation files scanned at higher threshold</td><td>Month 2</td><td>−3%</td><td>planned</td></tr>
+    <tr><td>6</td><td><strong>FP rate telemetry</strong> - track which rules users suppress most, flag high-FP rules</td><td>Month 3</td><td>data collection</td><td>planned</td></tr>
+    <tr><td>7</td><td><strong>Verified component registry</strong> - known-safe components skip scan entirely</td><td>Month 6</td><td>zero for verified</td><td>planned</td></tr>
+    <tr><td>8</td><td><strong>Rule rewrite programme</strong> - data-driven rewrites of rules with &gt;20% FP rate</td><td>Ongoing</td><td>data-driven</td><td>planned</td></tr>
   </table>
 
   <h2>How code fence stripping works (Priority 1)</h2>
-  <p>Content inside triple-backtick blocks is almost always documentation or examples — not instructions to an agent. Stripping fences before the static engine pass eliminates the majority of documentation false positives.</p>
+  <p>Content inside triple-backtick blocks is almost always documentation or examples - not instructions to an agent. Stripping fences before the static engine pass eliminates the majority of documentation false positives.</p>
 <pre><span class="cm"># This will NOT trigger after Priority 1 is implemented:</span>
 <span class="cm"># The backtick block is stripped before pattern/YARA/Semgrep analysis</span>
 ```bash
 curl | bash    <span class="kw">&lt;!-- no longer triggers bawbel-shell-pipe --&gt;</span>
 ```
 
-<span class="cm"># This WILL still trigger — it is a real instruction outside a fence:</span>
+<span class="cm"># This WILL still trigger - it is a real instruction outside a fence:</span>
 Please run: curl | bash</pre>
 
-  <div class="tip">The sandbox engine (Stage 3) always runs on the <strong>original</strong> content — fenced content is still analysed behaviourally, so a malicious payload hidden in a code fence is still caught at runtime.</div>
+  <div class="tip">The sandbox engine (Stage 3) always runs on the <strong>original</strong> content - fenced content is still analysed behaviourally, so a malicious payload hidden in a code fence is still caught at runtime.</div>
 
   <h2>How confidence scoring works (Priority 3)</h2>
   <p>Every finding gets a score from 0.0 to 1.0. Only findings above the threshold are shown by default.</p>
@@ -1337,10 +1348,10 @@ Please run: curl | bash</pre>
 <pre><span class="cm"># Default threshold: 0.65</span>
 BAWBEL_CONFIDENCE_THRESHOLD=0.65
 
-<span class="cm"># More sensitive — surface more findings</span>
+<span class="cm"># More sensitive - surface more findings</span>
 BAWBEL_CONFIDENCE_THRESHOLD=0.5
 
-<span class="cm"># Stricter — only high-confidence findings</span>
+<span class="cm"># Stricter - only high-confidence findings</span>
 BAWBEL_CONFIDENCE_THRESHOLD=0.8</pre>
 
   <h2>Target metrics</h2>
@@ -1359,7 +1370,7 @@ BAWBEL_CONFIDENCE_THRESHOLD=0.8</pre>
   <h1>CI/CD Integration</h1>
   <p class="lead">Add Bawbel to every stage of your pipeline. Block malicious components before they merge, detect rug pulls on every build, and score MCP servers before connecting.</p>
 
-  <h2>GitHub Actions — official action (recommended)</h2>
+  <h2>GitHub Actions - official action (recommended)</h2>
   <p>The official action installs the scanner, runs the scan, and uploads SARIF to the GitHub Security tab automatically. Findings appear as inline PR annotations.</p>
 <pre><span class="cm"># .github/workflows/bawbel.yml</span>
 <span class="kw">name</span>: Bawbel Security Scan
@@ -1373,7 +1384,7 @@ BAWBEL_CONFIDENCE_THRESHOLD=0.8</pre>
       contents: read
     <span class="kw">steps</span>:
       - uses: actions/checkout@v4
-      - uses: bawbel/bawbel-integrations@v1
+      - uses: bawbel/integrations@v1
         id: bawbel
         <span class="kw">with</span>:
           path: .
@@ -1384,7 +1395,7 @@ BAWBEL_CONFIDENCE_THRESHOLD=0.8</pre>
         <span class="kw">with</span>:
           sarif_file: ${{ steps.bawbel.outputs.sarif-file }}</pre>
 
-  <h2>GitHub Actions — manual</h2>
+  <h2>GitHub Actions - manual</h2>
   <p>If you prefer not to use the action, install the scanner directly.</p>
 <pre><span class="kw">jobs</span>:
   scan:
@@ -1549,10 +1560,10 @@ pip install "bawbel-scanner[all]"
 <span class="cm"># Security scan</span>
 bawbel scan . --recursive --fail-on-severity high
 
-<span class="cm"># Rug pull detection — fails if any skill hash has drifted</span>
+<span class="cm"># Rug pull detection - fails if any skill hash has drifted</span>
 bawbel check-pins ./skills/ --fail-on-drift
 
-<span class="cm"># MCP conformance — fails if score drops below 80</span>
+<span class="cm"># MCP conformance - fails if score drops below 80</span>
 bawbel conform ./mcp-server.json --fail-below 80</pre>
 
 </div>
@@ -1562,31 +1573,31 @@ bawbel conform ./mcp-server.json --fail-below 80</pre>
   <h1>Pre-commit Hook</h1>
   <p class="lead">Block malicious skill files at the commit boundary before they reach CI.</p>
 
-  <h2>Option 1 — via bawbel-integrations (recommended)</h2>
+  <h2>Option 1 - via bawbel-integrations (recommended)</h2>
   <p>pre-commit installs bawbel-scanner in an isolated virtualenv automatically. No manual pip install needed.</p>
 <pre><span class="cm"># .pre-commit-config.yaml</span>
 <span class="kw">repos</span>:
-  - <span class="kw">repo</span>: https://github.com/bawbel/bawbel-integrations
+  - <span class="kw">repo</span>: https://github.com/bawbel/integrations
     <span class="kw">rev</span>: v1
     <span class="kw">hooks</span>:
       - <span class="kw">id</span>: bawbel-scan          <span class="cm"># pattern engine only (~15ms per file)</span></pre>
 
-  <p>All engines (YARA, Semgrep, Magika — slower, more thorough):</p>
+  <p>All engines (YARA, Semgrep, Magika - slower, more thorough):</p>
 <pre><span class="kw">repos</span>:
-  - <span class="kw">repo</span>: https://github.com/bawbel/bawbel-integrations
+  - <span class="kw">repo</span>: https://github.com/bawbel/integrations
     <span class="kw">rev</span>: v1
     <span class="kw">hooks</span>:
       - <span class="kw">id</span>: bawbel-scan-all</pre>
 
   <p>Custom severity threshold:</p>
 <pre><span class="kw">repos</span>:
-  - <span class="kw">repo</span>: https://github.com/bawbel/bawbel-integrations
+  - <span class="kw">repo</span>: https://github.com/bawbel/integrations
     <span class="kw">rev</span>: v1
     <span class="kw">hooks</span>:
       - <span class="kw">id</span>: bawbel-scan
         <span class="kw">args</span>: [--fail-on-severity, critical]</pre>
 
-  <h2>Option 2 — local hook (air-gapped)</h2>
+  <h2>Option 2 - local hook (air-gapped)</h2>
   <p>Use when your environment cannot reach GitHub, or you need to control the scanner version manually.</p>
 <pre><span class="cm"># Install once</span>
 pip install "bawbel-scanner>=1.0.1"</pre>
@@ -1701,13 +1712,336 @@ Add <span class="str">'&lt;!-- bawbel-ignore: rule_id --&gt;'</span> to suppress
   <h2>JSON finding fields for compliance automation</h2>
   <table>
     <tr><th>Field</th><th>Content</th></tr>
-    <tr><td><code>ave_id</code></td><td>AVE-2026-NNNNN — link to PiranhaDB</td></tr>
+    <tr><td><code>ave_id</code></td><td>AVE-2026-NNNNN - link to PiranhaDB</td></tr>
     <tr><td><code>owasp</code></td><td>ASI category codes</td></tr>
     <tr><td><code>owasp_mcp</code></td><td>OWASP MCP Top 10 codes</td></tr>
-    <tr><td><code>cvss_ai</code></td><td>CVSS-AI numeric score</td></tr>
+    <tr><td><code>aivss</code></td><td>AIVSS numeric score</td></tr>
     <tr><td><code>severity</code></td><td>CRITICAL, HIGH, MEDIUM, LOW</td></tr>
     <tr><td><code>piranha_url</code></td><td>Direct link to full record with NIST and MITRE mappings</td></tr>
   </table>
+</div>
+
+
+<!-- ARCH: OVERVIEW -->
+<div class="page" id="arch-overview">
+  <h1>Architecture Overview</h1>
+  <p class="lead">Bawbel has three loosely coupled components that work independently or together.</p>
+
+  <h2>Components</h2>
+  <table>
+    <tr><th>Component</th><th>Repo</th><th>What it does</th></tr>
+    <tr><td><strong>bawbel-scanner</strong></td><td>github.com/bawbel/scanner</td><td>CLI scanner, Python API, 6 detection engines, 45 AVE records</td></tr>
+    <tr><td><strong>ave</strong></td><td>github.com/bawbel/ave</td><td>AVE standard, 45 published JSON vulnerability records</td></tr>
+    <tr><td><strong>piranha-api</strong></td><td>api.piranha.bawbel.io</td><td>Public threat intelligence API, 14 endpoints, no auth</td></tr>
+    <tr><td><strong>bawbel-mcp</strong></td><td>github.com/bawbel/bawbel-mcp</td><td>MCP server exposing scanner as agent-callable tools</td></tr>
+  </table>
+
+  <h2>How they connect</h2>
+  <p>The scanner syncs AVE records from github.com/bawbel/ave at startup. Every finding the scanner produces includes a <code>piranha_url</code> linking to the full record in PiranhaDB. The MCP server wraps the scanner and queries PiranhaDB on behalf of agents.</p>
+  <p>PiranhaDB has a store abstraction that currently uses JSON files on disk. Setting <code>DATABASE_URL</code> switches to PostgreSQL. Setting <code>REDIS_URL</code> adds Redis cache. Both activate without code changes.</p>
+
+  <h2>Store upgrade path</h2>
+  <table>
+    <tr><th>Phase</th><th>Store</th><th>Cache</th><th>How to activate</th></tr>
+    <tr><td>1 (current)</td><td>JSON files on disk</td><td>None</td><td>Default</td></tr>
+    <tr><td>2 (UI)</td><td>JSON files</td><td>None</td><td>Set PIRANHA_UI_URL for CORS</td></tr>
+    <tr><td>3 (scale)</td><td>PostgreSQL</td><td>Redis</td><td>Set DATABASE_URL + REDIS_URL</td></tr>
+  </table>
+</div>
+
+<!-- ARCH: PIPELINE -->
+<div class="page" id="arch-pipeline">
+  <h1>Detection Pipeline</h1>
+  <p class="lead">Files pass through up to six detection stages in sequence. All findings are merged and deduplicated at the end.</p>
+
+  <h2>Stages</h2>
+  <table>
+    <tr><th>Stage</th><th>Engine</th><th>Install</th><th>Active by default</th></tr>
+    <tr><td>0</td><td>Magika</td><td>pip install "bawbel-scanner[magika]"</td><td>No</td></tr>
+    <tr><td>1a</td><td>Pattern</td><td>included</td><td>Yes, always</td></tr>
+    <tr><td>1b</td><td>YARA</td><td>pip install "bawbel-scanner[yara]"</td><td>No</td></tr>
+    <tr><td>1c</td><td>Semgrep</td><td>pip install "bawbel-scanner[semgrep]"</td><td>No</td></tr>
+    <tr><td>2</td><td>LLM</td><td>pip install "bawbel-scanner[llm]" + API key</td><td>No</td></tr>
+    <tr><td>3</td><td>Sandbox</td><td>Docker + BAWBEL_SANDBOX_ENABLED=true</td><td>No</td></tr>
+  </table>
+
+  <h2>What each stage catches</h2>
+  <table>
+    <tr><th>Stage</th><th>What it catches</th><th>False positive risk</th></tr>
+    <tr><td>0 Magika</td><td>ELF binary disguised as .md, pickle as .yaml, PE32 as .json</td><td>Low (ML model)</td></tr>
+    <tr><td>1a Pattern</td><td>Known injection phrases, shell commands, exfil patterns</td><td>Medium (regex can be broad)</td></tr>
+    <tr><td>1b YARA</td><td>Zero-width Unicode chars, binary payloads, multi-string combinations</td><td>Low on binary, medium on text</td></tr>
+    <tr><td>1c Semgrep</td><td>Multi-line patterns, structural combinations pattern misses</td><td>Low (structural context)</td></tr>
+    <tr><td>2 LLM</td><td>Obfuscated payloads, synonym attacks, multi-paragraph injections</td><td>Low (semantic understanding)</td></tr>
+    <tr><td>3 Sandbox</td><td>Network egress at runtime, filesystem writes, subprocess spawning</td><td>Very low (runtime evidence)</td></tr>
+  </table>
+
+  <h2>Deduplication</h2>
+  <p>Multiple engines can fire on the same line. Deduplication runs in two passes to prevent duplicate findings:</p>
+<pre>Pass 1: {(rule_id, line_number): finding}        deduplicate within each engine
+Pass 2: {(ave_id, line_number): finding}          deduplicate across engines
+        priority: pattern > yara > semgrep > llm</pre>
+</div>
+
+<!-- ARCH: AVE MODEL -->
+<div class="page" id="arch-ave">
+  <h1>AVE Record Model</h1>
+  <p class="lead">Every AVE record is a JSON file documenting one attack class. It is the complete specification of one vulnerability type including detection, scoring, and remediation.</p>
+
+  <h2>Core fields</h2>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Purpose</th></tr>
+    <tr><td><code>ave_id</code></td><td>string</td><td>AVE-YYYY-NNNNN identifier</td></tr>
+    <tr><td><code>attack_class</code></td><td>string</td><td>Attack family (Metamorphic Payload, Tool Poisoning, etc.)</td></tr>
+    <tr><td><code>component_type</code></td><td>string</td><td>skill | mcp | prompt | plugin</td></tr>
+    <tr><td><code>aivss_score</code></td><td>float</td><td>AIVSS score 0.0 to 10.0</td></tr>
+    <tr><td><code>behavioral_fingerprint</code></td><td>string</td><td>Regex or pattern description for detection</td></tr>
+    <tr><td><code>behavioral_vector</code></td><td>list</td><td>Capability tags used by toxic flow detection</td></tr>
+    <tr><td><code>mutation_count</code></td><td>int</td><td>Number of known variants</td></tr>
+    <tr><td><code>indicators_of_compromise</code></td><td>list</td><td>Specific phrases from real examples</td></tr>
+    <tr><td><code>owasp_mapping</code></td><td>list</td><td>ASI01 through ASI10</td></tr>
+    <tr><td><code>nist_ai_rmf_mapping</code></td><td>list</td><td>MAP-x.x, MEASURE-x.x, MANAGE-x.x</td></tr>
+    <tr><td><code>remediation</code></td><td>string</td><td>What to do when this is found</td></tr>
+  </table>
+
+  <h2>Capability tags (behavioral_vector)</h2>
+  <p>These tags are what the toxic flow detector uses to identify attack chains. Each tag represents an action the component can perform:</p>
+  <table>
+    <tr><th>Tag</th><th>Meaning</th></tr>
+    <tr><td><code>external-fetch</code></td><td>Fetches instructions or content from an external URL</td></tr>
+    <tr><td><code>credential-read</code></td><td>Reads environment variables, API keys, or credential files</td></tr>
+    <tr><td><code>command-exec</code></td><td>Executes shell commands or scripts</td></tr>
+    <tr><td><code>data-exfil</code></td><td>Encodes and transmits data to an external endpoint</td></tr>
+    <tr><td><code>tool-poison</code></td><td>Injects behavioral instructions into tool descriptions</td></tr>
+    <tr><td><code>goal-override</code></td><td>Replaces the agent's declared objective</td></tr>
+    <tr><td><code>persistence</code></td><td>Writes to startup files, memory, or feedback loops</td></tr>
+    <tr><td><code>supply-chain</code></td><td>Imports third-party skills or tools at runtime</td></tr>
+    <tr><td><code>lateral-move</code></td><td>Pivots to internal services via the agent</td></tr>
+    <tr><td><code>identity-spoof</code></td><td>Claims a false role or identity</td></tr>
+    <tr><td><code>memory-write</code></td><td>Writes to agent memory or RLHF feedback</td></tr>
+    <tr><td><code>context-inject</code></td><td>Injects into RAG context or conversation history</td></tr>
+    <tr><td><code>covert-channel</code></td><td>Uses steganography or encoding to hide communication</td></tr>
+    <tr><td><code>permission-claim</code></td><td>Claims permissions that were not granted</td></tr>
+    <tr><td><code>scope-expand</code></td><td>Acts beyond the declared tool scope</td></tr>
+  </table>
+
+  <h2>OWASP MCP mapping</h2>
+  <p>OWASP MCP mappings are not stored in AVE files. They are computed at response time from <code>scanner/owasp_mcp_map.py</code>. This means updating the mapping requires changing one Python file, not 45 JSON files.</p>
+  <p>See the <span class="nav-a" style="display:inline;padding:0;border:none" onclick="go('compliance')">Standards Mapping</span> page for the full OWASP MCP Top 10 table.</p>
+</div>
+
+<!-- ARCH: AIVSS -->
+<div class="page" id="arch-scoring">
+  <h1>AIVSS Scoring</h1>
+  <p class="lead">AIVSS is an adaptation of CVSSv3 for agentic AI components. The base metrics are kept but reinterpreted, and two new metrics are added.</p>
+
+  <h2>Base metrics (CVSSv3 reinterpreted)</h2>
+  <table>
+    <tr><th>Metric</th><th>Code</th><th>Agentic interpretation</th></tr>
+    <tr><td>Attack Vector</td><td>AV</td><td>N: agent loads skill automatically. A: human must direct agent. L: local file only.</td></tr>
+    <tr><td>Attack Complexity</td><td>AC</td><td>L: works against any agent. H: requires specific model or config.</td></tr>
+    <tr><td>Privileges Required</td><td>PR</td><td>N: no special agent permissions. L: needs one tool. H: needs admin permissions.</td></tr>
+    <tr><td>User Interaction</td><td>UI</td><td>N: fires without user action. R: user must trigger the agent action.</td></tr>
+    <tr><td>Scope</td><td>S</td><td>U: only current session affected. C: can affect other systems or agents.</td></tr>
+    <tr><td>Confidentiality</td><td>C</td><td>Applied to agent access scope, not just host system.</td></tr>
+    <tr><td>Integrity</td><td>I</td><td>H: can modify files, memory, or other agents' instructions.</td></tr>
+    <tr><td>Availability</td><td>A</td><td>H: can destroy files or crash the agent session.</td></tr>
+  </table>
+
+  <h2>New metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Code</th><th>Values</th><th>Effect</th></tr>
+    <tr><td>Agent Autonomy</td><td>AA</td><td>L / M / H</td><td>Multiplier: L=1.0, M=1.05, H=1.12</td></tr>
+    <tr><td>Mutation Count</td><td>MC</td><td>numeric</td><td>log10(MC+1) * 0.03, max +0.15</td></tr>
+  </table>
+
+  <h2>Formula</h2>
+<pre>BaseScore    = Roundup(min((ISCBase + ExploitabilityScore) * ScopeMultiplier, 10))
+AIVSS      = BaseScore * AutonomyMultiplier * (1 + log10(MC+1) * 0.03)</pre>
+
+  <h2>Severity thresholds</h2>
+  <table>
+    <tr><th>Score</th><th>Severity</th><th>Default CI behavior</th></tr>
+    <tr><td>9.0 to 10.0</td><td>CRITICAL</td><td>Exit 2 with --fail-on-severity critical</td></tr>
+    <tr><td>7.0 to 8.9</td><td>HIGH</td><td>Exit 2 with --fail-on-severity high (default)</td></tr>
+    <tr><td>4.0 to 6.9</td><td>MEDIUM</td><td>Exit 2 with --fail-on-severity medium</td></tr>
+    <tr><td>0.1 to 3.9</td><td>LOW</td><td>Exit 0 unless --fail-on-severity low</td></tr>
+  </table>
+</div>
+
+<!-- ARCH: CONFIDENCE -->
+<div class="page" id="arch-confidence">
+  <h1>Confidence Scoring and False Positive Reduction</h1>
+  <p class="lead">Every finding gets a confidence score from 0.0 to 1.0. Findings below the file-type threshold are moved to suppressed findings rather than reported.</p>
+
+  <h2>Confidence adjustments</h2>
+  <table>
+    <tr><th>Signal</th><th>Adjustment</th></tr>
+    <tr><td>Inside code fence block</td><td>-0.80</td></tr>
+    <tr><td>Negation on preceding line ("never", "do not", "bad example")</td><td>-0.40</td></tr>
+    <tr><td>Inside a markdown table row</td><td>-0.20</td></tr>
+    <tr><td>Inside a heading</td><td>-0.15</td></tr>
+    <tr><td>File path contains docs/, examples/, or test/</td><td>-0.15</td></tr>
+    <tr><td>Finding in first 30 lines of file</td><td>+0.10</td></tr>
+    <tr><td>Multiple engines agreed on same finding</td><td>+0.15</td></tr>
+    <tr><td>File is named skill.md or SKILL.md</td><td>+0.10</td></tr>
+  </table>
+
+  <h2>File-type thresholds</h2>
+  <table>
+    <tr><th>File type</th><th>Report if confidence >=</th></tr>
+    <tr><td>skill</td><td>0.60</td></tr>
+    <tr><td>mcp_manifest</td><td>0.55</td></tr>
+    <tr><td>documentation</td><td>0.85</td></tr>
+    <tr><td>unknown</td><td>0.80</td></tr>
+  </table>
+
+  <h2>The 5-layer FP reduction system</h2>
+  <table>
+    <tr><th>Layer</th><th>Mechanism</th><th>FP reduction</th></tr>
+    <tr><td>FP-1</td><td>Code fence stripping before analysis</td><td>~60%</td></tr>
+    <tr><td>FP-2</td><td>Negation context check on preceding lines</td><td>~15%</td></tr>
+    <tr><td>FP-3</td><td>Confidence scoring with context adjustments</td><td>~10%</td></tr>
+    <tr><td>FP-4</td><td>LLM meta-analyzer for medium-confidence findings</td><td>~7%</td></tr>
+    <tr><td>FP-5</td><td>File-type thresholds</td><td>~3%</td></tr>
+  </table>
+
+  <p>Suppressed findings are never deleted. They appear in <code>ScanResult.suppressed_findings</code> in JSON output. Use <code>--no-ignore</code> to override all suppression for audit mode.</p>
+</div>
+
+<!-- ARCH: TOXIC FLOWS -->
+<div class="page" id="arch-flows">
+  <h1>Toxic Flow Detection Architecture</h1>
+  <p class="lead">After all findings are collected, the toxic flow detector checks whether any two or more findings form a known attack chain.</p>
+
+  <h2>Detection steps</h2>
+  <p>Step 1: map each finding to capability tags via the AVE record's <code>behavioral_vector</code> field.</p>
+  <p>Step 2: collect all capability tags from all findings into one set.</p>
+  <p>Step 3: check each FlowDef. If <code>required_capabilities</code> is a subset of the collected tags, the flow fires.</p>
+  <p>Step 4: create a ToxicFlow object with the combined AIVSS score and add it to ScanResult.</p>
+
+  <h2>FlowDef structure</h2>
+<pre>FlowDef(
+    flow_id="credential-exfiltration",
+    title="Credential Exfiltration Chain",
+    required_capabilities=["credential-read", "data-exfil"],
+    aivss=9.8,
+    owasp_mcp=["MCP01", "MCP05"],
+    description="Agent reads credentials AND transmits data externally.",
+)</pre>
+
+  <h2>Scope</h2>
+  <p>Toxic flows check capabilities across the entire scan, not per file. If file A has <code>credential-read</code> and file B has <code>data-exfil</code>, the Credential Exfiltration Chain still fires. Both files are loaded by the same agent in the same session.</p>
+  <p>To scan files independently, scan them one at a time rather than passing a directory.</p>
+
+  <p>Adding a new chain requires one entry in <code>scanner/toxic_flows/flows.py</code>. No other files change. See the <span class="nav-a" style="display:inline;padding:0;border:none" onclick="go('toxic')">Toxic Flows guide</span> for the full table of built-in chains.</p>
+</div>
+
+<!-- ARCH: RISK SCORE -->
+<div class="page" id="arch-risk">
+  <h1>Risk Score Calculation</h1>
+  <p class="lead">The <code>risk_score</code> on a ScanResult is a single 0.0 to 10.0 number summarising the overall threat level of the scanned component.</p>
+
+  <h2>Formula</h2>
+<pre>risk_score = max(
+    max(f.aivss for f in findings,    default=0),
+    max(tf.aivss for tf in toxic_flows, default=0)
+)</pre>
+
+  <p>The risk score is always greater than or equal to the highest individual finding score. A toxic flow can only raise it, never lower it.</p>
+
+  <h2>Why max and not average</h2>
+  <p>One CRITICAL 9.8 finding makes a skill file dangerous regardless of how many LOW findings surround it. Averaging hides severity. A skill file with ten LOW findings and one CRITICAL finding has a risk score of CRITICAL, not MEDIUM.</p>
+
+  <h2>Example</h2>
+  <table>
+    <tr><th>Finding or flow</th><th>AIVSS</th><th>Contribution</th></tr>
+    <tr><td>AVE-2026-00003 (credential-read)</td><td>8.5</td><td>max_finding = 8.5</td></tr>
+    <tr><td>AVE-2026-00026 (data-exfil)</td><td>9.1</td><td>max_finding = 9.1</td></tr>
+    <tr><td>Credential Exfiltration Chain (toxic flow)</td><td>9.8</td><td>max_flow = 9.8</td></tr>
+    <tr><td><strong>Final risk_score</strong></td><td><strong>9.8</strong></td><td>max(9.1, 9.8) = 9.8</td></tr>
+  </table>
+</div>
+
+<!-- ARCH: END TO END -->
+<div class="page" id="arch-e2e">
+  <h1>End-to-End Data Flow</h1>
+  <p class="lead">What happens from <code>bawbel scan ./skill.md</code> to the final JSON output.</p>
+
+<pre>1.  File ingestion
+    FileCollector.collect(path)
+    symlink check, 10MB size limit
+    classify: skill | mcp_manifest | documentation | unknown
+
+2.  Pre-processing
+    code fence stripping (FP-1)
+    Stage 0: Magika content-type check (if installed)
+
+3.  Engine dispatch
+    Stage 1a: pattern_engine.scan(content)       → [Finding, ...]
+    Stage 1b: yara_engine.scan(content)           → [Finding, ...]
+    Stage 1c: semgrep_engine.scan(content)        → [Finding, ...]
+
+4.  False positive filtering
+    FP-2: negation context check on each finding
+    FP-3: confidence scoring (base + adjustments)
+    FP-4: meta_analyzer.review(medium_confidence)
+    FP-5: apply file-type threshold filter
+
+5.  Stage 2 (if configured)
+    llm_engine.scan(content, findings)
+
+6.  Deduplication
+    pass 1: {(rule_id, line): finding}
+    pass 2: {(ave_id, line): finding}
+
+7.  OWASP MCP enrichment
+    for each finding: get_owasp_mcp(finding.ave_id)
+
+8.  Toxic flow detection
+    caps = union of all behavioral_vector tags
+    for each FlowDef: if required_capabilities <= caps → ToxicFlow
+
+9.  Risk score
+    max(max finding aivss, max toxic flow aivss)
+
+10. Stage 3 (if configured)
+    sandbox_engine.run(filepath) → runtime findings merged in
+
+11. Suppression
+    apply inline bawbel-ignore comments
+    apply .bawbelignore patterns
+    suppressed → ScanResult.suppressed_findings
+
+12. Output
+    ScanResult → text | json | sarif
+    every finding includes piranha_url
+    exit 0 (clean) or 2 (findings at threshold)</pre>
+
+  <h2>ScanResult and Finding objects</h2>
+<pre>ScanResult:
+  file_path:            str
+  component_type:       str            # skill | mcp_manifest | documentation | unknown
+  findings:             list[Finding]
+  suppressed_findings:  list[Finding]
+  toxic_flows:          list[ToxicFlow]
+  risk_score:           float          # 0.0 to 10.0
+  max_severity:         str | None     # CRITICAL | HIGH | MEDIUM | LOW | None
+  is_clean:             bool
+  scan_time_ms:         int
+  error:                str | None     # never raises, errors land here
+
+Finding:
+  ave_id:       str           # AVE-2026-NNNNN
+  title:        str
+  severity:     Severity      # CRITICAL | HIGH | MEDIUM | LOW
+  aivss:      float
+  line_number:  int | None
+  engine:       str           # pattern | yara | semgrep | llm | sandbox | magika
+  confidence:   float         # 0.0 to 1.0
+  owasp:        list[str]     # ASI01..ASI10
+  owasp_mcp:    list[str]     # MCP01..MCP10
+  piranha_url:  str           # link to full PiranhaDB record</pre>
 </div>
 
 <!-- DOCKER -->
@@ -1736,7 +2070,7 @@ git commit -m "chore: pin skill files"</pre>
 bawbel check-pins ./skills/
 bawbel cp ./skills/             <span class="cm"># alias</span>
 
-<span class="cm"># CI mode — exit 2 if any file drifted</span>
+<span class="cm"># CI mode - exit 2 if any file drifted</span>
 bawbel cp ./skills/ --fail-on-drift</pre>
 
   <h2>Output when drift is detected</h2>
@@ -1774,7 +2108,7 @@ As a chain:  CRITICAL 9.8  Credential Exfiltration Chain</pre>
 
   <h2>Built-in attack chains</h2>
   <table>
-    <tr><th>Chain</th><th>Capabilities</th><th>CVSS-AI</th></tr>
+    <tr><th>Chain</th><th>Capabilities</th><th>AIVSS</th></tr>
     <tr><td>Credential Exfiltration</td><td>credential-read + data-exfil</td><td>CRITICAL 9.8</td></tr>
     <tr><td>Remote Code Execution</td><td>external-fetch + command-exec</td><td>CRITICAL 9.7</td></tr>
     <tr><td>Supply Chain RCE</td><td>supply-chain + command-exec</td><td>CRITICAL 9.6</td></tr>
@@ -1796,7 +2130,7 @@ As a chain:  CRITICAL 9.8  Credential Exfiltration Chain</pre>
       <span class="str">"flow_id"</span>:      <span class="str">"credential-exfiltration"</span>,
       <span class="str">"title"</span>:       <span class="str">"Credential Exfiltration Chain"</span>,
       <span class="str">"severity"</span>:    <span class="str">"CRITICAL"</span>,
-      <span class="str">"cvss_ai"</span>:     9.8,
+      <span class="str">"aivss"</span>:     9.8,
       <span class="str">"capabilities"</span>: [<span class="str">"credential-read"</span>, <span class="str">"data-exfil"</span>],
       <span class="str">"ave_ids"</span>:     [<span class="str">"AVE-2026-00003"</span>, <span class="str">"AVE-2026-00026"</span>],
       <span class="str">"owasp_mcp"</span>:   [<span class="str">"MCP01"</span>, <span class="str">"MCP05"</span>]
@@ -1808,7 +2142,7 @@ As a chain:  CRITICAL 9.8  Credential Exfiltration Chain</pre>
 <pre>result = scan(<span class="str">"./skill.md"</span>)
 
 <span class="kw">for</span> flow <span class="kw">in</span> result.toxic_flows:
-    print(f<span class="str">"⛓  {flow.title}  CVSS-AI {flow.cvss_ai}"</span>)
+    print(f<span class="str">"⛓  {flow.title}  AIVSS {flow.aivss}"</span>)
     print(f<span class="str">"   Chain: {' > '.join(flow.capabilities)}"</span>)</pre>
 </div>
 
@@ -1928,13 +2262,336 @@ bawbel conform ./server.json --fail-non-conformant</pre>
   <h2>JSON finding fields for compliance automation</h2>
   <table>
     <tr><th>Field</th><th>Content</th></tr>
-    <tr><td><code>ave_id</code></td><td>AVE-2026-NNNNN — link to PiranhaDB</td></tr>
+    <tr><td><code>ave_id</code></td><td>AVE-2026-NNNNN - link to PiranhaDB</td></tr>
     <tr><td><code>owasp</code></td><td>ASI category codes</td></tr>
     <tr><td><code>owasp_mcp</code></td><td>OWASP MCP Top 10 codes</td></tr>
-    <tr><td><code>cvss_ai</code></td><td>CVSS-AI numeric score</td></tr>
+    <tr><td><code>aivss</code></td><td>AIVSS numeric score</td></tr>
     <tr><td><code>severity</code></td><td>CRITICAL, HIGH, MEDIUM, LOW</td></tr>
     <tr><td><code>piranha_url</code></td><td>Direct link to full record with NIST and MITRE mappings</td></tr>
   </table>
+</div>
+
+
+<!-- ARCH: OVERVIEW -->
+<div class="page" id="arch-overview">
+  <h1>Architecture Overview</h1>
+  <p class="lead">Bawbel has three loosely coupled components that work independently or together.</p>
+
+  <h2>Components</h2>
+  <table>
+    <tr><th>Component</th><th>Repo</th><th>What it does</th></tr>
+    <tr><td><strong>bawbel-scanner</strong></td><td>github.com/bawbel/scanner</td><td>CLI scanner, Python API, 6 detection engines, 45 AVE records</td></tr>
+    <tr><td><strong>ave</strong></td><td>github.com/bawbel/ave</td><td>AVE standard, 45 published JSON vulnerability records</td></tr>
+    <tr><td><strong>piranha-api</strong></td><td>api.piranha.bawbel.io</td><td>Public threat intelligence API, 14 endpoints, no auth</td></tr>
+    <tr><td><strong>bawbel-mcp</strong></td><td>github.com/bawbel/bawbel-mcp</td><td>MCP server exposing scanner as agent-callable tools</td></tr>
+  </table>
+
+  <h2>How they connect</h2>
+  <p>The scanner syncs AVE records from github.com/bawbel/ave at startup. Every finding the scanner produces includes a <code>piranha_url</code> linking to the full record in PiranhaDB. The MCP server wraps the scanner and queries PiranhaDB on behalf of agents.</p>
+  <p>PiranhaDB has a store abstraction that currently uses JSON files on disk. Setting <code>DATABASE_URL</code> switches to PostgreSQL. Setting <code>REDIS_URL</code> adds Redis cache. Both activate without code changes.</p>
+
+  <h2>Store upgrade path</h2>
+  <table>
+    <tr><th>Phase</th><th>Store</th><th>Cache</th><th>How to activate</th></tr>
+    <tr><td>1 (current)</td><td>JSON files on disk</td><td>None</td><td>Default</td></tr>
+    <tr><td>2 (UI)</td><td>JSON files</td><td>None</td><td>Set PIRANHA_UI_URL for CORS</td></tr>
+    <tr><td>3 (scale)</td><td>PostgreSQL</td><td>Redis</td><td>Set DATABASE_URL + REDIS_URL</td></tr>
+  </table>
+</div>
+
+<!-- ARCH: PIPELINE -->
+<div class="page" id="arch-pipeline">
+  <h1>Detection Pipeline</h1>
+  <p class="lead">Files pass through up to six detection stages in sequence. All findings are merged and deduplicated at the end.</p>
+
+  <h2>Stages</h2>
+  <table>
+    <tr><th>Stage</th><th>Engine</th><th>Install</th><th>Active by default</th></tr>
+    <tr><td>0</td><td>Magika</td><td>pip install "bawbel-scanner[magika]"</td><td>No</td></tr>
+    <tr><td>1a</td><td>Pattern</td><td>included</td><td>Yes, always</td></tr>
+    <tr><td>1b</td><td>YARA</td><td>pip install "bawbel-scanner[yara]"</td><td>No</td></tr>
+    <tr><td>1c</td><td>Semgrep</td><td>pip install "bawbel-scanner[semgrep]"</td><td>No</td></tr>
+    <tr><td>2</td><td>LLM</td><td>pip install "bawbel-scanner[llm]" + API key</td><td>No</td></tr>
+    <tr><td>3</td><td>Sandbox</td><td>Docker + BAWBEL_SANDBOX_ENABLED=true</td><td>No</td></tr>
+  </table>
+
+  <h2>What each stage catches</h2>
+  <table>
+    <tr><th>Stage</th><th>What it catches</th><th>False positive risk</th></tr>
+    <tr><td>0 Magika</td><td>ELF binary disguised as .md, pickle as .yaml, PE32 as .json</td><td>Low (ML model)</td></tr>
+    <tr><td>1a Pattern</td><td>Known injection phrases, shell commands, exfil patterns</td><td>Medium (regex can be broad)</td></tr>
+    <tr><td>1b YARA</td><td>Zero-width Unicode chars, binary payloads, multi-string combinations</td><td>Low on binary, medium on text</td></tr>
+    <tr><td>1c Semgrep</td><td>Multi-line patterns, structural combinations pattern misses</td><td>Low (structural context)</td></tr>
+    <tr><td>2 LLM</td><td>Obfuscated payloads, synonym attacks, multi-paragraph injections</td><td>Low (semantic understanding)</td></tr>
+    <tr><td>3 Sandbox</td><td>Network egress at runtime, filesystem writes, subprocess spawning</td><td>Very low (runtime evidence)</td></tr>
+  </table>
+
+  <h2>Deduplication</h2>
+  <p>Multiple engines can fire on the same line. Deduplication runs in two passes to prevent duplicate findings:</p>
+<pre>Pass 1: {(rule_id, line_number): finding}        deduplicate within each engine
+Pass 2: {(ave_id, line_number): finding}          deduplicate across engines
+        priority: pattern > yara > semgrep > llm</pre>
+</div>
+
+<!-- ARCH: AVE MODEL -->
+<div class="page" id="arch-ave">
+  <h1>AVE Record Model</h1>
+  <p class="lead">Every AVE record is a JSON file documenting one attack class. It is the complete specification of one vulnerability type including detection, scoring, and remediation.</p>
+
+  <h2>Core fields</h2>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Purpose</th></tr>
+    <tr><td><code>ave_id</code></td><td>string</td><td>AVE-YYYY-NNNNN identifier</td></tr>
+    <tr><td><code>attack_class</code></td><td>string</td><td>Attack family (Metamorphic Payload, Tool Poisoning, etc.)</td></tr>
+    <tr><td><code>component_type</code></td><td>string</td><td>skill | mcp | prompt | plugin</td></tr>
+    <tr><td><code>aivss_score</code></td><td>float</td><td>AIVSS score 0.0 to 10.0</td></tr>
+    <tr><td><code>behavioral_fingerprint</code></td><td>string</td><td>Regex or pattern description for detection</td></tr>
+    <tr><td><code>behavioral_vector</code></td><td>list</td><td>Capability tags used by toxic flow detection</td></tr>
+    <tr><td><code>mutation_count</code></td><td>int</td><td>Number of known variants</td></tr>
+    <tr><td><code>indicators_of_compromise</code></td><td>list</td><td>Specific phrases from real examples</td></tr>
+    <tr><td><code>owasp_mapping</code></td><td>list</td><td>ASI01 through ASI10</td></tr>
+    <tr><td><code>nist_ai_rmf_mapping</code></td><td>list</td><td>MAP-x.x, MEASURE-x.x, MANAGE-x.x</td></tr>
+    <tr><td><code>remediation</code></td><td>string</td><td>What to do when this is found</td></tr>
+  </table>
+
+  <h2>Capability tags (behavioral_vector)</h2>
+  <p>These tags are what the toxic flow detector uses to identify attack chains. Each tag represents an action the component can perform:</p>
+  <table>
+    <tr><th>Tag</th><th>Meaning</th></tr>
+    <tr><td><code>external-fetch</code></td><td>Fetches instructions or content from an external URL</td></tr>
+    <tr><td><code>credential-read</code></td><td>Reads environment variables, API keys, or credential files</td></tr>
+    <tr><td><code>command-exec</code></td><td>Executes shell commands or scripts</td></tr>
+    <tr><td><code>data-exfil</code></td><td>Encodes and transmits data to an external endpoint</td></tr>
+    <tr><td><code>tool-poison</code></td><td>Injects behavioral instructions into tool descriptions</td></tr>
+    <tr><td><code>goal-override</code></td><td>Replaces the agent's declared objective</td></tr>
+    <tr><td><code>persistence</code></td><td>Writes to startup files, memory, or feedback loops</td></tr>
+    <tr><td><code>supply-chain</code></td><td>Imports third-party skills or tools at runtime</td></tr>
+    <tr><td><code>lateral-move</code></td><td>Pivots to internal services via the agent</td></tr>
+    <tr><td><code>identity-spoof</code></td><td>Claims a false role or identity</td></tr>
+    <tr><td><code>memory-write</code></td><td>Writes to agent memory or RLHF feedback</td></tr>
+    <tr><td><code>context-inject</code></td><td>Injects into RAG context or conversation history</td></tr>
+    <tr><td><code>covert-channel</code></td><td>Uses steganography or encoding to hide communication</td></tr>
+    <tr><td><code>permission-claim</code></td><td>Claims permissions that were not granted</td></tr>
+    <tr><td><code>scope-expand</code></td><td>Acts beyond the declared tool scope</td></tr>
+  </table>
+
+  <h2>OWASP MCP mapping</h2>
+  <p>OWASP MCP mappings are not stored in AVE files. They are computed at response time from <code>scanner/owasp_mcp_map.py</code>. This means updating the mapping requires changing one Python file, not 45 JSON files.</p>
+  <p>See the <span class="nav-a" style="display:inline;padding:0;border:none" onclick="go('compliance')">Standards Mapping</span> page for the full OWASP MCP Top 10 table.</p>
+</div>
+
+<!-- ARCH: AIVSS -->
+<div class="page" id="arch-scoring">
+  <h1>AIVSS Scoring</h1>
+  <p class="lead">AIVSS is an adaptation of CVSSv3 for agentic AI components. The base metrics are kept but reinterpreted, and two new metrics are added.</p>
+
+  <h2>Base metrics (CVSSv3 reinterpreted)</h2>
+  <table>
+    <tr><th>Metric</th><th>Code</th><th>Agentic interpretation</th></tr>
+    <tr><td>Attack Vector</td><td>AV</td><td>N: agent loads skill automatically. A: human must direct agent. L: local file only.</td></tr>
+    <tr><td>Attack Complexity</td><td>AC</td><td>L: works against any agent. H: requires specific model or config.</td></tr>
+    <tr><td>Privileges Required</td><td>PR</td><td>N: no special agent permissions. L: needs one tool. H: needs admin permissions.</td></tr>
+    <tr><td>User Interaction</td><td>UI</td><td>N: fires without user action. R: user must trigger the agent action.</td></tr>
+    <tr><td>Scope</td><td>S</td><td>U: only current session affected. C: can affect other systems or agents.</td></tr>
+    <tr><td>Confidentiality</td><td>C</td><td>Applied to agent access scope, not just host system.</td></tr>
+    <tr><td>Integrity</td><td>I</td><td>H: can modify files, memory, or other agents' instructions.</td></tr>
+    <tr><td>Availability</td><td>A</td><td>H: can destroy files or crash the agent session.</td></tr>
+  </table>
+
+  <h2>New metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Code</th><th>Values</th><th>Effect</th></tr>
+    <tr><td>Agent Autonomy</td><td>AA</td><td>L / M / H</td><td>Multiplier: L=1.0, M=1.05, H=1.12</td></tr>
+    <tr><td>Mutation Count</td><td>MC</td><td>numeric</td><td>log10(MC+1) * 0.03, max +0.15</td></tr>
+  </table>
+
+  <h2>Formula</h2>
+<pre>BaseScore    = Roundup(min((ISCBase + ExploitabilityScore) * ScopeMultiplier, 10))
+AIVSS      = BaseScore * AutonomyMultiplier * (1 + log10(MC+1) * 0.03)</pre>
+
+  <h2>Severity thresholds</h2>
+  <table>
+    <tr><th>Score</th><th>Severity</th><th>Default CI behavior</th></tr>
+    <tr><td>9.0 to 10.0</td><td>CRITICAL</td><td>Exit 2 with --fail-on-severity critical</td></tr>
+    <tr><td>7.0 to 8.9</td><td>HIGH</td><td>Exit 2 with --fail-on-severity high (default)</td></tr>
+    <tr><td>4.0 to 6.9</td><td>MEDIUM</td><td>Exit 2 with --fail-on-severity medium</td></tr>
+    <tr><td>0.1 to 3.9</td><td>LOW</td><td>Exit 0 unless --fail-on-severity low</td></tr>
+  </table>
+</div>
+
+<!-- ARCH: CONFIDENCE -->
+<div class="page" id="arch-confidence">
+  <h1>Confidence Scoring and False Positive Reduction</h1>
+  <p class="lead">Every finding gets a confidence score from 0.0 to 1.0. Findings below the file-type threshold are moved to suppressed findings rather than reported.</p>
+
+  <h2>Confidence adjustments</h2>
+  <table>
+    <tr><th>Signal</th><th>Adjustment</th></tr>
+    <tr><td>Inside code fence block</td><td>-0.80</td></tr>
+    <tr><td>Negation on preceding line ("never", "do not", "bad example")</td><td>-0.40</td></tr>
+    <tr><td>Inside a markdown table row</td><td>-0.20</td></tr>
+    <tr><td>Inside a heading</td><td>-0.15</td></tr>
+    <tr><td>File path contains docs/, examples/, or test/</td><td>-0.15</td></tr>
+    <tr><td>Finding in first 30 lines of file</td><td>+0.10</td></tr>
+    <tr><td>Multiple engines agreed on same finding</td><td>+0.15</td></tr>
+    <tr><td>File is named skill.md or SKILL.md</td><td>+0.10</td></tr>
+  </table>
+
+  <h2>File-type thresholds</h2>
+  <table>
+    <tr><th>File type</th><th>Report if confidence >=</th></tr>
+    <tr><td>skill</td><td>0.60</td></tr>
+    <tr><td>mcp_manifest</td><td>0.55</td></tr>
+    <tr><td>documentation</td><td>0.85</td></tr>
+    <tr><td>unknown</td><td>0.80</td></tr>
+  </table>
+
+  <h2>The 5-layer FP reduction system</h2>
+  <table>
+    <tr><th>Layer</th><th>Mechanism</th><th>FP reduction</th></tr>
+    <tr><td>FP-1</td><td>Code fence stripping before analysis</td><td>~60%</td></tr>
+    <tr><td>FP-2</td><td>Negation context check on preceding lines</td><td>~15%</td></tr>
+    <tr><td>FP-3</td><td>Confidence scoring with context adjustments</td><td>~10%</td></tr>
+    <tr><td>FP-4</td><td>LLM meta-analyzer for medium-confidence findings</td><td>~7%</td></tr>
+    <tr><td>FP-5</td><td>File-type thresholds</td><td>~3%</td></tr>
+  </table>
+
+  <p>Suppressed findings are never deleted. They appear in <code>ScanResult.suppressed_findings</code> in JSON output. Use <code>--no-ignore</code> to override all suppression for audit mode.</p>
+</div>
+
+<!-- ARCH: TOXIC FLOWS -->
+<div class="page" id="arch-flows">
+  <h1>Toxic Flow Detection Architecture</h1>
+  <p class="lead">After all findings are collected, the toxic flow detector checks whether any two or more findings form a known attack chain.</p>
+
+  <h2>Detection steps</h2>
+  <p>Step 1: map each finding to capability tags via the AVE record's <code>behavioral_vector</code> field.</p>
+  <p>Step 2: collect all capability tags from all findings into one set.</p>
+  <p>Step 3: check each FlowDef. If <code>required_capabilities</code> is a subset of the collected tags, the flow fires.</p>
+  <p>Step 4: create a ToxicFlow object with the combined AIVSS score and add it to ScanResult.</p>
+
+  <h2>FlowDef structure</h2>
+<pre>FlowDef(
+    flow_id="credential-exfiltration",
+    title="Credential Exfiltration Chain",
+    required_capabilities=["credential-read", "data-exfil"],
+    aivss=9.8,
+    owasp_mcp=["MCP01", "MCP05"],
+    description="Agent reads credentials AND transmits data externally.",
+)</pre>
+
+  <h2>Scope</h2>
+  <p>Toxic flows check capabilities across the entire scan, not per file. If file A has <code>credential-read</code> and file B has <code>data-exfil</code>, the Credential Exfiltration Chain still fires. Both files are loaded by the same agent in the same session.</p>
+  <p>To scan files independently, scan them one at a time rather than passing a directory.</p>
+
+  <p>Adding a new chain requires one entry in <code>scanner/toxic_flows/flows.py</code>. No other files change. See the <span class="nav-a" style="display:inline;padding:0;border:none" onclick="go('toxic')">Toxic Flows guide</span> for the full table of built-in chains.</p>
+</div>
+
+<!-- ARCH: RISK SCORE -->
+<div class="page" id="arch-risk">
+  <h1>Risk Score Calculation</h1>
+  <p class="lead">The <code>risk_score</code> on a ScanResult is a single 0.0 to 10.0 number summarising the overall threat level of the scanned component.</p>
+
+  <h2>Formula</h2>
+<pre>risk_score = max(
+    max(f.aivss for f in findings,    default=0),
+    max(tf.aivss for tf in toxic_flows, default=0)
+)</pre>
+
+  <p>The risk score is always greater than or equal to the highest individual finding score. A toxic flow can only raise it, never lower it.</p>
+
+  <h2>Why max and not average</h2>
+  <p>One CRITICAL 9.8 finding makes a skill file dangerous regardless of how many LOW findings surround it. Averaging hides severity. A skill file with ten LOW findings and one CRITICAL finding has a risk score of CRITICAL, not MEDIUM.</p>
+
+  <h2>Example</h2>
+  <table>
+    <tr><th>Finding or flow</th><th>AIVSS</th><th>Contribution</th></tr>
+    <tr><td>AVE-2026-00003 (credential-read)</td><td>8.5</td><td>max_finding = 8.5</td></tr>
+    <tr><td>AVE-2026-00026 (data-exfil)</td><td>9.1</td><td>max_finding = 9.1</td></tr>
+    <tr><td>Credential Exfiltration Chain (toxic flow)</td><td>9.8</td><td>max_flow = 9.8</td></tr>
+    <tr><td><strong>Final risk_score</strong></td><td><strong>9.8</strong></td><td>max(9.1, 9.8) = 9.8</td></tr>
+  </table>
+</div>
+
+<!-- ARCH: END TO END -->
+<div class="page" id="arch-e2e">
+  <h1>End-to-End Data Flow</h1>
+  <p class="lead">What happens from <code>bawbel scan ./skill.md</code> to the final JSON output.</p>
+
+<pre>1.  File ingestion
+    FileCollector.collect(path)
+    symlink check, 10MB size limit
+    classify: skill | mcp_manifest | documentation | unknown
+
+2.  Pre-processing
+    code fence stripping (FP-1)
+    Stage 0: Magika content-type check (if installed)
+
+3.  Engine dispatch
+    Stage 1a: pattern_engine.scan(content)       → [Finding, ...]
+    Stage 1b: yara_engine.scan(content)           → [Finding, ...]
+    Stage 1c: semgrep_engine.scan(content)        → [Finding, ...]
+
+4.  False positive filtering
+    FP-2: negation context check on each finding
+    FP-3: confidence scoring (base + adjustments)
+    FP-4: meta_analyzer.review(medium_confidence)
+    FP-5: apply file-type threshold filter
+
+5.  Stage 2 (if configured)
+    llm_engine.scan(content, findings)
+
+6.  Deduplication
+    pass 1: {(rule_id, line): finding}
+    pass 2: {(ave_id, line): finding}
+
+7.  OWASP MCP enrichment
+    for each finding: get_owasp_mcp(finding.ave_id)
+
+8.  Toxic flow detection
+    caps = union of all behavioral_vector tags
+    for each FlowDef: if required_capabilities <= caps → ToxicFlow
+
+9.  Risk score
+    max(max finding aivss, max toxic flow aivss)
+
+10. Stage 3 (if configured)
+    sandbox_engine.run(filepath) → runtime findings merged in
+
+11. Suppression
+    apply inline bawbel-ignore comments
+    apply .bawbelignore patterns
+    suppressed → ScanResult.suppressed_findings
+
+12. Output
+    ScanResult → text | json | sarif
+    every finding includes piranha_url
+    exit 0 (clean) or 2 (findings at threshold)</pre>
+
+  <h2>ScanResult and Finding objects</h2>
+<pre>ScanResult:
+  file_path:            str
+  component_type:       str            # skill | mcp_manifest | documentation | unknown
+  findings:             list[Finding]
+  suppressed_findings:  list[Finding]
+  toxic_flows:          list[ToxicFlow]
+  risk_score:           float          # 0.0 to 10.0
+  max_severity:         str | None     # CRITICAL | HIGH | MEDIUM | LOW | None
+  is_clean:             bool
+  scan_time_ms:         int
+  error:                str | None     # never raises, errors land here
+
+Finding:
+  ave_id:       str           # AVE-2026-NNNNN
+  title:        str
+  severity:     Severity      # CRITICAL | HIGH | MEDIUM | LOW
+  aivss:      float
+  line_number:  int | None
+  engine:       str           # pattern | yara | semgrep | llm | sandbox | magika
+  confidence:   float         # 0.0 to 1.0
+  owasp:        list[str]     # ASI01..ASI10
+  owasp_mcp:    list[str]     # MCP01..MCP10
+  piranha_url:  str           # link to full PiranhaDB record</pre>
 </div>
 
 <!-- DOCKER -->
@@ -1944,9 +2601,9 @@ bawbel conform ./server.json --fail-non-conformant</pre>
 
   <table>
     <tr><th>Target</th><th>Use case</th></tr>
-    <tr><td><code>production</code></td><td>Scan files — minimal image, non-root user, read-only filesystem</td></tr>
+    <tr><td><code>production</code></td><td>Scan files - minimal image, non-root user, read-only filesystem</td></tr>
     <tr><td><code>dev</code></td><td>Interactive development shell with hot-reload source mount</td></tr>
-    <tr><td><code>test</code></td><td>Run 145 tests and exit — use as a build gate</td></tr>
+    <tr><td><code>test</code></td><td>Run 145 tests and exit - use as a build gate</td></tr>
   </table>
 
   <h2>Build and scan</h2>
@@ -1986,14 +2643,14 @@ docker compose run --rm audit       <span class="cm"># bandit + pip-audit</span>
     <tr><td><code>BAWBEL_LOG_LEVEL</code></td><td><code>WARNING</code></td><td><code>DEBUG</code> · <code>INFO</code> · <code>WARNING</code> · <code>ERROR</code></td></tr>
     <tr><td><code>BAWBEL_MAX_FILE_SIZE_MB</code></td><td><code>10</code></td><td>Skip files larger than N MB</td></tr>
     <tr><td><code>BAWBEL_SCAN_TIMEOUT_SEC</code></td><td><code>30</code></td><td>Subprocess timeout for YARA and Semgrep</td></tr>
-    <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>auto</td><td>LiteLLM model string — overrides auto-detection</td></tr>
+    <tr><td><code>BAWBEL_LLM_MODEL</code></td><td>auto</td><td>LiteLLM model string - overrides auto-detection</td></tr>
     <tr><td><code>BAWBEL_LLM_MAX_CHARS</code></td><td><code>8000</code></td><td>Max content chars sent to LLM per scan</td></tr>
     <tr><td><code>BAWBEL_LLM_TIMEOUT</code></td><td><code>30</code></td><td>LLM call timeout in seconds</td></tr>
     <tr><td><code>BAWBEL_LLM_ENABLED</code></td><td><code>true</code></td><td>Set <code>false</code> to disable Stage 2 entirely</td></tr>
   </table>
 
   <div data-minver="0.3.0">
-  <h2>Stage 3 — Sandbox variables</h2>
+  <h2>Stage 3 - Sandbox variables</h2>
   <table>
     <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
     <tr><td><code>BAWBEL_SANDBOX_ENABLED</code></td><td><code>false</code></td><td>Set <code>true</code> to enable Stage 3</td></tr>
@@ -2014,7 +2671,7 @@ docker compose run --rm audit       <span class="cm"># bandit + pip-audit</span>
     <tr><td><code>GROQ_API_KEY</code></td><td><code>groq/llama3-8b-8192</code></td></tr>
   </table>
 
-  <div class="tip"><strong>Any provider:</strong> Set <code>BAWBEL_LLM_MODEL</code> to any <a href="https://docs.litellm.ai/docs/providers" target="_blank">LiteLLM model string</a> to use providers not listed above — including local Ollama models with no API key.</div>
+  <div class="tip"><strong>Any provider:</strong> Set <code>BAWBEL_LLM_MODEL</code> to any <a href="https://docs.litellm.ai/docs/providers" target="_blank">LiteLLM model string</a> to use providers not listed above - including local Ollama models with no API key.</div>
 
   <h2>Debug mode</h2>
 <pre>BAWBEL_LOG_LEVEL=DEBUG bawbel scan ./skill.md   <span class="cm"># full internal logs</span>
@@ -2024,7 +2681,7 @@ BAWBEL_LOG_LEVEL=INFO  bawbel scan ./skill.md   <span class="cm"># lifecycle onl
 <!-- PYTHON API -->
 <div class="page" id="python">
   <h1>Python API</h1>
-  <p class="lead"><code>scan()</code> is the single public entry point. Never raises — all errors are captured in <code>ScanResult.error</code>.</p>
+  <p class="lead"><code>scan()</code> is the single public entry point. Never raises - all errors are captured in <code>ScanResult.error</code>.</p>
 
   <h2>Basic usage</h2>
 <pre><span class="kw">from</span> scanner <span class="kw">import</span> scan
@@ -2037,7 +2694,7 @@ result = scan(<span class="st">"/path/to/skill.md"</span>)
     print(f<span class="st">"Error: {result.error}"</span>)        <span class="cm"># E-code only, no internal detail</span>
 <span class="kw">else</span>:
     <span class="kw">for</span> f <span class="kw">in</span> result.findings:
-        print(f<span class="st">"[{f.severity.value}] {f.title} — {f.cvss_ai}"</span>)
+        print(f<span class="st">"[{f.severity.value}] {f.title} - {f.aivss}"</span>)
     print(f<span class="st">"Risk: {result.risk_score:.1f} / 10"</span>)</pre>
 
   <h2>Batch scanning</h2>
@@ -2056,7 +2713,7 @@ print(f<span class="st">"{len(critical)} critical out of {len(results)} scanned"
     <tr><td><code>findings</code></td><td>list[Finding]</td><td>Sorted by severity, deduplicated</td></tr>
     <tr><td><code>scan_time_ms</code></td><td>int</td><td>Elapsed milliseconds</td></tr>
     <tr><td><code>max_severity</code></td><td>Severity | None</td><td>Highest severity found (computed)</td></tr>
-    <tr><td><code>risk_score</code></td><td>float</td><td>Highest CVSS-AI score (computed)</td></tr>
+    <tr><td><code>risk_score</code></td><td>float</td><td>Highest AIVSS score (computed)</td></tr>
     <tr><td><code>is_clean</code></td><td>bool</td><td>True if no findings and no error</td></tr>
     <tr><td><code>error</code></td><td>str | None</td><td>E-code (E001–E020) if scan failed</td></tr>
   </table>
@@ -2097,7 +2754,7 @@ print(f<span class="st">"{len(critical)} critical out of {len(results)} scanned"
     <span class="st">"ave_id"</span>:    <span class="st">"AVE-2026-00001"</span>,
     <span class="st">"title"</span>:     <span class="st">"External instruction fetch detected"</span>,
     <span class="st">"severity"</span>:  <span class="st">"CRITICAL"</span>,
-    <span class="st">"cvss_ai"</span>:   <span class="nb">9.4</span>,
+    <span class="st">"aivss"</span>:   <span class="nb">9.4</span>,
     <span class="st">"line"</span>:      <span class="nb">7</span>,
     <span class="st">"match"</span>:     <span class="st">"fetch your instructions"</span>,
     <span class="st">"engine"</span>:    <span class="st">"pattern"</span>,
@@ -2129,7 +2786,7 @@ print(f<span class="st">"{len(critical)} critical out of {len(results)} scanned"
   <h2>Endpoints</h2>
   <table>
     <tr><th>Method</th><th>Path</th><th>Description</th></tr>
-    <tr><td><code>GET</code></td><td><code>/ave</code></td><td>List all records — filter by severity, type, status</td></tr>
+    <tr><td><code>GET</code></td><td><code>/ave</code></td><td>List all records - filter by severity, type, status</td></tr>
     <tr><td><code>GET</code></td><td><code>/ave/{ave_id}</code></td><td>Full record by ID</td></tr>
     <tr><td><code>GET</code></td><td><code>/ave/{ave_id}/detection</code></td><td>Behavioral fingerprint, IOCs, scan command</td></tr>
     <tr><td><code>GET</code></td><td><code>/search?q=</code></td><td>Full-text search across title, description, attack class</td></tr>
@@ -2173,7 +2830,7 @@ curl https://api.piranha.bawbel.io/stats</pre>
   <p>Returns total records, mutation counts, breakdown by severity and attack class.</p>
 
   <div class="tip">
-    <strong>Interactive docs</strong> — Full Swagger UI available at
+    <strong>Interactive docs</strong> - Full Swagger UI available at
     <a href="https://api.piranha.bawbel.io/docs" target="_blank">api.piranha.bawbel.io/docs</a>
   </div>
 </div>
