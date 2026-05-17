@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://bawbel.io/assets/bawbel-logo.svg" alt="Bawbel" width="72" />
+<img src="https://bawbel.io/assets/bawbel-logo.svg" alt="Bawbel logo" width="72" />
 
 ## Bawbel
 
