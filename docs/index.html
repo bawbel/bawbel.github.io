@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bawbel Scanner - Documentation</title>
-<meta name="description" content="Documentation for Bawbel Scanner v1.2.0 - open-source CLI for scanning agentic AI components against the AVE standard.">
+<meta name="description" content="Documentation for Bawbel Scanner v1.3.0 - open-source CLI for scanning agentic AI components against the AVE behavioral classification standard.">
 <meta property="og:title" content="Bawbel Scanner - Documentation">
-<meta property="og:description" content="Open-source CLI scanner for agentic AI components. Detects AVE vulnerabilities before they reach production.">
+<meta property="og:description" content="Open-source CLI scanner for agentic AI components. Detects AVE-classified vulnerabilities before they reach production.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@bawbel_io">
 <link rel="canonical" href="https://bawbel.io/docs">
@@ -44,11 +44,9 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.7;transition:background .25s,color .25s}
 a{color:var(--g);text-decoration:none}a:hover{color:var(--g2);text-decoration:underline}
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:3px}
-/* ── NAV ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 1.5rem;
@@ -67,9 +65,7 @@ a{color:var(--g);text-decoration:none}a:hover{color:var(--g2);text-decoration:un
   transition:color .25s,background .25s,border-color .25s,transform .2s;flex-shrink:0}
 .theme-btn:hover{color:var(--g);background:var(--sidebar-active);border-color:var(--border2);transform:rotate(18deg)}
 .theme-btn svg{transition:opacity .2s}
-/* ── LAYOUT ── */
 .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh;padding-top:56px}
-/* ── SIDEBAR ── */
 .sidebar{position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;
   border-right:1px solid var(--border);padding:1.5rem 0;
   background:var(--bg2)}
@@ -88,9 +84,7 @@ a{color:var(--g);text-decoration:none}a:hover{color:var(--g2);text-decoration:un
 .sidebar a.active svg{opacity:1}
 .sidebar-new{font-size:.6rem;font-weight:700;background:rgba(29,184,148,.15);color:var(--g);
   padding:.1rem .35rem;border-radius:3px;letter-spacing:.5px;margin-left:auto;flex-shrink:0}
-/* ── MAIN ── */
 .main{padding:3rem clamp(1rem,3vw,3.5rem);min-width:0;width:100%}
-/* ── SECTIONS ── */
 .doc-section{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid var(--border)}
 .doc-section:last-child{border-bottom:none}
 .section-eyebrow{font-size:.65rem;font-weight:700;color:var(--g);
@@ -102,7 +96,6 @@ h2{font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin:2rem 0 .75rem}
 h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .5rem;color:var(--text)}
 p{margin-bottom:1rem;color:var(--muted)}
 p:last-child{margin-bottom:0}
-/* ── CODE ── */
 pre{background:var(--code-bg);border:1px solid var(--code-border);
   border-radius:8px;margin:1rem 0;position:relative;overflow-x:auto;padding:1.1rem 1.4rem}
 pre code{display:block;padding:0;font-family:var(--mono);
@@ -111,7 +104,6 @@ code{font-family:var(--mono);font-size:.82em;
   background:var(--code-bg);border:1px solid var(--code-border);
   padding:.1rem .35rem;border-radius:4px;color:var(--g)}
 pre code{background:none;border:none;padding:0;color:var(--text)}
-/* Copy code button */
 .pre-wrap{position:relative}
 .code-copy{position:absolute;top:.6rem;right:.6rem;
   background:var(--surface2);border:1px solid var(--border);
@@ -120,7 +112,6 @@ pre code{background:none;border:none;padding:0;color:var(--text)}
   transition:color .2s,background .2s,border-color .2s;opacity:0}
 .pre-wrap:hover .code-copy{opacity:1}
 .code-copy:hover{color:var(--g);border-color:var(--border2);background:var(--sidebar-active)}
-/* ── INSTALL COMMAND ── */
 .install-cmd{display:inline-flex;align-items:center;gap:.75rem;
   background:var(--code-bg);border:1px solid var(--border2);
   padding:.6rem 1.1rem;border-radius:8px;
@@ -131,7 +122,6 @@ pre code{background:none;border:none;padding:0;color:var(--text)}
   padding:.2rem .5rem;border-radius:4px;cursor:pointer;
   transition:color .2s,background .2s,transform .15s;display:flex;align-items:center;gap:.3rem}
 .install-copy:hover{color:var(--g);background:rgba(29,184,148,.18);transform:translateY(-1px)}
-/* ── TABLE ── */
 table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem}
 th{padding:.6rem .9rem;text-align:left;font-size:.7rem;font-weight:600;
   color:var(--muted2);letter-spacing:.8px;text-transform:uppercase;font-family:var(--mono);
@@ -140,7 +130,6 @@ td{padding:.6rem .9rem;border-bottom:1px solid var(--border);color:var(--muted)}
 td code{font-size:.78rem}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--surface)}
-/* ── CARDS GRID ── */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin:1.25rem 0}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;
   padding:1.1rem 1.25rem;transition:border-color .2s,transform .2s,box-shadow .2s}
@@ -151,7 +140,6 @@ tr:hover td{background:var(--surface)}
   color:var(--g);margin-bottom:.75rem}
 .card h3{font-size:.9rem;font-weight:600;margin:0 0 .3rem;color:var(--text)}
 .card p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.55}
-/* ── CALLOUT ── */
 .callout{display:flex;gap:.75rem;padding:1rem 1.1rem;border-radius:8px;margin:1rem 0}
 .callout-info{background:rgba(91,168,255,.08);border:1px solid rgba(91,168,255,.2)}
 .callout-warn{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2)}
@@ -162,14 +150,12 @@ tr:hover td{background:var(--surface)}
 .callout-success .callout-icon{color:var(--g)}
 .callout p{font-size:.85rem;margin:0;line-height:1.6}
 .callout p:not(:last-child){margin-bottom:.4rem}
-/* ── BADGE ── */
 .badge{display:inline-block;font-size:.63rem;font-weight:700;
   padding:.15rem .5rem;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle}
 .badge-new{background:rgba(29,184,148,.14);color:var(--g);border:1px solid var(--border2)}
 .badge-crit{background:rgba(255,95,112,.12);color:var(--red);border:1px solid rgba(255,95,112,.2)}
 .badge-high{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.18)}
 .badge-med{background:rgba(91,168,255,.1);color:var(--blue);border:1px solid rgba(91,168,255,.18)}
-/* ── ENGINE STAGES ── */
 .stage{display:flex;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);
   border-radius:10px;margin:.75rem 0;align-items:flex-start;
   transition:border-color .2s}
@@ -180,16 +166,13 @@ tr:hover td{background:var(--surface)}
   font-family:var(--mono);font-size:.75rem;font-weight:600;color:var(--g)}
 .stage-body h4{font-size:.88rem;font-weight:600;margin-bottom:.2rem}
 .stage-body p{font-size:.82rem;color:var(--muted);margin:0}
-/* ── RULE TABLE row colors ── */
 .sev-crit td:first-child{border-left:2px solid var(--red)}
 .sev-high td:first-child{border-left:2px solid var(--amber)}
 .sev-med td:first-child{border-left:2px solid var(--blue)}
-/* ── SUPPRESSION SYNTAX ── */
 .supp-block{background:var(--code-bg);border:1px solid var(--code-border);
   border-radius:8px;padding:1.1rem 1.25rem;margin:.75rem 0;
   font-family:var(--mono);font-size:.78rem;line-height:1.9}
 .sc{color:var(--muted)}.sf{color:var(--blue)}.ss{color:var(--amber)}.sg{color:var(--g)}.st{color:var(--text)}
-/* ── MOBILE ── */
 .menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);padding:4px}
 .nav-label{display:inline}
 @media(max-width:640px){.nav-label{display:none}}
@@ -211,7 +194,6 @@ tr:hover td{background:var(--surface)}
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
   <div class="nav-left">
     <button class="menu-btn" id="menuBtn" aria-label="Toggle sidebar">
@@ -221,7 +203,7 @@ tr:hover td{background:var(--surface)}
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJbklEQVR4nLVXa5BcVRH++pxz753HzuzsI9nN00iCiTGICYEqFFhMEPhBIaKTEIpSESp/IEAQrRLKmoxWFIyIWIgVo0CgJLATkEqhUrzCEpRSEisklRgDeUEem33N7Ow87tx7zml/3N0NqyGCVfbPvnVOf939fX36Ah/HVq50AODbv99w6ZKNP9p9z5aNFwHAeesj///PGIRclwKAW59dn/3Uz1YPx3Pf5LkPrC7d9tyvvwIAY98/rtF/jc1MtIyELMCs2PTgXduOHVjXXyzChTABWTk504KuGWff+sTyVb+02azk7m5LRPxRAYgzfczlcoKI2HtGmqsfv+/+V469u65/qGhcJoYS0rXE/YND9uX39z90zRM/udctbDZEhFwud8Z7P2gfWoFsd7csLFtmmDl++SNrN+4cPJ6tlUa0AkmnOU7xSWnU+8oIy3XWzCbZklaL2qc+/qcb776ZiMKx8/8TgK5cTvXk83r73u1TVvU898w/iv0XmpGaFkTKbUki3p4CwAAI9f4yglINhlk76aQ6p7Xz1Z7ld3yNMpni2D0fC0DX1pzq+WJe//b1P85/aNfrW94t9s+meqCJSHltKcRak2B7qsUkCP5gBY3BCixYU8JTc9s6dt15zpJrV1y09MDYfR8NQHdWYlnBfG/Lo0u3HNzz9OHiQJsKrQaRik1KwcskwcaCJMFqC6EE2DBIEhrFKvyBCphZW0+qT2Ym9a6Yd/41d1+R/StyXQr5ntOCGCdLtjsrxbKCWfn0w9/ofmfnC4cG+tqUZgNBKtHZDC+TABsDcgQaQxWU9xxFUKyCHAE2Fl5LE+IdaZAgJQNjDgye7Hxs719euX3z+mso36NzfHpi0ljwwrKCuX7Tgyv/3HtofX//gHUgAClEorMZTtKLMlcSfu8wau8PRocJSMxshzc5DdYGJAXCSgO13hJg2YbEorOtDUumz8n+Ztmtm09HTAIzgQjMHP/0/asPHCkNdXggCylkYkoGKuaALYOEQO3oIPwTJZAUEXQG2FjEp7UiPq1lHISuBaieKIEsm0CRnN3ctm/X6p8uIJAFYcKMEF1r1kgAfN1TD3y1aIJOZdhCkExObRkPDiJUD/XBP16MgiMKDgAkBepHB1E9PACSAmwZKuEiOTUDJkgZGDMY+vNufnb9l0DgbHe3nACgB7DMTPt6j91R9X0IIjipOORYcGZU3u1Fo78M4TlMYmIrSQoWnoPGyRIqB/sibMZCxT04TTEIECqBj7ePHVqtQCjs2TOxAsjn7arnN1w0EPqL4AeWpJBuOj7KdoHGYAXBUBXCcxCWKqTLVZAQAEdtCYojpMs1CM9B0D+CoFQDKQlmC7c5DgiSth5wX62yNL910wLk8xOqICSA7e8dvm0kCCBAViU9SE9F/bWMcKgK6UgO6j6mFXVv5kSlGPg+hFK2Ua1hdkUcSZ0ol8MgjEg4VInaYwEVc6GSLgTDlG0oX9y3dxUBXCgUTlXgvq2b5/WODF9l6j6TEMptToAZIEkw9QZ01QcLIgFC/+BgplwuJ0XEJJIgHO892V4ZqcYFAAhCOOLDNEJARCPGbU6AiGRY9fnoSHHFS7ve7EChYMbeC/H8/t13DusgJi2sSrpQMQewFiBCMFSNeGAZKu6hMaM1pmdNclXcA2tNKhlHbXomaWdNcqQbrQSsDcJiFSQIbC1UwoVMuCQsm2GrU/f/7dWbAOC10RmkjpeLNwR1H4pIOql4JC8isLEIh+uR2EeJ5Xa0AmCwiQCytfCmtgE85ovOhqUavI7m0Vkh4DTFYKoN4dd9PjI8cAMz30tEBgCEEvKIkBJgtsYPRiUWEUw1eaONIoAA1hqs7QQVcPhvPmbIJg8kxqY8w/ghmIiFkuRIeVgJYZHNRi1oSyRfVK4DJuKw0oDVUXYgwM0kAW3AgQY+4J+oww/4OJoLbmsTIiIRbGCgqw0AYNdxMDmZfskwo2v+fAIAMT3d+rInJBgsbGigqz6IKDpc9dHYdQiNnQcRHhsARZXCaY0i1aimGFTCjWQsBMKqDzYWFiw9Bua0drwBAJeugQUAsfK8S96MkxxgKYgADkZ8MDPYGMRmtKHlqsVwF8yCM60dbMw4J05r1sJtTZ7ijbUIKz4AWChJcaHef/jzV+8Fg/KUZwAQl81bPJCOJbaTowBBVtcCWG1hhmvoe3Ibyq/tBtcbgHuGnZMA1hZOcwJuS9N49sYPYfwQILLCddDZlN5GU6ZUQaCuXE4yMwkDUGsi0eO6DjMzA4xGqQqVSSJ1wdloWngW0p+dCek5EdkIp3pOp4KrVBxNczoiwjIAQQjK9TEqSNJan6hXll77qx9+l5lVTz6viYgJAG566hdf+MORfW9USmWtlFJWG4hiBTKukJg/EyLhwlQbqBzogx7xx+WGCC+cTAJNsycDQgA2WlDq/SNolEbngTZWJGMiBCNmBabH07vPSrVu+PHiKzYRGHSid2fiqu5NO/aXB+aSH4bEcBr7jgJao/WycyHTcWD0YQrLdYTDdehaAyrhwckk4KTj488zEaHWV0ZQqkIoAWusRsJT8zOT3w5rgT0YlBfWAh9NXgyZBg6L3JocTZnyuep9l3x56WfaO3dQ3HMsWMcXnoXY4rMR1MMoKyJAENzWJiRntSM9dyqSs9rhtiRHuxHJsdZbGg0uYbTVMpVQ506etvXNW9ZevP076y68ZPLMH3wi0TwsQCg6mEVAtP/n83nLzOlLN+QLuwZ7Lw+HK1pJqay1cFIxxNpSICVAQoySPEqZOWI7awt/cAThiA+hJLTWOpZJqYWTpnW/eOM9XyeixhhnX+jpmfG7AzuW+PW6GddUjnMiT3nLzOrKR9Zu/Pvg8etrxbJ2lCI2VkAQCSUhXAnpORBKwoYGJghhAwPWBszMRMKGRnOqNaPOnzTt4Ze+9f1bfKspl8tRPp9nZLMChcL4WjZB1KOVYI8kX/nY2p+/NXD89lK5DLIWZBgEGAKBojVOgNkyETNbYiLBUoClQFsqjQs7Zqx59oa78joHwWuYP/i7lsvlxGujj9F/TBVmJlpDpPKwy598cNX+4snl5Upldk2HnQ1iBEZDhzrakJWEUgquVPCYkHTd46mmpgMLWjof3XjdqkdtNivR3W1xhn/FDx9rOQjkYWMk0Tf8Xvu6bVvnvjPct6h/pHxBsV5d1NBmZkw5h1qSiR0diea35jS37rzz4iX/7GieOejDArmcQD5vP/T+UfsXTFHZQeie8t4AAAAASUVORK5CYII=" alt="Bawbel" width="24" height="24">
       Bawbel
     </a>
-    <span class="nav-version">v1.2.0</span>
+    <span class="nav-version">v1.3.0</span>
   </div>
   <div class="nav-right">
     <a href="https://github.com/bawbel/scanner" target="_blank" rel="noopener">
@@ -244,10 +226,8 @@ tr:hover td{background:var(--surface)}
 </nav>
 
 <div class="mobile-overlay" id="mobileOverlay"></div>
-<!-- LAYOUT -->
 <div class="layout">
 
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
 
   <div class="sidebar-section">
@@ -281,12 +261,26 @@ tr:hover td{background:var(--surface)}
     <a href="#creds-chain">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       bawbel creds / chain
-      <span class="sidebar-new">new</span>
     </a>
     <a href="#accept">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
       bawbel accept
-      <span class="sidebar-new">new</span>
+    </a>
+    <a href="#ssc">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      bawbel ssc
+    </a>
+    <a href="#conform">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="14" width="5" height="6" rx="1"/><rect x="9" y="9" width="5" height="11" rx="1"/><rect x="15" y="4" width="5" height="16" rx="1"/></svg>
+      bawbel conform
+    </a>
+    <a href="#pin">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      bawbel pin / cp
+    </a>
+    <a href="#init">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      bawbel init
     </a>
     <a href="#version">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -306,6 +300,10 @@ tr:hover td{background:var(--surface)}
     <a href="#engines">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
       Detection engines
+    </a>
+    <a href="#toxic-flows">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 17a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.72 9.2"/><path d="M18 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Toxic flows
     </a>
     <a href="#suppression">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
@@ -335,29 +333,21 @@ tr:hover td{background:var(--surface)}
   <div class="sidebar-section">
     <div class="sidebar-label">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-      v1.2.0
+      v1.3.0
     </div>
-    <a href="#justified-suppression">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Justified suppression
+    <a href="#confidence-evidence">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Confidence and evidence
+      <span class="sidebar-new">new</span>
+    </a>
+    <a href="#golden-fixtures">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Output contract tests
       <span class="sidebar-new">new</span>
     </a>
     <a href="#new-rules">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      New AVE records
-      <span class="sidebar-new">new</span>
-    </a>
-    <a href="#toxic-flows">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 17a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.72 9.2"/><path d="M18 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-      Toxic flows
-    </a>
-    <a href="#conformance">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="14" width="5" height="6" rx="1"/><rect x="9" y="9" width="5" height="11" rx="1"/><rect x="15" y="4" width="5" height="16" rx="1"/></svg>
-      Conformance
-    </a>
-    <a href="#pinning">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Pinning
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      AVE record reference
     </a>
   </div>
 
@@ -393,6 +383,10 @@ tr:hover td{background:var(--surface)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>
       Contributing &#x2197;
     </a>
+    <a href="https://ave.bawbel.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      AVE registry &#x2197;
+    </a>
     <a href="https://bawbel.io" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       bawbel.io &#x2197;
@@ -401,17 +395,15 @@ tr:hover td{background:var(--surface)}
 
 </aside>
 
-<!-- MAIN CONTENT -->
 <main class="main">
 
-  <!-- QUICK START -->
   <div class="doc-section" id="quickstart">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
       Start here
     </div>
     <h1>Bawbel Scanner</h1>
-    <p>Open-source CLI scanner for agentic AI components &mdash; SKILL.md files, MCP servers, system prompts, plugins. Detects <a href="https://github.com/bawbel/ave">AVE vulnerabilities</a> before they reach production.</p>
+    <p>Open-source CLI scanner for agentic AI components -- SKILL.md files, MCP servers, system prompts, plugins. Detects findings classified against the <a href="https://github.com/bawbel/ave">AVE behavioral classification standard</a> before they reach production.</p>
 
     <div class="install-cmd">
       <span class="prompt">$</span>
@@ -442,8 +434,8 @@ bawbel scan ./skills/ --watch</code></pre>
     <div class="cards">
       <div class="card">
         <div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        <h3>40+ detection rules</h3>
-        <p>Pattern rules mapped 1:1 to AVE records. Plus 3 new rules in v1.2.0: hook hijacking, credentials, delegation chains.</p>
+        <h3>121 detection rules</h3>
+        <p>Pattern, YARA, and Semgrep rules mapped to all 51 AVE records. Every finding now carries confidence and evidence metadata.</p>
       </div>
       <div class="card">
         <div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
@@ -456,14 +448,13 @@ bawbel scan ./skills/ --watch</code></pre>
         <p>Text for humans, JSON for tooling, SARIF for GitHub Security tab and any SIEM.</p>
       </div>
       <div class="card">
-        <div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg></div>
-        <h3>Justified suppression</h3>
-        <p>New in v1.2.0. Every suppression requires a reason and reviewer. Accepted risks resurface on expiry.</p>
+        <div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Confidence and evidence</h3>
+        <p>New in v1.3.0. Every finding carries confidence, evidence_kind, detection_stage, and detection_layer.</p>
       </div>
     </div>
   </div>
 
-  <!-- INSTALLATION -->
   <div class="doc-section" id="installation">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -486,7 +477,7 @@ pip install "bawbel-scanner[all]"     # everything</code></pre>
       <button class="code-copy" onclick="copyCode(this)">copy</button>
     </div>
     <div class="pre-wrap">
-      <pre><code>Bawbel Scanner v1.2.0
+      <pre><code>Bawbel Scanner v1.3.0
 
 Detection Engines:
   &#x2713;  Pattern     40 rules  ·  always active
@@ -498,23 +489,22 @@ Detection Engines:
     </div>
   </div>
 
-  <!-- SCAN -->
   <div class="doc-section" id="scan">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       CLI Reference
     </div>
     <h1>bawbel scan</h1>
-    <p>Scan a component or directory for AVE vulnerabilities.</p>
+    <p>Scan a component or directory for AVE-classified findings.</p>
     <div class="pre-wrap"><pre><code>bawbel scan PATH [OPTIONS]</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
     <h2>Options</h2>
     <table>
       <thead><tr><th>Option</th><th>Default</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><code>--format</code></td><td><code>text</code></td><td>text &middot; json &middot; sarif</td></tr>
-        <tr><td><code>--fail-on-severity</code></td><td>&mdash;</td><td>Exit 2 if findings at or above: critical high medium low</td></tr>
+        <tr><td><code>--format</code></td><td><code>text</code></td><td>text · json · sarif</td></tr>
+        <tr><td><code>--fail-on-severity</code></td><td>--</td><td>Exit 2 if findings at or above: critical high medium low</td></tr>
         <tr><td><code>--recursive</code>, <code>-r</code></td><td>false</td><td>Scan all matching files in a directory tree</td></tr>
-        <tr><td><code>--no-ignore</code></td><td>false</td><td>Disable all suppressions &mdash; audit mode</td></tr>
+        <tr><td><code>--no-ignore</code></td><td>false</td><td>Disable all suppressions -- audit mode</td></tr>
         <tr><td><code>--watch</code>, <code>-w</code></td><td>false</td><td>Watch for file changes and re-scan</td></tr>
       </tbody>
     </table>
@@ -528,11 +518,22 @@ Detection Engines:
     </table>
   </div>
 
-  <!-- CREDS / CHAIN -->
+  <div class="doc-section" id="report">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+      CLI Reference
+    </div>
+    <h1>bawbel report</h1>
+    <p>Full remediation report for a single file -- adds remediation text, indicators of compromise, and AVE record links to each finding.</p>
+    <div class="pre-wrap"><pre><code>bawbel report ./my-skill.md
+bawbel report ./my-skill.md --format json
+bawbel report ./my-skill.md --no-ignore</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+  </div>
+
   <div class="doc-section" id="creds-chain">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      CLI Reference &mdash; <span class="badge badge-new">New v1.2.0</span>
+      CLI Reference
     </div>
     <h1>bawbel creds &amp; bawbel chain</h1>
     <p>Focused scans that filter to a specific threat category. Both use the same output format as <code>bawbel scan</code>.</p>
@@ -566,14 +567,13 @@ bawbel chain ./skill.md --format json</code></pre><button class="code-copy" oncl
     </table>
   </div>
 
-  <!-- ACCEPT -->
   <div class="doc-section" id="accept">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
-      CLI Reference &mdash; <span class="badge badge-new">New v1.2.0</span>
+      CLI Reference
     </div>
     <h1>bawbel accept</h1>
-    <p>Mark a finding as a false positive or accepted risk. Inserts a justified suppression comment directly into the source file. The comment is the canonical record &mdash; no external database.</p>
+    <p>Mark a finding as a false positive or accepted risk. Inserts a justified suppression comment directly into the source file. The comment is the canonical record -- no external database.</p>
 
     <div class="pre-wrap"><pre><code># Mark as false positive (permanent suppression)
 bawbel accept AVE-2026-00001 ./skill.md --line 7 \
@@ -610,64 +610,263 @@ bawbel accept AVE-2026-00001 ./skill.md --line 7 \
     </table>
   </div>
 
-  <!-- JUSTIFIED SUPPRESSION -->
-  <div class="doc-section" id="justified-suppression">
+  <div class="doc-section" id="ssc">
     <div class="section-eyebrow">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      v1.2.0 &mdash; <span class="badge badge-new">New</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+      CLI Reference
     </div>
-    <h1>Justified suppression</h1>
-    <p>The existing <code>bawbel-ignore</code> silently removes findings. Justified suppression requires a human-readable reason, records a reviewer, and supports expiry dates for accepted risks.</p>
+    <h1>bawbel ssc</h1>
+    <p>Short for <code>scan-server-card</code>. Fetches and scans an MCP server card before your agent connects to it. Injections at the discovery layer fire before any tool call is made -- this is the only command that catches AVE-2026-00041 (MCP Server-Card Injection) and AVE-2026-00051 (OAuth Discovery Rebinding) at the point of first contact.</p>
 
-    <h2>False positive</h2>
-    <p>The finding matched the pattern but the content is not dangerous. Suppressed permanently.</p>
-    <div class="supp-block">
-      <span class="sc">&lt;!-- bawbel-ignore: AVE-2026-00001</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reason:</span> <span class="ss">Internal registry endpoint, not attacker-controlled</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reviewer:</span> <span class="ss">chaksaray</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reviewed:</span> <span class="ss">2026-05-16</span><br>
-      <span class="sc">--&gt;</span>
+    <div class="pre-wrap"><pre><code>bawbel ssc https://api.example.com
+bawbel ssc https://api.example.com --format json
+bawbel ssc https://api.example.com --fail-on-severity high</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <h2>What it fetches</h2>
+    <p>Resolves and fetches <code>.well-known/mcp.json</code> automatically, then scans tool descriptions and parameter schemas against the full rule set, the same as <code>bawbel scan</code>.</p>
+
+    <div class="pre-wrap"><pre><code>$ bawbel ssc https://api.example.com
+Fetching .well-known/mcp.json...
+CRIT  AVE-2026-00041  AIVSS 8.2
+   MCP Server-Card Injection</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+  </div>
+
+  <div class="doc-section" id="conform">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="14" width="5" height="6" rx="1"/><rect x="9" y="9" width="5" height="11" rx="1"/><rect x="15" y="4" width="5" height="16" rx="1"/></svg>
+      CLI Reference
+    </div>
+    <h1>bawbel conform</h1>
+    <p>Scores an MCP server's conformance to the MCP spec, separate from the security scan. Returns a letter grade and a numeric score out of 100.</p>
+
+    <div class="pre-wrap"><pre><code>bawbel conform https://api.example.com
+bawbel conform https://api.example.com --format json</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <div class="pre-wrap"><pre><code>$ bawbel conform https://api.example.com
+Score: 87/100  Grade: B  Conformant: yes</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <p>Conformance and security are independent: a server can be fully spec-conformant and still carry CRITICAL findings, or be non-conformant with no security findings at all. Run both <code>bawbel ssc</code> and <code>bawbel conform</code> for a complete picture of an MCP server before connecting to it.</p>
+  </div>
+
+  <div class="doc-section" id="pin">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      CLI Reference
+    </div>
+    <h1>bawbel pin &amp; bawbel cp</h1>
+    <p>Rug-pull detection. <code>bawbel pin</code> hashes skill files and commits the hashes to git so the whole team shares them. <code>bawbel cp</code> (short for <code>check-pins</code>) detects content drift against those hashes -- when a skill file's content changes after install, that is exactly how a rug-pull attack works.</p>
+
+    <div class="pre-wrap"><pre><code># Hash and pin every skill file
+bawbel pin ./skills/
+
+# Check for drift, exit 2 if anything changed
+bawbel cp ./skills/ --fail-on-drift</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <div class="pre-wrap"><pre><code>$ bawbel pin ./skills/
+Pinned 4 files to .bawbel-pins.json
+
+$ bawbel cp ./skills/ --fail-on-drift
+1 file drifted from pin
+  skills/search.md  hash mismatch</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <div class="callout callout-info">
+      <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+      <p><code>.bawbel-pins.json</code> is committed to git, not stored locally like a typical <code>~/.mcp-scan</code> cache. This means pin drift shows up in code review and works identically on every machine after a fresh clone.</p>
+    </div>
+  </div>
+
+  <div class="doc-section" id="init">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      CLI Reference
+    </div>
+    <h1>bawbel init</h1>
+    <p>Scaffolds a <code>bawbel.yml</code> config file in the current directory with sensible defaults for recursive scanning, fail severity, and output format.</p>
+    <div class="pre-wrap"><pre><code>bawbel init</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+    <p>See <a href="#config">Configuration</a> for the full <code>bawbel.yml</code> reference.</p>
+  </div>
+
+  <div class="doc-section" id="version">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      CLI Reference
+    </div>
+    <h1>bawbel version</h1>
+    <p>Prints the scanner version and the status of every detection engine -- which are active, which are missing an optional dependency.</p>
+    <div class="pre-wrap"><pre><code>bawbel version</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+  </div>
+
+  <div class="doc-section" id="confidence-evidence">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      v1.3.0 -- <span class="badge badge-new">New</span>
+    </div>
+    <h1>Confidence and evidence metadata</h1>
+    <p>Every Finding now carries four evidence fields populated at detection time. ToxicFlow gains a <code>confidence</code> field too -- the minimum confidence across all contributing findings, the weakest link in the chain.</p>
+
+    <table>
+      <thead><tr><th>Field</th><th>What it tells you</th></tr></thead>
+      <tbody>
+        <tr><td><code>confidence</code></td><td>AVE-baseline confidence (0.0-1.0), adjusted through the full FP pipeline</td></tr>
+        <tr><td><code>evidence_kind</code></td><td>How evidence was gathered: <code>multi_engine</code>, <code>tool_description_pattern</code>, <code>behavioral_pattern</code>, <code>semantic_inference</code>, <code>file_type_mismatch</code>, <code>config_schema</code></td></tr>
+        <tr><td><code>detection_stage</code></td><td><code>static_detection</code> or <code>runtime_observed</code></td></tr>
+        <tr><td><code>detection_layer</code></td><td><code>content</code>, <code>server_card</code>, <code>runtime</code>, or <code>registry_metadata</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Where the baseline comes from</h2>
+    <p>Confidence values are seeded from 51 <code>AveMeta</code> records in <code>scanner/ave_meta.py</code> -- one per AVE ID -- then adjusted by FP-3 (scoring), thresholded by profile, and optionally refined by the FP-4 meta-analyzer.</p>
+
+    <div class="pre-wrap"><pre><code>$ bawbel scan ./skills/ --recursive
+CRIT  AVE-2026-00001  line 3  AIVSS 8.0  confidence 0.83
+   External instruction fetch detected
+CRIT  Credential Exfil Chain  AIVSS 9.8  confidence 0.71</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <h2>confidence_band()</h2>
+    <p>Maps a confidence score to <code>"high"</code>, <code>"medium"</code>, or <code>"low"</code>, aligned with the meta-analyzer window. Use this for display logic rather than thresholding on the raw float.</p>
+    <div class="pre-wrap"><pre><code>from scanner.models import confidence_band
+
+confidence_band(0.83)  # "high"
+confidence_band(0.55)  # "medium"
+confidence_band(0.20)  # "low"</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <div class="callout callout-success">
+      <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>
+      <p>Full pipeline documentation: <a href="https://github.com/bawbel/scanner/blob/main/docs/guides/evidence-lifecycle.md">docs/guides/evidence-lifecycle.md</a> covers the complete confidence pipeline from AVE baseline to final <code>Finding.confidence</code>.</p>
     </div>
 
-    <h2>Accepted risk</h2>
-    <p>The finding is real but the behavior is intentional and reviewed. When the expiry passes, the finding resurfaces as active on the next scan.</p>
-    <div class="supp-block">
-      <span class="sc">&lt;!-- bawbel-accept: AVE-2026-00047</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reason:</span> <span class="ss">Placeholder value, replaced at deploy time by CI pipeline</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reviewer:</span> <span class="ss">chaksaray</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reviewed:</span> <span class="ss">2026-05-16</span><br>
-      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; expires:</span> <span class="ss">2026-08-16</span><br>
-      <span class="sc">--&gt;</span>
+    <h2>Upgrade notes</h2>
+    <p>Finding gains four new fields with defaults -- existing code that reads findings by name continues to work unchanged. JSON, SARIF, and text output are all extended to include the new fields.</p>
+  </div>
+
+  <div class="doc-section" id="golden-fixtures">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      v1.3.0 -- <span class="badge badge-new">New</span>
     </div>
+    <h1>Golden fixture and output contract tests</h1>
+    <p><code>tests/fixtures/golden/malicious_scan.json</code> is a committed snapshot of the full scan output for the malicious fixture. 25 schema contract tests lock all 18 finding fields (including the four new evidence fields), all 10 toxic flow fields, confidence values, and risk score against this snapshot.</p>
+
+    <p>Unintended schema changes now fail CI before they reach users -- if a refactor accidentally renames a field or drops a value, the contract test catches it at PR time instead of breaking a downstream SIEM integration months later.</p>
 
     <div class="callout callout-warn">
       <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-      <p>Expired accepted risks resurface automatically as active findings. The finding's suppression_reason will say <code>accepted_risk_expired</code> with the original reviewer and date.</p>
+      <p>If you build tooling that parses Bawbel's JSON or SARIF output, the golden fixture at <code>tests/fixtures/golden/malicious_scan.json</code> is the most reliable reference for the exact shape of every field.</p>
     </div>
-
-    <h2>JSON audit trail</h2>
-    <p>Justified suppressions appear in <code>accepted_findings</code> in JSON output &mdash; separate from <code>suppressed_findings</code>.</p>
-    <div class="pre-wrap"><pre><code>{
-  "accepted_findings": [{
-    "ave_id":           "AVE-2026-00047",
-    "suppression_type": "accepted_risk",
-    "reason":           "Placeholder replaced at deploy time",
-    "reviewer":         "chaksaray",
-    "expires_at":       "2026-08-16",
-    "days_until_expiry": 92,
-    "is_expired":       false
-  }]
-}</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
   </div>
 
-  <!-- SUPPRESSION (original mechanisms) -->
+  <div class="doc-section" id="new-rules">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      v1.3.0
+    </div>
+    <h1>AVE record reference</h1>
+    <p>Three of the most recently added detection rules, with corrected AIVSS scores from the AVE v1.1.0 schema migration.</p>
+    <table>
+      <thead><tr><th>Rule ID</th><th>AVE ID</th><th>Sev</th><th>AIVSS</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr class="sev-crit">
+          <td><code>bawbel-hook-hijack</code></td>
+          <td><code>AVE-2026-00046</code></td>
+          <td><span class="badge badge-crit">CRITICAL</span></td>
+          <td>9.2</td>
+          <td>MCP tool hook hijacking -- registers hooks to intercept all tool calls</td>
+        </tr>
+        <tr class="sev-high">
+          <td><code>bawbel-hardcoded-credential</code></td>
+          <td><code>AVE-2026-00047</code></td>
+          <td><span class="badge badge-high">HIGH</span></td>
+          <td>7.6</td>
+          <td>Hardcoded API keys, tokens, passwords, and URL-embedded credentials</td>
+        </tr>
+        <tr class="sev-high">
+          <td><code>bawbel-unsafe-delegation</code></td>
+          <td><code>AVE-2026-00048</code></td>
+          <td><span class="badge badge-high">HIGH</span></td>
+          <td>7.7</td>
+          <td>Sub-agent spawning with inherited permissions and no trust boundary</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Full registry of all 51 records: <a href="https://ave.bawbel.io/registry.html">ave.bawbel.io/registry.html</a></p>
+  </div>
+
+  <div class="doc-section" id="engines">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      Detection
+    </div>
+    <h1>Detection engines</h1>
+    <p>Six independent engines. Each returns <code>list[Finding]</code>. Results merge and deduplicate before toxic flow analysis.</p>
+
+    <div class="stage">
+      <div class="stage-num">1a</div>
+      <div class="stage-body">
+        <h4>Pattern -- always active</h4>
+        <p>40 regex rules mapped to AVE records. Stdlib only, completes in under 5ms. No install needed.</p>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">1b</div>
+      <div class="stage-body">
+        <h4>YARA -- <code>pip install "bawbel-scanner[yara]"</code></h4>
+        <p>39 YARA rules. Multi-condition matching, string combinations, case variations. Catches things regex misses.</p>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">1c</div>
+      <div class="stage-body">
+        <h4>Semgrep -- <code>pip install "bawbel-scanner[semgrep]"</code></h4>
+        <p>41 structural rules. Spans multiple lines, context-aware. Runs as external subprocess.</p>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">2</div>
+      <div class="stage-body">
+        <h4>LLM -- <code>pip install "bawbel-scanner[llm]"</code> + API key</h4>
+        <p>Semantic analysis via LiteLLM. Catches synonym attacks, multi-paragraph injections, novel patterns. Auto-detects provider from API keys.</p>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">3</div>
+      <div class="stage-body">
+        <h4>Sandbox -- Docker + <code>BAWBEL_SANDBOX_ENABLED=true</code></h4>
+        <p>Dynamic behavioral analysis. Executes the component in a locked-down container and monitors actual runtime behavior.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-success" style="margin-top:1rem">
+      <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>
+      <p>Every engine skips silently when its dependency is not installed. <code>scan()</code> always completes and always returns a result -- it never raises.</p>
+    </div>
+  </div>
+
+  <div class="doc-section" id="toxic-flows">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.72 9.2"/><path d="M18 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Detection
+    </div>
+    <h1>Toxic flows</h1>
+    <p>Individual findings that are each only MEDIUM severity can combine into a CRITICAL attack chain. 12 built-in chains detect exactly this -- for example, a credential-read finding plus a data-exfiltration finding in the same component becomes a single Credential Exfiltration Chain at CRITICAL 9.8, rather than two separate MEDIUM findings a reviewer might triage as low priority individually.</p>
+
+    <div class="pre-wrap"><pre><code>$ bawbel scan ./skills/ --recursive
+CRIT  AVE-2026-00003  line 4   AIVSS 6.8  confidence 0.75
+CRIT  AVE-2026-00026  line 11  AIVSS 6.8  confidence 0.68
+CRIT  Credential Exfil Chain   AIVSS 9.8  confidence 0.68
+Risk: 9.8/10  Findings: 2  Chains: 1</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <p>Chain confidence is the minimum confidence across all contributing findings -- the weakest link in the chain, not the average. This is deliberate: a chain is only as trustworthy as its least certain component.</p>
+
+    <p>Use <code>bawbel chain</code> to filter specifically to delegation-chain findings (AVE-2026-00048), or run a full <code>bawbel scan</code> to see all 12 toxic flow chains evaluated together.</p>
+  </div>
+
   <div class="doc-section" id="suppression">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
       Detection
     </div>
     <h1>Suppression</h1>
-    <p>Four mechanisms for suppressing false positives, plus the automatic FP pipeline.</p>
+    <p>Four mechanisms for suppressing false positives, plus the automatic FP pipeline, plus justified suppression for accepted risks with audit trails.</p>
 
     <h2>Inline comment</h2>
     <div class="pre-wrap"><pre><code>content  &lt;!-- bawbel-ignore --&gt;
@@ -694,101 +893,31 @@ bawbel report ./skill.md --no-ignore</code></pre><button class="code-copy" oncli
     <table>
       <thead><tr><th>Layer</th><th>Mechanism</th></tr></thead>
       <tbody>
-        <tr><td>FP-1</td><td>Code fence stripping &mdash; content inside ``` blocks blanked before analysis</td></tr>
-        <tr><td>FP-2</td><td>Negation context &mdash; lines preceded by "Never do this:" or "Bad example:"</td></tr>
-        <tr><td>FP-3</td><td>Confidence scoring &mdash; docs/ and examples/ paths reduce confidence</td></tr>
-        <tr><td>FP-4</td><td>LLM meta-analyzer &mdash; medium-confidence findings reviewed by LLM (optional)</td></tr>
+        <tr><td>FP-1</td><td>Code fence stripping -- content inside ``` blocks blanked before analysis</td></tr>
+        <tr><td>FP-2</td><td>Negation context -- lines preceded by "Never do this:" or "Bad example:"</td></tr>
+        <tr><td>FP-3</td><td>Confidence scoring -- docs/ and examples/ paths reduce confidence</td></tr>
+        <tr><td>FP-4</td><td>LLM meta-analyzer -- medium-confidence findings reviewed by LLM (optional)</td></tr>
       </tbody>
     </table>
-  </div>
 
-  <!-- NEW AVE RECORDS -->
-  <div class="doc-section" id="new-rules">
-    <div class="section-eyebrow">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      v1.2.0 &mdash; <span class="badge badge-new">New</span>
-    </div>
-    <h1>New AVE records in v1.2.0</h1>
-    <table>
-      <thead><tr><th>Rule ID</th><th>AVE ID</th><th>Sev</th><th>AIVSS</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr class="sev-crit">
-          <td><code>bawbel-hook-hijack</code></td>
-          <td><code>AVE-2026-00046</code></td>
-          <td><span class="badge badge-crit">CRITICAL</span></td>
-          <td>9.1</td>
-          <td>MCP tool hook hijacking &mdash; registers hooks to intercept all tool calls</td>
-        </tr>
-        <tr class="sev-high">
-          <td><code>bawbel-hardcoded-credential</code></td>
-          <td><code>AVE-2026-00047</code></td>
-          <td><span class="badge badge-high">HIGH</span></td>
-          <td>7.8</td>
-          <td>Hardcoded API keys, tokens, passwords, and URL-embedded credentials</td>
-        </tr>
-        <tr class="sev-high">
-          <td><code>bawbel-unsafe-delegation</code></td>
-          <td><code>AVE-2026-00048</code></td>
-          <td><span class="badge badge-high">HIGH</span></td>
-          <td>8.2</td>
-          <td>Sub-agent spawning with inherited permissions and no trust boundary</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <h2>Justified suppression</h2>
+    <p>The mechanisms above silently remove findings. Justified suppression, via <a href="#accept">bawbel accept</a>, requires a human-readable reason, records a reviewer, and supports expiry dates for accepted risks. Use justified suppression for anything you want a reviewer's name attached to.</p>
 
-  <!-- ENGINES -->
-  <div class="doc-section" id="engines">
-    <div class="section-eyebrow">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-      Detection
-    </div>
-    <h1>Detection engines</h1>
-    <p>Six independent engines. Each returns <code>list[Finding]</code>. Results merge and deduplicate before toxic flow analysis.</p>
-
-    <div class="stage">
-      <div class="stage-num">1a</div>
-      <div class="stage-body">
-        <h4>Pattern &mdash; always active</h4>
-        <p>40 regex rules mapped to AVE records. Stdlib only, completes in under 5ms. No install needed.</p>
-      </div>
-    </div>
-    <div class="stage">
-      <div class="stage-num">1b</div>
-      <div class="stage-body">
-        <h4>YARA &mdash; <code>pip install "bawbel-scanner[yara]"</code></h4>
-        <p>39 YARA rules. Multi-condition matching, string combinations, case variations. Catches things regex misses.</p>
-      </div>
-    </div>
-    <div class="stage">
-      <div class="stage-num">1c</div>
-      <div class="stage-body">
-        <h4>Semgrep &mdash; <code>pip install "bawbel-scanner[semgrep]"</code></h4>
-        <p>41 structural rules. Spans multiple lines, context-aware. Runs as external subprocess.</p>
-      </div>
-    </div>
-    <div class="stage">
-      <div class="stage-num">2</div>
-      <div class="stage-body">
-        <h4>LLM &mdash; <code>pip install "bawbel-scanner[llm]"</code> + API key</h4>
-        <p>Semantic analysis via LiteLLM. Catches synonym attacks, multi-paragraph injections, novel patterns. Auto-detects provider from API keys.</p>
-      </div>
-    </div>
-    <div class="stage">
-      <div class="stage-num">3</div>
-      <div class="stage-body">
-        <h4>Sandbox &mdash; Docker + <code>BAWBEL_SANDBOX_ENABLED=true</code></h4>
-        <p>Dynamic behavioral analysis. Executes the component in a locked-down container and monitors actual runtime behavior.</p>
-      </div>
+    <div class="supp-block">
+      <span class="sc">&lt;!-- bawbel-accept: AVE-2026-00047</span><br>
+      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reason:</span> <span class="ss">Placeholder value, replaced at deploy time by CI pipeline</span><br>
+      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reviewer:</span> <span class="ss">chaksaray</span><br>
+      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; reviewed:</span> <span class="ss">2026-05-16</span><br>
+      <span class="sf">&nbsp;&nbsp;&nbsp;&nbsp; expires:</span> <span class="ss">2026-08-16</span><br>
+      <span class="sc">--&gt;</span>
     </div>
 
-    <div class="callout callout-success" style="margin-top:1rem">
-      <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>
-      <p>Every engine skips silently when its dependency is not installed. <code>scan()</code> always completes and always returns a result &mdash; it never raises.</p>
+    <div class="callout callout-warn">
+      <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <p>Expired accepted risks resurface automatically as active findings. The finding's suppression_reason will say <code>accepted_risk_expired</code> with the original reviewer and date.</p>
     </div>
   </div>
 
-  <!-- CI/CD -->
   <div class="doc-section" id="cicd">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
@@ -812,9 +941,13 @@ bawbel report ./skill.md --no-ignore</code></pre><button class="code-copy" oncli
     <h2>Check expiring accepted risks in CI</h2>
     <div class="pre-wrap"><pre><code># Warn when accepted risks expire within 14 days (exits 1)
 bawbel accept --expiring-soon --within 14</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <h2>Check server cards before connecting</h2>
+    <div class="pre-wrap"><pre><code># Gate MCP server connections in CI
+bawbel ssc https://api.example.com --fail-on-severity high
+bawbel conform https://api.example.com</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
   </div>
 
-  <!-- PRE-COMMIT -->
   <div class="doc-section" id="precommit">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,11 12,14 22,4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -824,13 +957,55 @@ bawbel accept --expiring-soon --within 14</code></pre><button class="code-copy" 
     <div class="pre-wrap"><pre><code># .pre-commit-config.yaml
 repos:
   - repo: https://github.com/bawbel/scanner
-    rev: v1.2.0
+    rev: v1.3.0
     hooks:
       - id: bawbel-scan
         args: [--fail-on-severity, high]</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
   </div>
 
-  <!-- OUTPUT FORMATS -->
+  <div class="doc-section" id="config">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>
+      Integration
+    </div>
+    <h1>Configuration</h1>
+    <p>Run <a href="#init">bawbel init</a> to scaffold a default <code>bawbel.yml</code>, then adjust as needed.</p>
+    <div class="pre-wrap"><pre><code># bawbel.yml
+scan:
+  recursive: true
+  fail_on_severity: high
+  format: text
+
+ignore:
+  - docs/**
+  - tests/fixtures/**
+  - examples/**</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+    <p>CLI flags always override <code>bawbel.yml</code> values for a given invocation.</p>
+  </div>
+
+  <div class="doc-section" id="python-api">
+    <div class="section-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+      API
+    </div>
+    <h1>Python API</h1>
+    <p>The CLI is a thin wrapper over <code>scanner.scan()</code>. Call it directly for programmatic use.</p>
+    <div class="pre-wrap"><pre><code>from scanner import scan
+
+result = scan("./skills/my-skill.md")
+
+for finding in result.findings:
+    print(finding.ave_id, finding.severity, finding.confidence)
+
+for chain in result.toxic_flows:
+    print(chain.name, chain.aivss_score, chain.confidence)</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+
+    <div class="callout callout-success">
+      <span class="callout-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>
+      <p><code>scan()</code> never raises. It always returns a <code>ScanResult</code>, with an <code>error</code> field set if something went wrong internally. Check <code>result.error</code> before assuming a clean scan.</p>
+    </div>
+  </div>
+
   <div class="doc-section" id="output-formats">
     <div class="section-eyebrow">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
@@ -840,14 +1015,30 @@ repos:
     <div class="pre-wrap"><pre><code>bawbel scan ./skills/ --format text    # human-readable (default)
 bawbel scan ./skills/ --format json    # machine-readable, includes accepted_findings
 bawbel scan ./skills/ --format sarif   # SARIF 2.1.0 for GitHub Security / GHAS</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
-    <p>JSON output includes <code>accepted_findings</code> (new in v1.2.0) alongside the existing <code>findings</code> and <code>suppressed_findings</code> arrays.</p>
+    <p>JSON output includes <code>accepted_findings</code> alongside the existing <code>findings</code> and <code>suppressed_findings</code> arrays. Every finding object in v1.3.0 also carries <code>confidence</code>, <code>evidence_kind</code>, <code>detection_stage</code>, and <code>detection_layer</code>.</p>
+
+    <div class="pre-wrap"><pre><code>{
+  "findings": [{
+    "ave_id":          "AVE-2026-00001",
+    "severity":        "CRITICAL",
+    "aivss_score":     8.0,
+    "confidence":      0.83,
+    "evidence_kind":   "multi_engine",
+    "detection_stage": "static_detection",
+    "detection_layer": "content"
+  }],
+  "toxic_flows": [{
+    "name":       "Credential Exfil Chain",
+    "aivss_score": 9.8,
+    "confidence":  0.68
+  }]
+}</code></pre><button class="code-copy" onclick="copyCode(this)">copy</button></div>
   </div>
 
 </main>
 </div>
 
 <script>
-// Theme
 const html=document.documentElement;
 const btn=document.getElementById('themeBtn');
 const sunIco=document.getElementById('icon-sun');
@@ -864,7 +1055,6 @@ btn.addEventListener('click',()=>{
   localStorage.setItem('bawbel-docs-theme',n);
 });
 
-// Mobile sidebar
 document.getElementById('menuBtn').addEventListener('click',()=>{
   const open=document.getElementById('sidebar').classList.toggle('open');
   document.querySelector('.main').classList.toggle('pushed',open);
@@ -876,7 +1066,6 @@ document.getElementById('mobileOverlay').addEventListener('click',()=>{
   document.getElementById('mobileOverlay').classList.remove('open');
 });
 
-// Sidebar active link on scroll
 const sections=document.querySelectorAll('.doc-section[id]');
 const links=document.querySelectorAll('.sidebar a[href^="#"]');
 const obs=new IntersectionObserver(entries=>{
@@ -890,7 +1079,6 @@ const obs=new IntersectionObserver(entries=>{
 },{rootMargin:'-20% 0px -70% 0px'});
 sections.forEach(s=>obs.observe(s));
 
-// Install copy
 document.getElementById('installCopy').addEventListener('click',function(){
   navigator.clipboard.writeText('pip install bawbel-scanner');
   const lbl=document.getElementById('installCopyLabel');
@@ -899,7 +1087,6 @@ document.getElementById('installCopy').addEventListener('click',function(){
   setTimeout(()=>{lbl.textContent='copy';this.style.color='';},2000);
 });
 
-// Code copy buttons
 function copyCode(btn){
   const code=btn.previousElementSibling.querySelector('code').textContent;
   navigator.clipboard.writeText(code);
