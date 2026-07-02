@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bawbel: Agentic AI Security Scanner</title>
-<meta name="description" content="Open-source security scanner for agentic AI components. 48 AVE records, justified suppression, toxic flow detection, MCP conformance scoring.">
+<meta name="description" content="Open-source security scanner for agentic AI components. 51 AVE records, justified suppression, toxic flow detection, MCP conformance scoring.">
 <meta property="og:title" content="Bawbel: Agentic AI Security Scanner">
 <meta property="og:description" content="The security layer for agentic AI. Scan MCP servers, skill files, and system prompts before they reach production.">
 <meta property="og:image" content="https://bawbel.io/og.png">
@@ -18,30 +18,28 @@
 <style>
 :root{--g:#1DB894;--g2:#3DD6AF;--font:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;--disp:'DM Sans',system-ui,sans-serif}
 :root{--bg:#050e0b;--bg2:#091510;--bg3:#0d1f18;--surface:rgba(255,255,255,.04);--border:rgba(29,184,148,.12);--border2:rgba(29,184,148,.25);--text:#d4ede6;--muted:rgba(212,237,230,.5);--red:#ff5f70;--amber:#f5a623;--blue:#5ba8ff;--code-bg:#081510}
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;overflow-x:hidden;transition:background .25s,color .25s}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;overflow-x:hidden}
 a{color:var(--g);text-decoration:none}a:hover{color:var(--g2)}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1rem,4vw,3rem);height:60px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:1.1rem;font-weight:700;color:var(--g);letter-spacing:.5px}
 .nav-links{display:flex;align-items:center;gap:1.5rem}
 .nav-links a{color:var(--muted);font-size:.875rem;transition:color .2s}.nav-links a:hover{color:var(--text)}
 .nav-cta{background:var(--g);color:#000!important;padding:.35rem .9rem;border-radius:6px;font-weight:600;font-size:.78rem;transition:background .2s,transform .15s}.nav-cta:hover{background:var(--g2);transform:translateY(-1px)}
-
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem clamp(1rem,4vw,3rem) 5rem;text-align:center;overflow:hidden}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 45%,black 0%,transparent 100%);pointer-events:none}
 .hero-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(29,184,148,.12) 0%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(29,184,148,.1);border:1px solid var(--border2);color:var(--g);font-size:.72rem;font-weight:600;padding:.3rem .9rem;border-radius:20px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:1.75rem;animation:fadeUp .5s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(29,184,148,.1);border:1px solid var(--border2);color:var(--g);font-size:.72rem;font-weight:600;padding:.3rem .9rem;border-radius:20px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:1.75rem}
 .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-family:var(--disp);font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800;line-height:1.04;letter-spacing:-.03em;margin-bottom:1.25rem;animation:fadeUp .55s .08s ease both}
+.hero h1{font-family:var(--disp);font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800;line-height:1.04;letter-spacing:-.03em;margin-bottom:1.25rem}
 .hero h1 span{color:var(--g)}
-.hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--muted);max-width:540px;margin:0 auto 2.5rem;animation:fadeUp .55s .16s ease both}
-.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.75rem;animation:fadeUp .55s .24s ease both}
+.hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--muted);max-width:540px;margin:0 auto 2.5rem}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.75rem}
 .btn-primary{background:var(--g);color:#000;padding:.75rem 1.75rem;border-radius:8px;font-weight:600;font-size:.95rem;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 28px rgba(29,184,148,.25)}.btn-primary:hover{background:var(--g2);transform:translateY(-2px);box-shadow:0 0 40px rgba(29,184,148,.4);color:#000}
 .btn-secondary{background:transparent;color:var(--text);padding:.75rem 1.75rem;border-radius:8px;font-weight:500;font-size:.95rem;border:1px solid var(--border2);transition:border-color .2s,background .2s,transform .15s}.btn-secondary:hover{border-color:var(--g);background:rgba(29,184,148,.06);transform:translateY(-2px);color:var(--text)}
-.hero-install{display:inline-flex;align-items:center;gap:.75rem;background:var(--code-bg);border:1px solid var(--border);padding:.6rem 1.25rem;border-radius:8px;font-family:var(--mono);font-size:.82rem;color:var(--g);animation:fadeUp .55s .32s ease both}
+.hero-install{display:inline-flex;align-items:center;gap:.75rem;background:var(--code-bg);border:1px solid var(--border);padding:.6rem 1.25rem;border-radius:8px;font-family:var(--mono);font-size:.82rem;color:var(--g)}
 .hero-install .prompt{color:var(--muted)}
 .copy-btn{background:rgba(29,184,148,.08);border:1px solid var(--border2);cursor:pointer;color:var(--muted);font-size:.7rem;font-family:var(--mono);padding:.2rem .55rem;border-radius:5px;letter-spacing:.3px;transition:color .2s,background .2s,border-color .2s,transform .15s;display:flex;align-items:center;gap:.3rem;flex-shrink:0;}.copy-btn:hover{color:var(--g);background:rgba(29,184,148,.16);border-color:var(--g);transform:translateY(-1px);}.copy-btn.copied{color:var(--g);background:rgba(29,184,148,.18);border-color:var(--g);}
 .stats-bar{position:relative;z-index:1;display:flex;justify-content:center;gap:clamp(2rem,5vw,5rem);flex-wrap:wrap;padding:2.5rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
@@ -101,7 +99,6 @@ section{position:relative;z-index:1;padding:5rem clamp(1rem,4vw,3rem)}
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.5rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-left{font-size:.8rem;color:var(--muted)}.footer-left a{color:var(--g)}
 .footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}.footer-links a{font-size:.8rem;color:var(--muted);transition:color .2s}.footer-links a:hover{color:var(--text)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fade-up.visible{opacity:1;transform:none}
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:32px;height:32px}
 .hamburger span{display:block;width:18px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .22s,opacity .22s,width .22s;transform-origin:center}
@@ -122,7 +119,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     <a href="https://github.com/bawbel/ave">AVE Standard</a>
     <a href="https://aivss.owasp.org">AIVSS</a>
     <a href="https://github.com/bawbel/scanner">GitHub</a>
-    <a href="https://pypi.org/project/bawbel-scanner/" class="nav-cta">v1.2.0 on PyPI</a>
+    <a href="https://pypi.org/project/bawbel-scanner/" class="nav-cta">v1.3.0 on PyPI</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -132,16 +129,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
   <a href="https://github.com/bawbel/ave">AVE Standard</a>
   <a href="https://aivss.owasp.org">AIVSS</a>
   <a href="https://github.com/bawbel/scanner">GitHub</a>
-  <a href="https://pypi.org/project/bawbel-scanner/">v1.2.0 on PyPI</a>
+  <a href="https://pypi.org/project/bawbel-scanner/">v1.3.0 on PyPI</a>
 </div>
 <div class="mobile-overlay" id="mobileOverlay"></div>
 
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <div class="hero-badge"><span class="badge-dot"></span>v1.2.0 &mdash; Justified Suppression + 3 new AVE records</div>
+  <div class="hero-badge"><span class="badge-dot"></span>v1.3.0 -- confidence and evidence metadata on every finding</div>
   <h1>The security layer<br>for <span>agentic AI</span></h1>
-  <p class="hero-sub">Scan MCP servers, skill files, and system prompts for AVE vulnerabilities before they reach production. Free, open-source, Apache 2.0.</p>
+  <p class="hero-sub">Scan MCP servers, skill files, and system prompts for AVE-classified vulnerabilities before they reach production. Free, open-source, Apache 2.0.</p>
   <div class="hero-actions">
     <a href="https://bawbel.io/docs" class="btn-primary">Get started</a>
     <a href="https://github.com/bawbel/scanner" class="btn-secondary">View on GitHub</a>
@@ -154,7 +151,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
 </section>
 
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">48</div><div class="stat-label">AVE Records</div></div>
+  <div class="stat"><div class="stat-num">51</div><div class="stat-label">AVE Records</div></div>
   <div class="stat"><div class="stat-num">12</div><div class="stat-label">Attack Chains</div></div>
   <div class="stat"><div class="stat-num">6</div><div class="stat-label">Detection Engines</div></div>
   <div class="stat"><div class="stat-num">121</div><div class="stat-label">Detection Rules</div></div>
@@ -180,11 +177,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     <div class="workflow-body active" id="tab-cli">
       <div class="workflow-desc">
         <h3>Command line scanner</h3>
-        <p>Run a full security scan on any skill file, directory, or MCP manifest. Text, JSON, and SARIF output for every workflow.</p>
+        <p>Run a full security scan on any skill file, directory, or MCP manifest. Text, JSON, and SARIF output for every workflow. Every finding now carries confidence and evidence metadata.</p>
         <ul>
           <li>Pattern, YARA, Semgrep, and LLM engines in one command</li>
           <li>OWASP MCP Top 10 mapping on every finding</li>
-          <li>Toxic flow detection across all findings</li>
+          <li>Toxic flow detection across all findings, with chain-level confidence</li>
           <li>Focused scans: <code class="ic">bawbel creds</code> and <code class="ic">bawbel chain</code></li>
         </ul>
       </div>
@@ -192,10 +189,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
         <div class="term-bar"><div class="term-dot" style="background:#ff5f57"></div><div class="term-dot" style="background:#ffbd2e"></div><div class="term-dot" style="background:#28c940"></div><span class="term-title">terminal</span></div>
         <div class="term-body">
           <div class="appear"><span class="td">$ </span><span class="tc">bawbel scan</span><span class="tw2"> ./skills/ --recursive</span></div>
-          <div class="appear"><span class="td">Bawbel Scanner v1.2.0</span></div>
-          <div class="appear"><span class="te">CRIT  AVE-2026-00001  line 3  AIVSS 8.0</span></div>
+          <div class="appear"><span class="td">Bawbel Scanner v1.3.0</span></div>
+          <div class="appear"><span class="te">CRIT  AVE-2026-00001  line 3  AIVSS 8.0  confidence 0.83</span></div>
           <div class="appear"><span class="td">   External instruction fetch detected</span></div>
-          <div class="appear"><span class="te">CRIT  Credential Exfil Chain  AIVSS 9.8</span></div>
+          <div class="appear"><span class="te">CRIT  Credential Exfil Chain  AIVSS 9.8  confidence 0.71</span></div>
           <div class="appear"><span class="tc">Risk: 9.8/10  Findings: 2  Chains: 1</span></div>
         </div>
       </div>
@@ -341,49 +338,49 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
 
 <section>
   <div class="container">
-    <div class="section-label">v1.2.0 features</div>
+    <div class="section-label">v1.3.0 features</div>
     <h2 class="section-title fade-up">Built for the MCP attack surface</h2>
     <div class="new-banner fade-up">
-      <div class="new-banner-badge">New in v1.2.0</div>
+      <div class="new-banner-badge">New in v1.3.0</div>
       <div class="new-banner-content">
-        <h3>Justified suppression and false positive feedback</h3>
-        <p><code class="ic">bawbel-accept</code> inline comments declare accepted risks with expiry dates. Expired risks resurface automatically. <code class="ic">bawbel accept</code> CLI inserts comments directly into source files. Anonymous FP signals to PiranhaDB improve rules over time. Three new AVE records: hook hijacking (CRITICAL 9.1), hardcoded credentials (HIGH 7.8), unsafe delegation chains (HIGH 8.2).</p>
+        <h3>Confidence and evidence metadata, output contract stability</h3>
+        <p>Every Finding now carries four evidence fields populated at detection time: <code class="ic">confidence</code> (AVE-baseline confidence, FP-adjusted), <code class="ic">evidence_kind</code> (how evidence was gathered), <code class="ic">detection_stage</code> (static or runtime), and <code class="ic">detection_layer</code> (content, server_card, runtime, or registry_metadata). ToxicFlow chains gain a confidence field too -- the weakest link across all contributing findings. 25 schema contract tests now lock all 18 finding fields against a committed golden fixture, so unintended output changes fail CI before they reach users.</p>
       </div>
     </div>
     <div class="features-grid">
       <div class="feature-card fade-up">
-        <div class="feature-tag">New v1.2.0</div>
+        <div class="feature-tag">New v1.3.0</div>
         <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Justified Suppression</h3>
-        <p>Every suppression requires a reason and reviewer. Accepted risks have expiry dates and resurface automatically. Full audit trail in JSON output.</p>
+        <h3>Confidence Scoring</h3>
+        <p>Every finding carries a confidence value seeded from the AVE behavioral baseline, then adjusted through the full false-positive pipeline. <code class="ic">confidence_band()</code> maps it to high, medium, or low.</p>
       </div>
       <div class="feature-card fade-up">
-        <div class="feature-tag">New v1.2.0</div>
+        <div class="feature-tag">New v1.3.0</div>
         <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <h3>Credential Scanner</h3>
-        <p>AVE-2026-00047: detects hardcoded API keys, tokens, passwords, and URL-embedded credentials in skill files. Use <code class="ic">bawbel creds</code> for a focused view.</p>
+        <h3>Evidence Kind and Stage</h3>
+        <p>Findings declare how evidence was gathered (multi_engine, behavioral_pattern, semantic_inference, and more) and whether detection happened statically or at runtime.</p>
       </div>
       <div class="feature-card fade-up">
-        <div class="feature-tag">New v1.2.0</div>
+        <div class="feature-tag">New v1.3.0</div>
         <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
-        <h3>Hook Hijacking Detection</h3>
-        <p>AVE-2026-00046 (CRITICAL 9.1): detects skill files that register hooks to intercept MCP tool execution calls to attacker-controlled callbacks.</p>
+        <h3>Golden Fixture Tests</h3>
+        <p>25 schema contract tests lock all 18 finding fields and all 10 toxic flow fields against a committed snapshot. Unintended schema drift now fails CI.</p>
       </div>
       <div class="feature-card fade-up">
-        <div class="feature-tag">New v1.2.0</div>
+        <div class="feature-tag">New v1.3.0</div>
         <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>Delegation Chain Scanner</h3>
-        <p>AVE-2026-00048 (HIGH 8.2): flags unsafe sub-agent spawning with inherited permissions. Use <code class="ic">bawbel chain</code> for a focused view.</p>
+        <p>AVE-2026-00048 (HIGH 7.7): flags unsafe sub-agent spawning with inherited permissions. Use <code class="ic">bawbel chain</code> for a focused view.</p>
       </div>
       <div class="feature-card fade-up">
         <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.72 9.2"/><path d="M18 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
         <h3>Toxic Flow Detection</h3>
-        <p>12 built-in attack chains. Credential-read plus data-exfil becomes CRITICAL 9.8 automatically. Combined AIVSS score across the full chain.</p>
+        <p>12 built-in attack chains. Credential-read plus data-exfil becomes CRITICAL 9.8 automatically. Combined AIVSS score and minimum confidence across the full chain.</p>
       </div>
       <div class="feature-card fade-up">
         <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
         <h3>6 Detection Engines</h3>
-        <p>Pattern (40 rules), YARA (39), Semgrep (41), LLM semantic, Magika content-type, Docker sandbox. 121 rules total across 48 AVE IDs.</p>
+        <p>Pattern (40 rules), YARA (39), Semgrep (41), LLM semantic, Magika content-type, Docker sandbox. 121 rules total across 51 AVE records.</p>
       </div>
     </div>
   </div>
@@ -443,6 +440,43 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
   </div>
 </section>
 
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">Compliance</div>
+    <h2 class="section-title fade-up">Maps to the frameworks you already report against</h2>
+    <p class="section-sub fade-up">Every AVE record carries framework anchors. Findings land in OWASP MCP Top 10, MITRE ATLAS, and NIST AI RMF without inventing a new taxonomy for your team to learn.</p>
+    <div class="features-grid" style="margin-top:2.5rem">
+      <div class="feature-card fade-up">
+        <div class="feature-tag">Required on every record</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+        <h3>OWASP MCP Top 10</h3>
+        <p><code class="ic">owasp_mcp</code> is required on every one of the 51 AVE records, MCP01 through MCP10. Every finding your scan produces lands in a category your security team already tracks.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-tag">Mapped where applicable</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>MITRE ATLAS</h3>
+        <p><code class="ic">mitre_atlas_mapping</code> links AVE records to <code class="ic">AML.Txxxx</code> technique IDs, validated at schema level. Findings cross-reference the same adversary technique taxonomy your threat intel team uses.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-tag">Mapped where applicable</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg></div>
+        <h3>NIST AI RMF</h3>
+        <p><code class="ic">nist_ai_rmf_mapping</code> ties records to the Govern, Map, Measure, and Manage functions -- the reference point most AI risk management programs are already built around.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-tag">Optional</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+        <h3>OWASP Agentic AI Top 10</h3>
+        <p><code class="ic">owasp_mapping</code> connects records to ASI01 through ASI10 where the mapping is clear -- AVE supplies the individually-scored records underneath that framework's broader categories.</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem;text-align:center">
+      <a href="https://ave.bawbel.io/crosswalks.html" class="btn-secondary" style="display:inline-flex;align-items:center;gap:.5rem">View framework crosswalks <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <div class="section-label">Comparison</div>
@@ -459,8 +493,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
       </thead>
       <tbody>
         <tr><td>Executes MCP servers during scan</td><td class="yes col-bawbel">Never</td><td class="no">Yes</td><td class="no">No</td><td class="no">Sandboxed</td></tr>
-        <tr><td>Open vulnerability database</td><td class="yes col-bawbel">Yes (48 records)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+        <tr><td>Open behavioral classification standard</td><td class="yes col-bawbel">Yes (51 records)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td>OWASP AIVSS v0.8 scores</td><td class="yes col-bawbel">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+        <tr><td>Confidence and evidence metadata</td><td class="yes col-bawbel">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td>Toxic flow detection</td><td class="yes col-bawbel">Yes (12 chains)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td>Justified suppression with expiry</td><td class="yes col-bawbel">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td>Conformance grading</td><td class="yes col-bawbel">Yes (A+ to F)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
@@ -476,13 +511,41 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     <h2 class="section-title fade-up">Everything links to everything</h2>
     <p class="section-sub fade-up">Every scanner finding links to PiranhaDB. Every AVE record links to detection rules.</p>
     <div class="ecosystem-grid">
-      <div class="eco-card fade-up"><div class="eco-name">bawbel-scanner</div><div class="eco-desc">CLI scanner, Python API</div><div class="eco-status">LIVE v1.2.0</div></div>
+      <div class="eco-card fade-up"><div class="eco-name">bawbel-scanner</div><div class="eco-desc">CLI scanner, Python API</div><div class="eco-status">LIVE v1.3.0</div></div>
       <div class="eco-card fade-up"><div class="eco-name">VS Code Extension</div><div class="eco-desc">Inline diagnostics, auto-scan</div><div class="eco-status">LIVE v1.1.1</div></div>
       <div class="eco-card fade-up"><div class="eco-name">CI/CD Action</div><div class="eco-desc">SARIF upload, PR annotations</div><div class="eco-status">LIVE v1</div></div>
-      <div class="eco-card fade-up"><div class="eco-name">AVE Standard</div><div class="eco-desc">48 published records</div><div class="eco-status">LIVE 48 records</div></div>
+      <div class="eco-card fade-up"><div class="eco-name">AVE Standard</div><div class="eco-desc">Behavioral classification, 51 records</div><div class="eco-status">LIVE v1.1.0</div></div>
       <div class="eco-card fade-up"><div class="eco-name">PiranhaDB</div><div class="eco-desc">Threat intel API, 14 endpoints</div><div class="eco-status">LIVE api.piranha.bawbel.io</div></div>
-      <div class="eco-card fade-up"><div class="eco-name">Pre-commit Hook</div><div class="eco-desc">Blocks commits on findings</div><div class="eco-status">LIVE v1.2</div></div>
+      <div class="eco-card fade-up"><div class="eco-name">Pre-commit Hook</div><div class="eco-desc">Blocks commits on findings</div><div class="eco-status">LIVE v1.3</div></div>
       <div class="eco-card fade-up"><div class="eco-name">AIVSS (OWASP)</div><div class="eco-desc">Scoring standard for agentic AI</div><div class="eco-status"><a href="https://aivss.owasp.org">Try calculator</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">The standard underneath</div>
+    <h2 class="section-title fade-up">What is AVE?</h2>
+    <p class="section-sub fade-up">AVE (Agentic Vulnerability Enumeration) is the behavioral classification standard for agentic AI components. Bawbel is the reference implementation. Any scanner can implement it.</p>
+    <div class="features-grid" style="margin-top:2.5rem">
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Behavioral, not byte-level</h3>
+        <p>Every record describes what a component does -- fetches remote content and executes it as instructions -- not a string it contains. One record catches every textual variant of the same attack.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg></div>
+        <h3>Scored consistently</h3>
+        <p>Every record is scored with OWASP AIVSS v0.8 -- CVSS base combined with 10 agentic amplification factors and threat maturity. Same formula, every record, every scanner.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div>
+        <h3>Stable, shared IDs</h3>
+        <p><code class="ic">ave_id</code> is immutable once published -- never renumbered, never reused. Add it to any scanner's output and findings become comparable across tools without manual reconciliation.</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem;text-align:center">
+      <a href="https://ave.bawbel.io" class="btn-secondary" style="display:inline-flex;align-items:center;gap:.5rem">Explore the AVE registry <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
   </div>
 </section>
@@ -493,7 +556,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     <h2 class="section-title fade-up">Public threat intelligence API</h2>
     <p class="section-sub fade-up">Free, no auth, Apache 2.0. Every scanner finding includes a piranha_url linking to the full record with IOCs and remediation.</p>
     <div class="piranha-endpoints">
-      <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/records</div><div class="ep-desc">all 48 AVE records, filterable</div></div></div>
+      <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/records</div><div class="ep-desc">all 51 AVE records, filterable</div></div></div>
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/records/{ave_id}</div><div class="ep-desc">full record with IOCs and AIVSS</div></div></div>
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/registry-scan/latest</div><div class="ep-desc">latest Smithery scan results</div></div></div>
       <div class="endpoint-row fade-up"><span class="method method-get">GET</span><div><div class="ep-path">/stats/ecosystem</div><div class="ep-desc">aggregate stats across all sources</div></div></div>
@@ -549,7 +612,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
 </footer>
 
 <script>
-
 const TAB_IDS=['cli','accept','ide','precommit','cicd','ssc','pin'];
 function switchTab(id){document.querySelectorAll('.wtab').forEach((t,i)=>t.classList.toggle('active',TAB_IDS[i]===id));document.querySelectorAll('.workflow-body').forEach(b=>b.classList.remove('active'));const p=document.getElementById('tab-'+id);if(p){p.classList.add('active');p.querySelectorAll('.appear').forEach(el=>{el.style.animation='none';el.offsetHeight;el.style.animation=''})}}
 function switchSupp(id){document.querySelectorAll('.sdtab').forEach((t,i)=>t.classList.toggle('active',['fp','ar','cli','json'][i]===id));document.querySelectorAll('.sd-panel').forEach(p=>p.classList.remove('active'));const p=document.getElementById('supp-'+id);if(p)p.classList.add('active')}
