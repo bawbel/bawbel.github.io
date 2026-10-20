@@ -117,6 +117,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     <a href="https://bawbel.io/docs">Docs</a>
     <a href="https://api.piranha.bawbel.io">PiranhaDB</a>
     <a href="https://github.com/bawbel/ave">AVE Standard</a>
+    <a href="#gate">Gate</a>
     <a href="https://aivss.owasp.org">AIVSS</a>
     <a href="https://github.com/bawbel/scanner">GitHub</a>
     <a href="https://pypi.org/project/bawbel-scanner/" class="nav-cta">v1.3.0 on PyPI</a>
@@ -127,6 +128,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
   <a href="https://bawbel.io/docs">Docs</a>
   <a href="https://api.piranha.bawbel.io">PiranhaDB</a>
   <a href="https://github.com/bawbel/ave">AVE Standard</a>
+  <a href="#gate">Gate</a>
   <a href="https://aivss.owasp.org">AIVSS</a>
   <a href="https://github.com/bawbel/scanner">GitHub</a>
   <a href="https://pypi.org/project/bawbel-scanner/">v1.3.0 on PyPI</a>
@@ -517,6 +519,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
       <div class="eco-card fade-up"><div class="eco-name">AVE Standard</div><div class="eco-desc">Behavioral classification, 51 records</div><div class="eco-status">LIVE v1.1.0</div></div>
       <div class="eco-card fade-up"><div class="eco-name">PiranhaDB</div><div class="eco-desc">Threat intel API, 14 endpoints</div><div class="eco-status">LIVE api.piranha.bawbel.io</div></div>
       <div class="eco-card fade-up"><div class="eco-name">Pre-commit Hook</div><div class="eco-desc">Blocks commits on findings</div><div class="eco-status">LIVE v1.3</div></div>
+      <div class="eco-card fade-up"><div class="eco-name">bawbel-gate</div><div class="eco-desc">MCP runtime enforcement proxy</div><div class="eco-status" style="color:var(--muted)">PRE-RELEASE 0.1.x</div></div>
       <div class="eco-card fade-up"><div class="eco-name">AIVSS (OWASP)</div><div class="eco-desc">Scoring standard for agentic AI</div><div class="eco-status"><a href="https://aivss.owasp.org">Try calculator</a></div></div>
     </div>
   </div>
@@ -546,6 +549,35 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     </div>
     <div style="margin-top:2rem;text-align:center">
       <a href="https://ave.bawbel.io" class="btn-secondary" style="display:inline-flex;align-items:center;gap:.5rem">Explore the AVE registry <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="gate">
+  <div class="container">
+    <div class="section-label">Runtime enforcement, pre-release</div>
+    <h2 class="section-title fade-up">bawbel-gate</h2>
+    <p class="section-sub fade-up">A deterministic proxy between an agent host and its MCP servers. It enforces capability manifests, session taint, and a non-configurable trifecta invariant, and records every decision in a hash-chained audit log. It never reads model output: every decision is made on structured JSON-RPC.</p>
+    <div class="features-grid" style="margin-top:2.5rem">
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>Capability manifests</h3>
+        <p>One manifest per MCP server declares which tools it may call and under which argument conditions. Default deny: a call with no matching grant is refused before it reaches the server.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>Taint and the trifecta invariant</h3>
+        <p>A session that has touched private data and ingested untrusted content cannot communicate externally without a human approval. No manifest can turn this off.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <h3>Tamper-evident audit log</h3>
+        <p>Every decision is appended to a hash chain. <code class="ic">bawbel-gate audit verify</code> replays it and names the first broken link.</p>
+      </div>
+    </div>
+    <p class="fade-up" style="margin-top:2rem;text-align:center;font-size:.9rem;color:var(--muted)">Pre-release (0.1.x). Gate sees MCP traffic and tool-schema changes on the servers it fronts. It does not see the host's own prompts, skills, or local tools.</p>
+    <div style="margin-top:1.5rem;text-align:center">
+      <a href="https://github.com/bawbel/gate" class="btn-secondary" style="display:inline-flex;align-items:center;gap:.5rem">Design, status, and install <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
@@ -605,6 +637,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.
     <a href="https://bawbel.io/docs">Docs</a>
     <a href="https://api.piranha.bawbel.io">PiranhaDB</a>
     <a href="https://github.com/bawbel/ave">AVE Standard</a>
+    <a href="#gate">Gate</a>
     <a href="https://aivss.owasp.org">AIVSS</a>
     <a href="https://github.com/bawbel/scanner">GitHub</a>
     <a href="https://twitter.com/bawbel_io">@bawbel_io</a>
