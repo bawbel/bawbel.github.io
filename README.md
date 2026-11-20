@@ -61,7 +61,7 @@ change a number, change the register.
 
 [bawbel.io](https://bawbel.io) &nbsp;·&nbsp;
 [docs](https://bawbel.io/docs) &nbsp;·&nbsp;
-[AVE registry](https://ave.bawbel.io) &nbsp;·&nbsp;
-[PiranhaDB](https://api.piranha.bawbel.io) &nbsp;·&nbsp;
+[AVE registry](https://aveproject.org) &nbsp;·&nbsp;
+PiranhaDB (offline) &nbsp;·&nbsp;
 [OWASP AIVSS](https://aivss.owasp.org) &nbsp;·&nbsp;
 [@bawbel_io](https://twitter.com/bawbel_io)
